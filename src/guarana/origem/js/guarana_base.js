@@ -1,0 +1,1 @@
+// TODO: estrutura base do JS

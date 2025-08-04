@@ -5,21 +5,28 @@ from .config import *
 
 descricao = f"{NOME}: estrutura de front-end para Flask. Versão: {VERSAO}"
 
-def criar_flask():
-    comandos.criar_flask()
 
 def main():
     parser = argparse.ArgumentParser(description=descricao)
     subparsers = parser.add_subparsers(dest='comando')
 
-    flask = subparsers.add_parser(
-        'flask',
-        help=f'Cria a estrutura padrão para app de Flask. Inclui o comando de instalação'
+    flask_help = 'Instala a estrutura básica de flask'
+    instalar = subparsers.add_parser(
+        'instalar',
+        help=f'Instala o'
+        f' {COR_AMARELO}{NOME}{COR_FIM} na pasta {COR_VERDE}{PASTA_STATIC}/{COR_FIM}, '
+        f'criando as subpastas {COR_VERDE}/{PASTA_CSS}/{COR_FIM} '
+        f'e {COR_VERDE}/{PASTA_CSS}/{COR_FIM}, junto de seus conteúdo\t'
+        f'{COR_AMARELO}--flask{COR_FIM}: {flask_help}'
+    )
+    instalar.add_argument(
+        '--flask', action='store_true',
+        help=flask_help
     )
 
     args = parser.parse_args()
     match args.comando:
-        case 'flask': criar_flask()
+        case 'instalar': comandos.instalar_guarana(args.flask)
         case _: parser.print_help()
 
 if __name__ == "__main__":

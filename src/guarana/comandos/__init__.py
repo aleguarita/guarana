@@ -1,1 +1,2 @@
-from .criar_flask import criar_flask
+from .instalar import instalar_guarana
+

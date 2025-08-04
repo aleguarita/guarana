@@ -20,8 +20,12 @@ AUTOR = _autores[0].get('name', 'Alessandro Guarita') if _autores else 'Alessand
 
 PORTA_LOCAL = 5000
 
-PASTA_ORIGEM = Path(__file__).parent / 'origem'
-
+PASTA_ORIGEM = Path(__file__).parent/'origem'
+PASTA_APP = 'app'
+PASTA_STATIC = 'static'
+PASTA_CSS = 'css'
+PASTA_JS = 'js'
+ARQUIVO_BASE = '_guarana_base.css'
 
 COR_AMARELO = colorama.Fore.YELLOW
 COR_VERMELHO = colorama.Fore.RED
