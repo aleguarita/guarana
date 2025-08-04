@@ -39,12 +39,18 @@ def main():
         help=f'TODO:'
     )
 
+    rodar = subparsers.add_parser(
+        'rodar',
+        help=f'TODO:'
+    )
+
     args = parser.parse_args()
     match args.comando:
         case 'instalar': comandos.instalar_guarana(args.flask)
         case 'atualizar': print('TODO:')
         case 'resetar': print('TODO:')
-        case 'min': comandos.criar_estilo_css_min()
+        case 'min': comandos.observar_min_css()
+        case 'rodar': print('TODO:')
         case _: parser.print_help()
 
 if __name__ == "__main__":

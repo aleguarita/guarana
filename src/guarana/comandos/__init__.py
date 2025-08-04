@@ -1,2 +1,2 @@
 from .instalar import instalar_guarana
-from .criar_css import criar_estilo_css_min
+from .observar_minificacao import observar_min_css

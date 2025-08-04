@@ -24,4 +24,13 @@ Como parâmetro opcional, utilize `--flask` caso seu sistema esteja zerado, isso
 python -m guarana atualizar
 ``` -->
 
+## CSS a ser usado
+Depois de instalado, serão criados alguns arquivos de `.css` na raíz.
 
+- `_guarana_base.css` - esse arquivo contém a base do Guaraná e não deve ser alterado, já que é gerado dinamicamente
+- `estilo.css` - o arquivo a ser trabalhado. Ele pode ser importado diretamente no HTML. Note, porém, que há muitos `@import` o que gera várias requisições HTTP
+- `estilo-min.css` - todo o Guaraná compactado em um único CSS, importe no HTML para ser mais eficiente posteriormente. Esse arquivo é gerado dinamicamente através do comando:
+
+```bash
+python -m guarana min
+```

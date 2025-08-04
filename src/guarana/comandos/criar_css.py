@@ -93,13 +93,18 @@ def criar_estilo_css_min():
     pasta_destino = caminho_pasta_existente(PASTA_CSS)
     arquivo_destino = pasta_destino/'estilo-min.css'
 
-    header = f'/*{NOME}{hoje}*/'
+    header = f'/*{NOME}:{hoje}*/'
     texto = Path(pasta_destino/'estilo.css').read_text()
 
     while '@import' in texto:
         texto = substituir_imports(texto)
 
-    arquivo_destino.write_text(minificar_css(texto))
+    if arquivo_destino.exists():
+        print(f'Atualizado {COR_AMARELO}estilo-min.css{COR_FIM}')
+    else:
+        print(f'Gerando {COR_AMARELO}estilo-min.css{COR_FIM}')
+
+    arquivo_destino.write_text(header+minificar_css(texto))
 
 
 def substituir_imports(css:str):
