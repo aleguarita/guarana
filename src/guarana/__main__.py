@@ -26,17 +26,26 @@ def main():
 
     atualizar = subparsers.add_parser(
         'atualizar',
-        help='TODO:'
+        help=f'Atualiza a base do '
+             f'{COR_AMARELO}{NOME}{COR_FIM} '
+             f'recriando o arquivo {COR_VERDE}{ARQUIVO_BASE}{COR_FIM} '
+             f'com todas suas atualizações e alterações. '
     )
 
     resetar = subparsers.add_parser(
         'resetar',
-        help='TODO:'
+        help=f'Gera todos os arquivos de usuário novamente para o '
+             f'{COR_AMARELO}{NOME}{COR_FIM}.'
+             f'\n {COR_BRANCO}{COR_FUNDO_VERMELHO}ATENÇÃO:'
+             f'{COR_FIM}'
+             f' essa ação é irreversível e tudo o que você tenha feito será perdido'
+             f' a menos que você tenha backup ou esteja usando GIT'
     )
 
     minificar = subparsers.add_parser(
         'min',
-        help=f'TODO:'
+        help=f'Observa qualquer alteração na pasta {PASTA_CSS} e recria '
+             f'o arquivo {COR_AMARELO}estilo-min.css{COR_FIM} a cada alteração'
     )
 
     rodar = subparsers.add_parser(
@@ -47,8 +56,8 @@ def main():
     args = parser.parse_args()
     match args.comando:
         case 'instalar': comandos.instalar_guarana(args.flask)
-        case 'atualizar': print('TODO:')
-        case 'resetar': print('TODO:')
+        case 'atualizar': comandos.atualizar(resetar=False)
+        case 'resetar': comandos.atualizar(resetar=True)
         case 'min': comandos.observar_min_css()
         case 'rodar': print('TODO:')
         case _: parser.print_help()

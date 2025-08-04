@@ -66,7 +66,7 @@ def criar_import_utils_css():
     pass
 
 
-def criar_estilo_css():
+def criar_estilo_css(resetar:bool=False):
     """
     Cria o arquivo CSS estilo.css para o usuário trabalhar
     """
@@ -81,9 +81,13 @@ def criar_estilo_css():
     if not arquivo_destino.exists():
         print(
             f'Arquivo {COR_VERDE}{pasta_destino}/estilo.css{COR_FIM} criado')
-    else:
+    elif resetar:
         print(
             f'Arquivo {COR_VERMELHO}{pasta_destino}/estilo.css{COR_FIM} reescrito')
+    else:
+        criar_estilo_css_min()
+        return
+
 
     arquivo_destino.write_text(texto)
     criar_estilo_css_min()

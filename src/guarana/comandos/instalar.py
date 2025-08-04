@@ -2,8 +2,7 @@ from pathlib import Path
 
 from ..config import *
 from .helpers import criar_pasta, copiar_arquivo, copiar_pasta_inteira, separador, caminho_pasta_existente
-from .js import gerar_js
-from .criar_css import criar_base_css, criar_estilo_css
+from .atualizar import atualizar
 
 #region flask
 def criar_flask():
@@ -66,12 +65,8 @@ def instalar_guarana(flask: bool=False):
         return
 
     criar_pasta(pasta_static)
-
-    print(f'\n{COR_AMARELO}Criando CSS\n{separador('-')}{COR_FIM}')
     criar_pasta(f'{pasta_static}/{PASTA_CSS}')
-    criar_base_css()
-    criar_estilo_css()
-
-    print(f'\n{COR_AMARELO}Criando JS\n{separador('-')}{COR_FIM}')
     criar_pasta(f'{pasta_static}/{PASTA_JS}')
-    gerar_js()
+
+    atualizar(True)
+

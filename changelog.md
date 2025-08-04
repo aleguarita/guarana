@@ -1,5 +1,9 @@
 # Changelog
 
+## **0.0.3**
+- O comando de minificar é regerado a cada alteração na pasta `/css`
+- Comandos para atualizar e resetar
+
 ## **0.0.2**
 - Gerando a base dos arquivos javascript
 - Reset de CSS

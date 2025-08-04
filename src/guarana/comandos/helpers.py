@@ -35,8 +35,10 @@ def copiar_pasta_inteira(origem, destino):
             f"{origem}/{str(arquivo.name)}", 
             f'{destino}/{str(arquivo.name)}')
 
+
 def separador(char:str='='):
     return char.ljust(80, char)
+
 
 def caminho_pasta_existente(pasta:str):
     pasta_atual = Path.cwd()
