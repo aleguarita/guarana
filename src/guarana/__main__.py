@@ -24,9 +24,27 @@ def main():
         help=flask_help
     )
 
+    atualizar = subparsers.add_parser(
+        'atualizar',
+        help='TODO:'
+    )
+
+    resetar = subparsers.add_parser(
+        'resetar',
+        help='TODO:'
+    )
+
+    minificar = subparsers.add_parser(
+        'min',
+        help=f'TODO:'
+    )
+
     args = parser.parse_args()
     match args.comando:
         case 'instalar': comandos.instalar_guarana(args.flask)
+        case 'atualizar': print('TODO:')
+        case 'resetar': print('TODO:')
+        case 'min': comandos.criar_estilo_css_min()
         case _: parser.print_help()
 
 if __name__ == "__main__":
