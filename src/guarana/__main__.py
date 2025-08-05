@@ -50,7 +50,8 @@ def main():
 
     rodar = subparsers.add_parser(
         'rodar',
-        help=f'TODO:'
+        help=f'Roda a documentação e exemplos para o caso de não estar usando o Flask.\n'
+             f'Endereço é http://localhost:{PORTA_LOCAL}'
     )
 
     args = parser.parse_args()
@@ -59,7 +60,7 @@ def main():
         case 'atualizar': comandos.atualizar(resetar=False)
         case 'resetar': comandos.atualizar(resetar=True)
         case 'min': comandos.observar_min_css()
-        case 'rodar': print('TODO:')
+        case 'rodar': comandos.rodar_doc()
         case _: parser.print_help()
 
 if __name__ == "__main__":

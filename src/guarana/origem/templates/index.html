@@ -1,14 +1,10 @@
-{% extends 'modelo.html' %}
+{% extends 'internas.html' %}
+
+{%block titulo%}{{TITULO}}{%endblock%}
+
 {% block js %}
-<script src="{{ url_for('static', filename='js/guarana_base.js') }}"></script>
 <script src="{{ url_for('static', filename='js/guarana.js') }}"></script>
 {% endblock js %}
-
-{% block menu %}
-<nav class="menu">
-    
-</nav>
-{% endblock menu %}
 
 {% block conteudo %}
 Olá mundo

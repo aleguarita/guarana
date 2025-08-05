@@ -26,6 +26,7 @@ PASTA_STATIC = 'static'
 PASTA_CSS = 'css'
 PASTA_JS = 'js'
 PASTA_UTILS = f'utils_{NOME.lower()}'
+PASTA_VIEWS = 'views'
 ARQUIVO_BASE = '_guarana_base.css'
 
 COR_AMARELO = colorama.Fore.YELLOW
