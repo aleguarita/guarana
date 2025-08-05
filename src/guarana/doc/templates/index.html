@@ -1,0 +1,39 @@
+{% extends '_modelo.html' %}
+
+{% block conteudo %}
+<article class='item ativo' id='inicial'>
+    <header class='item__header'>
+        <h1>{{app}}</h1>
+        <p><strong>Versão</strong>: {{versao}}</p>
+    </header>
+    
+    <section class='item__corpo'>
+        <ul>
+            <li><a href="https://github.com/aleguarita/guarana" target="_blank">
+                {{app}} no Github</a>
+            </li>
+            <li><a href="https://pypi.org/project/Guarana-aag/" target="_blank">
+                {{app}} no Pypi</a>
+            </li>
+        </ul>
+        
+        <!-- TODO: classe aviso -->
+         <p>A configuração básica está no arquivo <code>estilo.scss</code>.
+            <a href="/variaveis">Veja sobre mais variáveis</a>.</p>
+
+        <p>Para atualizar a versão:</p>
+        <ol>
+            <li>Certifique-se de estar no ambiente virtual correto e no sistema atual;</li>
+            <li>Atualize a versão do módulo {{app.lower()}};</li>
+            <li>Rode o comando abaixo no terminal</li>
+        </ol>
+
+        {{codigo('bash', ['python -m guarana atualizar'])}}
+
+
+    </section>
+
+</article>
+
+{% endblock conteudo %}
+
