@@ -1,0 +1,30 @@
+/* 
+PROPRIEDADES PERSONALIZADAS BASE
+--------------------------------------------------------------------------------
+ */
+@property --cor-erro {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(358 85% 52%);
+}
+@property --cor-ok {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(128 52% 47%);
+}
+@property --cor-alerta {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(44 95% 47%);
+}
+
+@property --sans {
+    syntax: "<custom-ident>#";
+    inherits: false;
+    initial-value: Helvetica, Arial, sans-serif;
+}
+@property --serif {
+    syntax: "<custom-ident>#";
+    inherits: false;
+    initial-value: Times, Georgia, serif;
+}

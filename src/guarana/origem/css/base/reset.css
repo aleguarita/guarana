@@ -24,7 +24,8 @@ Com alterações pontuais
     }
 
     body {
-
+        background-color: var(--cor-bg);
+        color: var(--cor-txt);
     }
 
     img, picture, video, canvas, svg {
@@ -38,6 +39,7 @@ Com alterações pontuais
 
     p, h1, h2, h3, h4, h5, h6 {
         overflow-wrap: break-word;
+        color: var(--cor-txt);
     }
 
     p {
@@ -46,5 +48,9 @@ Com alterações pontuais
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
+    }
+
+    a, strong, span, label, em, b, i {
+        color: var(--cor-txt);
     }
 }

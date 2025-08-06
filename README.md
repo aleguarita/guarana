@@ -56,5 +56,5 @@ Os seguinte arquivos são instalados quando executa da função `--flask`:
 O arquivo de configurações (`config.py`) inclue as seguintes constantes:
 - `ESTILO` - escolha qual o CSS a ser usado (como indicado na seção de CSS):
     - `padrao` - o estilo tradicional, não compactado
-    - `min` - o estilo minificado
+    - `min` - o estilo minificado. Esse é o valor padrão
 - `TITULO` - inclua aqui o título do sistema, que aparece na tag `<title>`

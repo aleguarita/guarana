@@ -1,7 +1,95 @@
-/*05/08/2025*/
+/*06/08/2025*/
 @layer reset, base, utils, prism, doc_gua;
 
-/*  */
+/* PROPRIEDADES PERSONALIZADAS */
+@property --rd { /* para uso em border-radius */
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --sombra {
+    syntax: "*";
+    inherits: true;
+    initial-value: 1px 1px 0 hsl(0 0% 0% / .3);
+}
+@property --transicao { /* sem determinar qual a propriedade */
+    syntax: "*";
+    inherits: true;
+    initial-value: 0.5s ease-in-out 0s;
+}
+
+/* root */
+:root {
+    /* Paleta */
+    --cor-1: hsl(34 100% 50%);
+    --cor-2: hsl(144 48% 32%);
+    --cor-3: hsl(8 100% 27%);
+    
+    /* bases */
+    --cor-base: var(--cor-1);
+    --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+    --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
+
+    --fonte: var(--sans);
+    --modo: light dark;
+
+    color-scheme: var(--modo);
+}
+
+/* definição básica de seletores */
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        --cor-txt: var(--cor-2);
+    }
+
+    a {
+        --cor-base: var(--cor-3);
+        --cor-txt: var(--cor-base);
+        transition-property: --cor-txt;
+        transition: var(--transicao);
+
+        &:hover {
+            --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
+        }
+
+        &:visited {
+            --cor-txt: hsl(from var(--cor-base) h calc(s * 0.4) calc(l * 0.8));
+        }
+    }
+}
+
+
+/* 
+PROPRIEDADES PERSONALIZADAS BASE
+--------------------------------------------------------------------------------
+ */
+@property --cor-erro {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(358 85% 52%);
+}
+@property --cor-ok {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(128 52% 47%);
+}
+@property --cor-alerta {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(44 95% 47%);
+}
+
+@property --sans {
+    syntax: "<custom-ident>#";
+    inherits: false;
+    initial-value: Helvetica, Arial, sans-serif;
+}
+@property --serif {
+    syntax: "<custom-ident>#";
+    inherits: false;
+    initial-value: Times, Georgia, serif;
+}
+
 
 /*
 RESET
@@ -29,7 +117,8 @@ Com alterações pontuais
     }
 
     body {
-
+        background-color: var(--cor-bg);
+        color: var(--cor-txt);
     }
 
     img, picture, video, canvas, svg {
@@ -43,6 +132,7 @@ Com alterações pontuais
 
     p, h1, h2, h3, h4, h5, h6 {
         overflow-wrap: break-word;
+        color: var(--cor-txt);
     }
 
     p {
@@ -51,5 +141,9 @@ Com alterações pontuais
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
+    }
+
+    a, strong, span, label, em, b, i {
+        color: var(--cor-txt);
     }
 }

@@ -3,6 +3,6 @@ _ESTILOS = {
     'padrao': 'css/estilo.css',
     'min': 'css/estilo-min.css'
 }
-ESTILO = _ESTILOS.get('padrao', 'css/estilo.scss')
+ESTILO = _ESTILOS.get('min', 'css/estilo.scss')
 
 TITULO = 'Nome do App'

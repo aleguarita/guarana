@@ -4,4 +4,60 @@
 /* LAYERS */
 @layer reset, base, utils;
 
-/*  */
+/* PROPRIEDADES PERSONALIZADAS */
+@property --rd { /* para uso em border-radius */
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --sombra {
+    syntax: "*";
+    inherits: true;
+    initial-value: 1px 1px 0 hsl(0 0% 0% / .3);
+}
+@property --transicao { /* sem determinar qual a propriedade */
+    syntax: "*";
+    inherits: true;
+    initial-value: 0.5s ease-in-out 0s;
+}
+
+/* root */
+:root {
+    /* Paleta */
+    --cor-1: hsl(34 100% 50%);
+    --cor-2: hsl(144 48% 32%);
+    --cor-3: hsl(8 100% 27%);
+    
+    /* bases */
+    --cor-base: var(--cor-1);
+    --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+    --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
+
+    --fonte: var(--sans);
+    --modo: light dark; /* modo determinado pelo navegador */
+
+    color-scheme: var(--modo);
+}
+
+/* definição básica de seletores */
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        --cor-txt: var(--cor-2);
+    }
+
+    a {
+        --cor-base: var(--cor-3);
+        --cor-txt: var(--cor-base);
+        transition-property: --cor-txt;
+        transition: var(--transicao);
+
+        &:hover {
+            --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
+        }
+
+        &:visited {
+            --cor-txt: hsl(from var(--cor-base) h calc(s * 0.4) calc(l * 0.8));
+        }
+    }
+}
+

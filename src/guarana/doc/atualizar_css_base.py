@@ -22,7 +22,7 @@ texto = f'/*{date.today().strftime("%d/%m/%Y")}*/\n'
 regex_imports = r'(.|\n)*?/\* LAYERS \*/\n'
 regex_layers = r'(\s*@layer\s+.*?)(\s*);'
 estilo_original = pasta_origem/'estilo.css'
-texto += re.sub(regex_imports, '', estilo_original.read_text(), 1)
+texto += re.sub(regex_imports, '', estilo_original.read_text())
 texto = re.sub(regex_layers, r'\1' + f', {CAMADAS}' + r';', texto)
 
 
