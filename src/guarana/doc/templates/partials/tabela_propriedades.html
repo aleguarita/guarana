@@ -1,0 +1,20 @@
+<table>
+    <thead>
+        <th>Propriedade</th>
+        <th>Tipo</th>
+        <th>Herança</th>
+        <th>Uso</th>
+        <th>Versão</th>
+    </thead>
+    <tbody>
+        {% for item in prop_css | sort(attribute="nome") %}
+        <tr>
+            <td><code>{{item.nome}}</code><br/>{{item.categoria}}</td>
+            <td>{{item.tipo}}</td>
+            <td>{{item.heranca}}</td>
+            <td>{{item.uso|safe}}</td>
+            <td>{{item.atualizada}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,127 @@
+{% extends '_modelo.html' %}
+
+{% set cores_paleta = prop_css
+    | selectattr("categoria", "equalto", "aberta")
+    | selectattr("tipo", "equalto", "cor")
+    | list
+    | sort(attribute="nome")
+%}
+{% set cores_estado = prop_css
+    | selectattr("categoria", "equalto", "fechada")
+    | selectattr("tipo", "equalto", "cor")
+    | list
+    | sort(attribute="nome")
+%}
+{% set cores_comp = prop_css
+    | selectattr("categoria", "equalto", "root")
+    | selectattr("tipo", "equalto", "cor")
+    | list
+    | sort(attribute="nome")
+%}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='cores' data-categoria='base'>
+    <header class='conteudo__header'>
+        <h1>Cores</h1>
+        <nav class="links_header">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                hsl()
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                oklch()
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/light-dark" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                light-dark()
+            </a>
+            <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/color-scheme" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                color-scheme
+            </a>
+        </nav>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>O {{app}} faz uso de {{cores_paleta|length}} cores base. Para trabalhar com variações de 
+            claridade, usa-se a função de css <code>hsl()</code>.</p>
+        
+
+        <h2>Determinando a paleta de cores</h2>
+        <p>As cores são iniciadas no arquivo <code>estilo.scss</code> no seletor 
+            <code>:root</code>.</p>
+        <p>O uso de <code>hsl</code> no lugar do hexadecimal é por ser mais
+            fácil de alterar a tonalidade e ter uma noção de quão clara ou 
+            escura é a cor e também pelo uso da função de CSS <code>hsl()</code>.
+            É possível definir a variável como hexadecimal e ainda trabalhar com
+            a função em questão, mas o modo de cores hsl é mais intuitivo.</p>
+        <p>As variáveis básicas da paleta, são:</p>
+
+        <ul>
+            {% for cor in cores_paleta %}<li><code>{{cor.nome}}</code></li>{% endfor %}
+        </ul>
+
+        <p>As cores de estado, são:</p>
+        <ul>
+            {% for cor in cores_estado %}<li><code>{{cor.nome}}</code></li>{% endfor %}
+        </ul>
+
+        <!-- TODO: incluir classe de alerta -->
+        <blockquote>
+            <p>Atenção:</p>
+            <p>Sempre use variáveis dentro do CSS, mesmo que faça uma variação 
+                da cor em questão. Isso facilitará a aplicação de temas e modos 
+                de cor, já que bastará alterar a variável.</p>
+        </blockquote>
+
+        <h2>Criando variações (claras, escuras, transparentes)</h2>
+        <p>Para criar variações cromáticas, pode-se usar as funções nativas de 
+            CSS. A melhor opção é usar a função <code>hsl()</code>.</p>
+
+        <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl" target="_blank">
+            Veja aqui como fazer uso dessa função.</a></p>
+        
+        <p>Outra alternativa é usar <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch" target="_blank">
+            a função oklch()</a> pois ela retorna tons próximos do que o olho 
+            enxerga, mas a forma de trabalhar com ela é um pouco mais complexa.</p>
+
+        <h2>Cores de elementos e componentes</h2>
+        <p>
+            Existem algumas propriedades para configurar as cores no sistema. Elas
+            estão definidas no <code>:root</code> e algumas vezes alteradas/utilizadas
+            em componentes. São elas:
+        </p>
+        <ul>
+            {% for cor in cores_comp %}<li><code>{{cor.nome}}</code> - {{cor.uso|safe}}</li>{% endfor %}
+        </ul>
+
+        <h2>Modos de cor: claro e escuro</h2>
+        <p>
+            Por padrão, o {{app}} trabalha tanto com o modo claro e escuro, definido pelo
+            usuário em seu navegador ou sistema, mas é possível "fixar" um dos modos, para
+            manter consistência no sistema.
+        </p>
+
+        <p>
+            Esse modo é definido pela variável <code>--modo</code> que é passada no <code>color-scheme</code>.
+        </p>
+
+        <p>
+            Ao utilizar o modo <code>light dark</code>, pode ser importante diferenciar as cores
+            do elemento conforme o modo, fazendo uso da função <code>light-dark()</code>.
+            No arquivo <code>estilo.css</code> a cor de fundo e de texto estão definidas usando
+            esse método, tendo fundo branco no modo claro e preto no escuro, o inverso para o texto:
+        </p>
+
+        {{codigo('css', [
+        '--cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));',
+        '--cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));'
+        ])}}
+        
+        <!-- TODO: explicar como fixar apenas um modo -->
+        
+        <!-- TODO: parei nos modos de cores do outro arquivo -->
+    </section>
+</article>
+{% endblock conteudo %}

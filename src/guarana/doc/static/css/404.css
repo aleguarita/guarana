@@ -1,0 +1,43 @@
+.pg_404 {
+    --cor-bg: hsl(from var(--cor-3) h s calc(l - 10));
+    --cor-txt: var(--cor-1);
+
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    left: 0;
+    top: 0;
+    background-color: var(--cor-bg);
+}
+.pg_404__conteudo {
+    width: min(500px, 50vw);
+    margin: auto;
+    align-self: center;
+    text-align: center;
+
+    & h1 {
+        --cor-txt: var(--cor-1);
+        --fonte: sans-serif;
+        font-size: 6em;
+        margin: 0;
+    }
+
+    & > header {
+        font-size: 2em;
+        p {
+            margin-top: 0;
+        }
+    }
+
+
+    & hr {
+        --cor-borda: var(--cor-1);
+        border-width: 1px 0 0 0;
+        border-color: var(--cor-borda);
+    }
+
+    & a {
+        --cor-txt: hsl(from var(--cor-1) h s calc(l + 25));
+    }
+}

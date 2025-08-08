@@ -1,0 +1,51 @@
+{% extends '_modelo.html' %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='camadas' data-categoria='base'>
+    <header class='conteudo__header'>
+        <h1>Camadas</h1>
+        <nav class="links_header">
+            <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/@layer" class="link_externo" target="_blank">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                @layers
+            </a>
+        </nav>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            As camadas utilizadas no {{app}} são (na ordem):
+        </p>
+
+        <ol>
+            <li>
+                <code>reset</code> - as propriedades de reset, sempre a primeira
+                camada a ser declarada, para ter a menor relevância.
+            </li>
+            <li>
+                <code>base</code> - essa camada contém as formatações extras,
+                sejam de tag ou a base de elementos utilitários com suas classes.
+            </li>
+            <li>
+                <!-- TODO: verificar se está com a pasta de mesmo nome -->
+                <code>utils</code> - essa camada contém a formatação dos elementos
+                dos {{app}} (que se localizam na pasta de mesmo nome).
+            </li>
+            <li>
+                <code>layout</code> - essa camada deve ser usada para todas as
+                configurações básicas do seu sistema que não sejam de views
+                específicas (a maior especificidade)
+            </li>
+            <li>
+                <code>views</code> - a camada de formatação de views específicas
+            </li>
+        </ol>
+
+        <p>
+            Lembre-se que qualquer formatação que não seja vinculada a uma layer
+            possuirá a maior especificidade de todas.
+        </p>
+
+    </section>
+</article>
+{% endblock conteudo %}

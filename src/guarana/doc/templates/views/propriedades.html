@@ -1,0 +1,87 @@
+{% macro tabela_propriedade(categoria)%}
+<table>
+    <thead>
+        <tr>
+            <th>Propriedade</th>
+            <th>Tipo</th>
+            <th>Herança</th>
+            <th>Uso</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in prop_css|sort(attribute="nome") %}
+        {% if item.categoria == categoria %}
+        <tr>
+            <td><code>{{item.nome}}</code></td>
+            <td>{{item.tipo}}</td>
+            <td>{{item.heranca}}</td>
+            <td>{{item.uso | safe}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
+
+
+{% extends '_modelo.html' %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='propriedades' data-categoria='base'>
+    <header class='conteudo__header'>
+        <h1>Propriedades personalizadas</h1>
+        <nav class="links_header">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@property" class="link_externo" target="_blank">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                @property
+            </a>
+        </nav>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            O {{app}} tem três categorias de Propriedades personalizadas: as "fechadas",
+            definidas internamente e não tem seus valores padrão afetados pelo
+            usuário; "abertas", definidas no arquivo de estilo e "variável" o
+            tipo menos usado que é definido diretamente dentro de seletores.
+        </p>
+        <p>
+            Ao criar uma nova propriedade, dê preferência por usar o <code>@property</code>
+            no arquivo <code>estilos.css</code> ao invés de incluir no root,
+            dessa forma a propriedade pode ser passada como parâmetros de 
+            animação, mas também determina a herança e o valor inicial.
+        </p>
+        <!-- TODO: criar classe de aviso -->
+         <blockquote class="aviso">
+            Note, no entanto, que uma propriedade definida dessa forma
+            <strong>não aceita</strong> (no momento) o uso de variáveis como
+            <code>initial-value</code>.
+         </blockquote>
+
+         <h2>Propriedades fechadas</h2>
+         <p>
+            Essas são propriedades iniciada no {{app}} e raramente são alteradas.
+        </p>
+
+        {{tabela_propriedade('fechada')}}
+        
+        <h2>Propriedades abertas</h2>
+        <p>
+            Essas são as propriedades personalizadas que estão no arquivo <code>
+                estilos.css</code>.
+        </p>
+        {{tabela_propriedade('aberta')}}
+
+        <h2>Variáveis</h2>
+        Essas propriedades são inseridas diretamente no <code>:root</code> ou
+        seletores internos e foram incluidas dessa forma por limitações atuais
+        no <code>@property</code>
+        {{tabela_propriedade('root')}}
+
+        <h2>Todas as propriedades</h2>
+        {% include "partials/tabela_propriedades.html" %}
+
+
+    </section>
+</article>
+{% endblock conteudo %}

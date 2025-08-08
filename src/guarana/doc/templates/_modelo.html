@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{app}}</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/doc.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
 </head>
 <body>
@@ -18,13 +18,32 @@
 {% endfor %}</pre>
 {% endmacro %}
 
+
+{%set categorias=[
+    'base',
+    'util',
+    'ferramentas',
+    'facilitadores',
+]%}
+
+
 <main class="conteudo">
-    <nav class="menu">
+    <nav class="menu conteudo__menu">
         <header>
-            <h1><a href="/">{% include "partials/logo.html" %}</a></h1>
+            <a href="/">{% include "partials/logo.html" %}</a>
         </header>
 
-        RESTO DO MENU
+        {% for categoria in categorias %}
+        <span class='gua_menu__titulo'>{{categoria.title()}}</span>
+
+        {% for item in views %}
+        {% if item['categoria'] == categoria %}
+        <a href="/{{item['id']}}" class="gua_menu__item">{{item['titulo']}}</a>
+        {% endif %}
+        {% endfor %}
+
+    {% endfor %}
+        
     </nav>
     
     <section class="conteudo__principal">

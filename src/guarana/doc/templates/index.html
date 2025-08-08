@@ -1,26 +1,88 @@
 {% extends '_modelo.html' %}
 
 {% block conteudo %}
-<article class='item ativo' id='inicial'>
-    <header class='item__header'>
+<article class='conteudo__artigo' id='inicial'>
+    <header class='conteudo__header'>
         <h1>{{app}}</h1>
         <p><strong>Versão</strong>: {{versao}}</p>
+        <nav class="links_header">
+            <a href="https://github.com/aleguarita/guarana" target="_blank" class="link_externo" title="{{app}} no Github">
+                <img src="{{ url_for('static', filename='img/github.svg') }}" alt="github">
+                Github
+            </a>
+            <a href="https://pypi.org/project/Guarana-aag/" target="_blank" class="link_externo" title="{{app}} no Pypi">
+                <img src="{{ url_for('static', filename='img/python.svg') }}" alt="python">
+                Pypi
+            </a>
+
+        </nav>
     </header>
     
-    <section class='item__corpo'>
-        <ul>
-            <li><a href="https://github.com/aleguarita/guarana" target="_blank">
-                {{app}} no Github</a>
+    <section class='conteudo__corpo'>
+        <p>
+            Uma vez instalado, o {{app}} inclui várias folhas de estilo, seja na
+            pasta raíz <code>css</code>, seja em subpastas. O arquivo que vai ser
+            trabalhado é o <code>estilo.css</code>. Ele inclui <code>@import</code>
+            para todos os
+            arquivos. Se desejar manter uma estrutura mais organizada, separe
+            o estilo em mais folhas de estilos e importe para essa.
+        </p>
+
+        <p>
+            O arquivo <code>estilo-min.css</code> é a versão minificada do <code>estilo.css</code> e
+            seus imports em apenas um arquivo. <strong>É extremamente recomendado
+            o uso desse arquivo</strong>. Para manter esse arquivo atualizado
+            com as mudanças aplicadas no <code>estilo.css</code> (incluindo novos imports),
+            execute o comando:
+        </p>
+
+        {{codigo('bash', ['python -m guarana min'])}}
+
+        <p>
+            Esse comando fica observando todas as mudanças na pasta <code>css</code> e a
+            cada nova alteração, ele reescreve o arquivo <code>estilo-min.css</code>.
+        </p>
+
+        <h2>Trabalhando no arquivo de estilo</h2>
+        <p>
+            O arquivo <code>estilo.css</code> é a base para o trabalho. Sua estrutura
+            é a seguinte:
+        </p>
+
+        <ol>
+            <li>
+                Definição de <a href="/camadas">camadas</a>. Isso deve aparecer
+                no início do arquivo
             </li>
-            <li><a href="https://pypi.org/project/Guarana-aag/" target="_blank">
-                {{app}} no Pypi</a>
+            <li>
+                As importações de arquivos. Por conta do uso de camadas, não
+                precisa ser no início do arquivo e a ordem das importações não
+                é importante. A única regra a ser observada é que as definições
+                de camadas deve estar antes das importações.
             </li>
-        </ul>
+            <li>
+                A definição de <a href="/propriedades">propriedades personalizadas</a>.
+            </li>
+            <li>
+                A formatação do <code>:root</code>. Veja mais sobre <a href="/cores">
+                cores</a> para mais detalhes.
+            </li>
+            <li>
+                A formatação de tags básicos (princiapalmente suas cores). Estão
+                na camada <code>base</code> e qualquer outra definição de baixa
+                prioridade deve estar aqui. Veja mais em <a href="/camadas">camadas</a>.
+            </li>
+            <li>
+                As classes de tema de <a href="/cores">cores</a>.
+            </li>
+        </ol>
+        
+        <div class="changelog">
+            {{md['changelog'] | safe}}
+        </div>
 
 
     </section>
 
 </article>
-
 {% endblock conteudo %}
-

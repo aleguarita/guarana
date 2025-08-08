@@ -1,63 +1,6 @@
-/*06/08/2025*/
-@layer reset, base, utils, prism, doc_gua;
-
-/* PROPRIEDADES PERSONALIZADAS */
-@property --rd { /* para uso em border-radius */
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --sombra {
-    syntax: "*";
-    inherits: true;
-    initial-value: 1px 1px 0 hsl(0 0% 0% / .3);
-}
-@property --transicao { /* sem determinar qual a propriedade */
-    syntax: "*";
-    inherits: true;
-    initial-value: 0.5s ease-in-out 0s;
-}
-
-/* root */
-:root {
-    /* Paleta */
-    --cor-1: hsl(34 100% 50%);
-    --cor-2: hsl(144 48% 32%);
-    --cor-3: hsl(8 100% 27%);
-    
-    /* bases */
-    --cor-base: var(--cor-1);
-    --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
-    --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
-
-    --fonte: var(--sans);
-    --modo: light dark;
-
-    color-scheme: var(--modo);
-}
-
-/* definição básica de seletores */
-@layer base {
-    h1, h2, h3, h4, h5, h6 {
-        --cor-txt: var(--cor-2);
-    }
-
-    a {
-        --cor-base: var(--cor-3);
-        --cor-txt: var(--cor-base);
-        transition-property: --cor-txt;
-        transition: var(--transicao);
-
-        &:hover {
-            --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
-        }
-
-        &:visited {
-            --cor-txt: hsl(from var(--cor-base) h calc(s * 0.4) calc(l * 0.8));
-        }
-    }
-}
-
+/*08/08/2025*/
+/* LAYERS */
+@layer reset, base, utils, layout, views, doc_gua, view, prism;
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -91,6 +34,7 @@ PROPRIEDADES PERSONALIZADAS BASE
 }
 
 
+
 /*
 RESET
 --------------------------------------------------------------------------------
@@ -119,6 +63,7 @@ Com alterações pontuais
     body {
         background-color: var(--cor-bg);
         color: var(--cor-txt);
+        font-family: var(--fonte, sans-serif);
     }
 
     img, picture, video, canvas, svg {
@@ -137,13 +82,109 @@ Com alterações pontuais
 
     p {
         text-wrap: pretty;
+        margin-block: calc(1em + 0.5rem);
     }
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
+        margin-block: calc(1em + 0.5rem) 1em;
     }
 
-    a, strong, span, label, em, b, i {
+    a, strong, span, label, em, b, i, table, blockquote, details, li {
         color: var(--cor-txt);
+    }
+
+    h1 {
+        font-size: 2.16em;
+    }
+    h2 {
+        font-size: 1.83em;
+    }
+    h3 {
+        font-size: 1.7em;
+    }
+    h4 {
+        font-size: 1.51em;
+    }
+    h5 {
+        font-size: 1.35em;
+    }
+    h6 {
+        font-size: 1.2em;
+    }
+
+}
+
+
+
+/* PROPRIEDADES PERSONALIZADAS */
+/* Paleta */
+@property --cor-1 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(34 100% 50%);
+}
+@property --cor-2 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(144 48% 32%);
+}
+@property --cor-3 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(8 100% 27%);
+}
+
+/* Elementos genéricos para formatação */
+@property --rd { /* para uso em border-radius */
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --sombra {
+    syntax: "*";
+    inherits: true;
+    initial-value: 1px 1px 0 hsl(0 0% 0% / .3);
+}
+@property --transicao { /* sem determinar qual a propriedade */
+    syntax: "*";
+    inherits: true;
+    initial-value: 0.5s ease-in-out 0s;
+}
+
+/* root */
+@layer layout {
+    :root {
+        --cor-base: var(--cor-1);
+        --cor-secundaria: var(--cor-2);
+
+        --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+        --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
+        --modo: light dark; /* modo determinado pelo navegador */
+        --fonte: var(--sans);
+    
+        color-scheme: var(--modo); /* mantenha para indicar o modo usado */
+    }
+}
+
+/* definição básica de seletores */
+@layer base {
+    h1, h2, h3, h4, h5, h6 {
+        --cor-txt: var(--cor-2);
+    }
+
+    a {
+        --cor-base: var(--cor-3);
+        --cor-txt: var(--cor-base);
+        transition: var(--transicao);
+        transition-property: --cor-txt;
+
+        &:hover {
+            --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
+        }
+
+        &:visited {
+            --cor-txt: hsl(from var(--cor-base) h calc(s * 0.4) calc(l * 0.8));
+        }
     }
 }

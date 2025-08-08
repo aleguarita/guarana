@@ -134,11 +134,11 @@ def substituir_imports(css:str):
 
 def minificar_css(css:str):
     css_sem_comentarios = re.sub(r'/\*.*?\*/', '', css, flags=re.DOTALL)
-
+    
     # Remove quebras de linha, tabulações e espaços extras
     css_minificado = re.sub(r'\s+', ' ', css_sem_comentarios)
 
     # Remove espaços ao redor de símbolos comuns
     css_minificado = re.sub(r'\s*([{};:,])\s*', r'\1', css_minificado)
-
+    
     return css_minificado.strip()

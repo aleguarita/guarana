@@ -1,10 +1,28 @@
+/* LAYERS */
+@layer reset, base, utils, layout, views;
+
 /* IMPORTS */
 @import url(ARQUIVO_BASE);
 
-/* LAYERS */
-@layer reset, base, utils;
-
 /* PROPRIEDADES PERSONALIZADAS */
+/* Paleta */
+@property --cor-1 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(34 100% 50%);
+}
+@property --cor-2 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(144 48% 32%);
+}
+@property --cor-3 {
+    syntax: "<color>";
+    inherits: false;
+    initial-value: hsl(8 100% 27%);
+}
+
+/* Elementos genéricos para formatação */
 @property --rd { /* para uso em border-radius */
     syntax: "<length-percentage>+";
     inherits: true;
@@ -22,21 +40,18 @@
 }
 
 /* root */
-:root {
-    /* Paleta */
-    --cor-1: hsl(34 100% 50%);
-    --cor-2: hsl(144 48% 32%);
-    --cor-3: hsl(8 100% 27%);
+@layer layout {
+    :root {
+        --cor-base: var(--cor-1);
+        --cor-secundaria: var(--cor-2);
+
+        --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+        --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
+        --modo: light dark; /* modo determinado pelo navegador */
+        --fonte: var(--sans);
     
-    /* bases */
-    --cor-base: var(--cor-1);
-    --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
-    --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
-
-    --fonte: var(--sans);
-    --modo: light dark; /* modo determinado pelo navegador */
-
-    color-scheme: var(--modo);
+        color-scheme: var(--modo); /* mantenha para indicar o modo usado */
+    }
 }
 
 /* definição básica de seletores */
@@ -48,8 +63,8 @@
     a {
         --cor-base: var(--cor-3);
         --cor-txt: var(--cor-base);
-        transition-property: --cor-txt;
         transition: var(--transicao);
+        transition-property: --cor-txt;
 
         &:hover {
             --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
@@ -60,4 +75,3 @@
         }
     }
 }
-

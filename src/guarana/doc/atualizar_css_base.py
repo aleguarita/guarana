@@ -2,7 +2,7 @@ from pathlib import Path
 from datetime import date
 import re
 
-CAMADAS = 'prism, doc_gua';
+CAMADAS = 'doc_gua, view, prism';
 
 #region PASTAS E ARQUIVOS
 pasta_atual = Path(__file__).parent
@@ -19,17 +19,16 @@ arquivos = list(pasta_base.glob('*'))
 texto = f'/*{date.today().strftime("%d/%m/%Y")}*/\n'
 
 # TEXTO DO ESTILO.CSS
-regex_imports = r'(.|\n)*?/\* LAYERS \*/\n'
 regex_layers = r'(\s*@layer\s+.*?)(\s*);'
 estilo_original = pasta_origem/'estilo.css'
-texto += re.sub(regex_imports, '', estilo_original.read_text())
-texto = re.sub(regex_layers, r'\1' + f', {CAMADAS}' + r';', texto)
-
 
 for arquivo in arquivos:
     texto += '\n'
     texto += arquivo.read_text()
     texto += '\n'
+    
+texto += re.sub(regex_layers, r'\1' + f', {CAMADAS}' + r';', estilo_original.read_text())
+texto = texto.replace('/* IMPORTS */\n@import url(ARQUIVO_BASE);\n', '')
 
 arquivo_destino.write_text(texto)
 
