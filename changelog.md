@@ -3,6 +3,7 @@
 ## 0.1.1
 - Documentação para JS
 - Snippets de JS
+- Aplicação de temas na documentação
 
 
 ## 0.1.0
