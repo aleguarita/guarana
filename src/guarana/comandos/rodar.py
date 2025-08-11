@@ -1,11 +1,14 @@
 from flask import Flask, render_template, abort
 from pathlib import Path
+from datetime import date
 import markdown
 import json
 import re
 
 from ..config import *
 from ..doc.tabelas import *
+
+dia_hoje = date.today().day
 
 def rodar_doc():
     app = Flask(__name__)
@@ -44,6 +47,7 @@ def rodar_doc():
                 snippets[tipo] = json.load(f)
         except (FileNotFoundError, json.JSONDecodeError):
             snippets[tipo] = {}
+
 
     # Mapeia as views a partir dos arquivos HTML para a criação do menu
     pasta_modelos = Path(__file__).absolute().parent.parent / 'doc/templates/views'
@@ -91,7 +95,8 @@ def rodar_doc():
         'md': md,
         'snippets': snippets,
         'views': views,
-        'prop_css': propriedades_css
+        'prop_css': propriedades_css,
+        'hoje': dia_hoje
     }
 
     # --------------------------------------------------------------------------

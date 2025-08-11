@@ -79,12 +79,15 @@
         <p>Para criar variações cromáticas, pode-se usar as funções nativas de 
             CSS. A melhor opção é usar a função <code>hsl()</code>.</p>
 
-        <p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/hsl" target="_blank">
-            Veja aqui como fazer uso dessa função.</a></p>
-        
         <p>Outra alternativa é usar <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch" target="_blank">
             a função oklch()</a> pois ela retorna tons próximos do que o olho 
             enxerga, mas a forma de trabalhar com ela é um pouco mais complexa.</p>
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir função hsl(): <code>gua_hsl</code></p>
+            e também duas para ajudar no calc de cada um: <code>gua_s</code> e <code>gua_l</code>
+        </blockquote>
 
         <h2>Cores de elementos e componentes</h2>
         <p>
@@ -118,10 +121,116 @@
         '--cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));',
         '--cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));'
         ])}}
+
+        <h3>Alternando os modos no inspetor</h3>
+        <p>
+            Os navegadores permitem alternar entre os modos para verificar o que foi feito:
+        </p>
+
+        <figure>
+            <img src="{{ url_for('static', filename='img/inspecao-claro-escuro-chrome.png') }}" alt="Chromium">
+            <legend>Em navegadores Chromium</legend>
+        </figure>
+
+        <figure>
+            <img src="{{ url_for('static', filename='img/inspecao-claro-escuro-ff.png') }}" alt="Firefox">
+            <legend>Firefox</legend>
+        </figure>
         
-        <!-- TODO: explicar como fixar apenas um modo -->
+        <h3>Formatação específica por módulos</h3>
+        <p>
+            Com o uso de <a href="/container_media">containers</a> é possível
+            fazer personalizações específicas por modo de cor (para retirar uma
+            sombra que ficaria ruim no modo escuro, por exemplo):
+        </p>
+
+        {{codigo('css', [
+        '@container style(--modo: dark) {',
+        '    box-shadow: none',
+        '}',
+        ])}}
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir o modo: <code>gua_modo</code></p>
+        </blockquote>
         
-        <!-- TODO: parei nos modos de cores do outro arquivo -->
+        <h2>Temas de cores</h2>
+
+        <p>
+            Os temas são criados no próprio arquivo de estilos, logo depois do 
+            <code>:root</code>. Esse estilo deve ser aplicado direto na tag
+            <code>html</code>.
+        </p>
+        <p>
+            Os temas devem iniciar com <code>.tema_</code> e na classe deve ter
+            a propriedade <code>--tema</code>, além das paletas de cores. A
+            propriedade <code>--modo</code> pode ser usada para fixar esse tema
+            entre <code>light</code> ou <code>dark</code>.
+        </p>
+        <p>Esse é o código para um novo tema:</p>
+
+        {{codigo('css', [
+        ".tema_nome_tema {",
+        "    --modo: dark | light; /* escolha um ou apague essa linha */",
+        "    --tema: nome_tema;",
+        " ",
+        "    --cor-1: hsl();",
+        "    --cor-2: hsl();",
+        "    --cor-3: hsl();",
+        " ",
+        "    --cor-txt: var();",
+        "    --cor-bg: hsl(0 0% 0%);",
+        "}",
+        ])}}
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para criar um tema novo:
+                <code>gua_novo_tema</code></p>
+        </blockquote>
+
+        <p>
+            Ajustes de tags específicos devem ser feitos
+            dentro do próprio tag com uso de <a href="/container_media">@container</a>:
+
+            {{codigo('css', [
+            '--cor-txt: hsl(from var(--cor-2) h s calc(l * 1.25));',
+            ' ',
+            '@container style(--tema: "alto contraste") {',
+            '    --cor-txt: var(--cor-2);',
+            '}'
+            ])}}
+        </p>
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir o tema
+                dentro de um seletor: <code>gua_tema</code></p>
+        </blockquote>
+
+        <h3>Temas já existentes</h3>
+        <p>O {{app}} já vem com 3 temas:</p>
+        <ul>
+            <li><code>.tema_light</code> - reproduz o modo claro, para dar opção
+                de escolha para o usuário</li>
+            <li><code>.tema_dark</code> - reproduz o modo escuro, para dar opção
+                de escolha para o usuário</li>
+            <li><code>.tema_alto_contraste</code> - um modo escuro com maior
+                contraste para acessibilidade</li>
+        </ul>
+
+        <p>
+            O script <code>guaAplicarTema(tema)</code> remove os temas atuais e
+            aplica o novo tema.
+        </p>
+
+        <p>
+            Essa documentação possui os temas acima, um tema extra e também um 
+            tema que usa o dia atual como base para a criação da cor, para servir
+            de exemplo de como é fácil e rápido aplicar temas de cores.
+        </p>
+
     </section>
 </article>
 {% endblock conteudo %}

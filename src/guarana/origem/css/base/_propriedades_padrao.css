@@ -20,12 +20,17 @@ PROPRIEDADES PERSONALIZADAS BASE
 
 @property --sans {
     syntax: "<custom-ident>#";
-    inherits: false;
+    inherits: true;
     initial-value: Helvetica, Arial, sans-serif;
 }
 @property --serif {
     syntax: "<custom-ident>#";
-    inherits: false;
+    inherits: true;
     initial-value: Times, Georgia, serif;
 }
 
+@property --tema {
+    syntax: "<string>";
+    inherits: true;
+    initial-value: "padrão";
+}

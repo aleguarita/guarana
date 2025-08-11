@@ -13,6 +13,19 @@
             hsl(from var(--cor-1) h s calc(l + 20))
         );
     }
+    .tema_alto_contraste {
+        --cor-txt: var(--cor-1);
+    }
+
+    .tema_guarana_original {
+        --tema: "original";
+
+        --cor-1: hsl(195, 77%, 32%);
+        --cor-2: hsl(353, 57%, 36%);
+        --cor-3: hsl(31, 100%, 50%);
+
+    }
+
 
     code:not(pre code) {
         --cor-txt: hsl(from var(--cor-erro) h s calc(l * 1.2));
@@ -33,6 +46,12 @@
         width: max-content;
         font-size: .8em;
         white-space: nowrap;
+
+        @container style(--tema: "alto contraste") {
+            --cor-txt: var(--cor-3);
+            --cor-bg: transparent;
+            --cor-bd: currentColor;
+        }
     }
 }
 
@@ -42,7 +61,10 @@
         --cor-txt: light-dark(
             hsl(from var(--cor-1) h s calc(l * .35)),
             hsl(from var(--cor-1) h s calc(l * 1.45))
-        )
+        );
+        @container style(--tema: "alto contraste") {
+            --cor-txt: var(--cor-2);
+        }
     }
 
     .links_header {
@@ -74,6 +96,11 @@
         &:hover {
             background-color: light-dark(hsl(0, 0%, 100%), hsl(0, 0%, 0%));
         }
+
+        @container style(--tema: "alto contraste") {
+            --cor-bg: transparent;
+            border-color: currentColor;
+        }
     }
 
     .conteudo {
@@ -89,10 +116,18 @@
 
         a {
             --cor-base: light-dark(var(--cor-3), hsl(from var(--cor-3) h s calc(l * 1.95)));
+            
+            @container style(--tema: "alto contraste") {
+                --cor-base: var(--cor-2);
+            }
         }
 
         & > * {
             background-color: var(--gua_bg);
+        }
+
+        @container style(--tema: "alto contraste") {
+            --gua_bg: #000;
         }
     }
 
@@ -101,6 +136,10 @@
         overflow-y: auto;
         padding: 2em;
         font-size: 0.8em;
+
+        @container style(--tema: "alto contraste") {
+            border-right: 1px solid var(--cor-txt);
+        }
     }
 
     .conteudo__principal {

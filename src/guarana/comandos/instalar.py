@@ -50,7 +50,7 @@ def prosseguir_atualizacao():
     prosseguir = False if pergunta.lower() == 'n' else True
 
     if prosseguir:
-        # TODO: prosseguir com atualização
+        atualizar(True)
         return
 
 
@@ -64,6 +64,7 @@ def instalar_guarana(flask: bool=False):
         prosseguir_atualizacao()
         return
 
+    criar_pasta('.vscode')
     criar_pasta(pasta_static)
     criar_pasta(f'{pasta_static}/{PASTA_CSS}')
     criar_pasta(f'{pasta_static}/{PASTA_JS}')

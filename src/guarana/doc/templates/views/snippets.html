@@ -1,0 +1,31 @@
+{% set tipos=['html', 'css', 'js'] %}
+
+{% extends '_modelo.html' %}
+
+{% block conteudo %}
+
+<article class='conteudo__artigo' id='snippets' data-categoria='facilitadores'>
+    <header class='item__header'>
+        <h1>Snippets VSCode</h1>
+    </header>
+
+    <section class='item__corpo'>
+        <p>
+            O {{app}} inclui uma série de snippets do VS Code para agilizar a codificação. Todos eles começam com prefixo <code>gua_</code> para não conflitar com demais snippets.
+        </p>
+
+        {% for snippet in tipos %}
+        <h2>Snippets de {{snippet.upper()}}</h2>
+        <ul>
+            {% for item in snippets[snippet] %}
+            <li><code>{{snippets[snippet][item]['prefix']}}</code> - 
+                {{snippets[snippet][item]['description'] | safe}}</li>
+            {% endfor %}
+        </ul>
+        {% endfor %}
+
+
+    </section>
+</article>
+
+{% endblock conteudo %}

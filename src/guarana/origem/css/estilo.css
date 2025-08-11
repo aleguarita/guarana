@@ -8,17 +8,17 @@
 /* Paleta */
 @property --cor-1 {
     syntax: "<color>";
-    inherits: false;
+    inherits: true;
     initial-value: hsl(34 100% 50%);
 }
 @property --cor-2 {
     syntax: "<color>";
-    inherits: false;
+    inherits: true;
     initial-value: hsl(144 48% 32%);
 }
 @property --cor-3 {
     syntax: "<color>";
-    inherits: false;
+    inherits: true;
     initial-value: hsl(8 100% 27%);
 }
 
@@ -39,18 +39,46 @@
     initial-value: 0.5s ease-in-out 0s;
 }
 
+/* modo de cor, por padrão usa tanto o claro e escuro */
+@property --modo {
+    syntax: "*";
+    inherits: true;
+    initial-value: light dark;
+}
+
 /* root */
 @layer layout {
     :root {
         --cor-base: var(--cor-1);
         --cor-secundaria: var(--cor-2);
-
-        --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
         --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
-        --modo: light dark; /* modo determinado pelo navegador */
+        --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+        
         --fonte: var(--sans);
     
-        color-scheme: var(--modo); /* mantenha para indicar o modo usado */
+        color-scheme: var(--modo);
+    }
+
+    /* TEMAS */
+    /* temas claro e escuro são para dar opção pro usuário não usar o modo do navegador */
+    .tema_light {
+        --modo: light;
+    }
+
+    .tema_dark {
+        --modo: dark;
+    }
+
+    .tema_alto_contraste {
+        --modo: dark;
+        --tema: "alto contraste";
+
+        --cor-1: hsl(60 100% 50%);
+        --cor-2: hsl(120 100% 50%);
+        --cor-3: hsl(0 100% 50%);
+        
+        --cor-txt: var(--cor-1);
+        --cor-bg: hsl(0 0% 0%);
     }
 }
 
@@ -68,6 +96,10 @@
 
         &:hover {
             --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
+
+            @container style(--tema: "alto contraste") {
+                --cor-txt: hsl(from var(--cor-base) calc(h + 175) s l);
+            }
         }
 
         &:visited {
