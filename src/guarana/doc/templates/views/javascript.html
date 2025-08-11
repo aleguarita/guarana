@@ -1,0 +1,25 @@
+{% extends '_modelo.html' %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='javascript' data-categoria='facilitadores'>
+    <header class='conteudo__header'>
+        <h1>JavaScript</h1>
+        <p>Arquivo: <code>static/guarana.js</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            O {{app}} vem com  arquivo de JavaScript <code>guarana.js</code> que
+            é importado automaticamente ao rodar o comando de instalar. Não altere
+            esse arquivo, já que ele é reescrito ao dar o comando de resetar.
+        </p>
+
+        <p>Toda as funções iniciam com <code>gua</code> para evitar conflitos
+        com eventuais scripts do sistema.</p>
+
+        <h2>Scripts</h2>
+        
+        {% include "partials/js_aplicar_tema.html" %}
+    </section>
+</article>
+{% endblock conteudo %}

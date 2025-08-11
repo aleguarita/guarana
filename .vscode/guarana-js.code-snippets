@@ -1,0 +1,18 @@
+{
+    "Aplicar Tema": {
+        "scope": "javascript",
+        "prefix": "gua_aplicar_tema",
+        "body": [
+            "guaAplicarTema('$1')"
+        ],
+        "description": "Remove todos os temas do body e aplica o tema selecionado."
+    },
+    "Remover Temas": {
+        "scope": "javascript",
+        "prefix": "gua_remover_temas",
+        "body": [
+            "guaRemoverTemas()"
+        ],
+        "description": "Remove todos os temas do body."
+    }
+}

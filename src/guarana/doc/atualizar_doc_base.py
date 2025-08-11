@@ -32,3 +32,8 @@ texto = texto.replace('/* IMPORTS */\n@import url(ARQUIVO_BASE);\n', '')
 
 arquivo_destino.write_text(texto)
 
+# COPIA JS
+arquivo_js_destino = pasta_atual/'static/js/guarana.js'
+arquivo_js_origem = pasta_atual.parent/'origem/js/guarana.js'
+
+arquivo_js_destino.write_text(arquivo_js_origem.read_text())

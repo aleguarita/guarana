@@ -18,8 +18,8 @@ f"""// {separador()}
 """
 
 def gerar_js(resetar: bool = False):
-    origem = PASTA_ORIGEM/PASTA_JS/'guarana_base.js'
-    destino = caminho_pasta_existente(PASTA_JS)/'guarana_base.js'
+    origem = PASTA_ORIGEM/PASTA_JS/'guarana.js'
+    destino = caminho_pasta_existente(PASTA_JS)/'guarana.js'
 
     if destino.exists() and not resetar:
         return

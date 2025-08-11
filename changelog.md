@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.1
+- Documentação para JS
+- Snippets de JS
+
+
 ## 0.1.0
 - Definição de layers
 - Definição de propriedades de css
