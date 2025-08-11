@@ -4,6 +4,8 @@
 - Definição de layers
 - Definição de propriedades de css
 - Definição de cores e temas
+- Snippets
+- JavaScript
 
 ## 0.0.3
 - O comando de minificar é regerado a cada alteração na pasta `/css`
