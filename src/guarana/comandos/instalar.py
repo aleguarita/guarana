@@ -68,6 +68,7 @@ def instalar_guarana(flask: bool=False):
     criar_pasta(pasta_static)
     criar_pasta(f'{pasta_static}/{PASTA_CSS}')
     criar_pasta(f'{pasta_static}/{PASTA_JS}')
+    criar_pasta(f'{pasta_static}/{PASTA_CSS}/guarana')
 
     atualizar(True)
 

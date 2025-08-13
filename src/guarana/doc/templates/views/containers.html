@@ -1,0 +1,73 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Containers e Media Queries{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='containers' data-categoria='base'>
+    <header class='conteudo__header'>
+        <h1>Containers e Media Queries</h1>
+        <nav class="links_header">
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_queries" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                @container
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                container: size & style
+            </a>
+            <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/@media/prefers-color-scheme" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                media: prefers-color-scheme
+            </a>
+        </nav>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            Os queries podem ser feitos <strong>dentro</strong> de um seletor,
+            o que facilita o contexto. Dê preferência para esse método.
+        </p>
+
+        <h2>Container</h2>
+        <p>
+            O CSS já faz uso da nova query <code>@container</code> que pega as 
+            medidas de um container para formatar o filho. Essa abordagem facilita
+            a criação de sites responsivos já que pode-se usar a lógica "quando a
+            lateral ficar com um tamanho menor que <code>10rem</code> os cards
+            ficam na vertical ao invés de um do lado do outro".
+        </p>
+        <p>
+            Seu uso é similar ao de media-query, mas é importante definir que o
+            container tenha nome e qual seu formato.
+        </p>
+        <p>
+            Além do query de container, há as medidas de container, como
+            <code>cqi / cqw</code> que pega a proporção da largura do container e
+            <code>cqb / cqb</code> que pega a altura. Dê preferência para
+            <code>cqi</code> e <code>cqb</code> para block e inline.
+        </p>
+
+        <h2>Media: prefers-color-scheme</h2>
+        <p>
+            Formata um elemento conforme o <a href="/cores">esquema de cores</a>
+            selecionado pelo usuário.
+        </p>
+
+        {% include "partials/codigo_color_scheme.html" %}
+        {% include "partials/snippet_color_scheme.html" %}
+
+        <h2>Uso de style()</h2>
+        <p>
+            Futuramente será possível utilizar <code>style()</code> para formatar
+            os elementos filhos de um container. Como exemplo:
+        </p>
+
+        {{codigo('css', [
+        "@container style(--tema:\"alto contraste\") {",
+        "    --cor-bg: red;",
+        "}"
+        ])}}
+
+    </section>
+</article>
+{% endblock conteudo %}

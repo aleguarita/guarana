@@ -1,0 +1,16 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Todos os containers{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='containers_lista' data-categoria='listas'>
+    <header class='conteudo__header'>
+        <h1>Todos os containers</h1>
+        <p>Lista de todos os containers utilizados</p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        {% include "partials/tabela_containers.html" %}
+    </section>
+</article>
+{% endblock conteudo %}

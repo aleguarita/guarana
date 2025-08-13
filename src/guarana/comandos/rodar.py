@@ -8,8 +8,6 @@ import re
 from ..config import *
 from ..doc.tabelas import *
 
-dia_hoje = date.today().day
-
 def rodar_doc():
     app = Flask(__name__)
     app.config['DEBUG'] = True
@@ -88,7 +86,7 @@ def rodar_doc():
 
     # Dicionário com todo o contexto a ser passado para o template
     template_context = {
-        'app': NOME.replace('na', 'ná'),
+        'app': NOME.capitalize().replace('na', 'ná'),
         'versao': VERSAO,
         'pasta_utils': PASTA_UTILS,
         'pasta_views': PASTA_VIEWS,
@@ -96,7 +94,8 @@ def rodar_doc():
         'snippets': snippets,
         'views': views,
         'prop_css': propriedades_css,
-        'hoje': dia_hoje
+        'classe_css': classes_css,
+        'hoje': date.today().day
     }
 
     # --------------------------------------------------------------------------

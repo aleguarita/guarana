@@ -1,0 +1,32 @@
+<h3><code>guaAtivarDesativar(classe, classe_ativa='ativo')</code></h3>
+
+<p>
+    Esse script vai observar duas classes, passadas como parâmetro:
+</p>
+
+<ul>
+    <li>
+        <code>classe</code>
+         - a classe a buscar (por exemplo <code>menu__link</code>. 
+         Esse parâmetro é obrigatório
+    </li>
+    <li>
+        <code>classe_ativa</code> 
+        - a classe que vai ser acrescentada no elemento e retirada dos demais,
+        <code>.ativo</code> por padrão.
+    </li>
+</ul>
+
+<p>
+    Ao clicar em um item que tenha a <code>classe</code> o script remove dos
+    demais itens com a a mesma classe a "classe_ativa" e aplica essa classe no
+    item clicado. Um exemplo prático disso é indicar qual o item do menu que
+    está ativo.
+</p>
+
+{{codigo('JS', ["guaAtivarDesativar('classe')"])}}
+
+<blockquote class="dica-snippet">
+    <p>Snippet</p>
+    <p>O {{app}} vem com um snippet para o JS: <code>gua_ativar</code></p>
+</blockquote>

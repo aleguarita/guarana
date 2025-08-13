@@ -85,7 +85,7 @@ propriedades_css = [
         "nome": "--transicao",
         "tipo": "valores separados por espaço",
         "heranca": "sim",
-        "uso": f"variável para a transição padrão, sem indicar qual a nome afetada. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}<br /><br /><code>transition: var(--transicao)</code>",
+        "uso": f"variável para a transição padrão, sem indicar qual a nome afetada. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}<br /><code>transition: var(--transicao)</code>",
         'categoria': 'aberta',
         'atualizada': '0.1.0'
     },
@@ -144,5 +144,45 @@ propriedades_css = [
         "uso": "variável usada no <code>:root</code> para indicar qual o tema de cores utilizado. Valor inicial: \"padrão\".<br /><code>--tema: \"alto contraste\"</code>",
         'categoria': 'root',
         'atualizada': '0.1.0'
+    },
+    {
+        "nome": "--gap",
+        "tipo": "porcentagem / medida",
+        "heranca": "sim",
+        "uso": "variável usada nos utilitários para indicar qual a medida de gap de um container que seja flex ou grid. Valor inicial: 0.<br /><code>--gap: 1rem</code>",
+        'categoria': 'aberta',
+        'atualizada': '0.2.0'
+    },
+    {
+        "nome": "--pd-i",
+        "tipo": "porcentagem / medida",
+        "heranca": "sim",
+        "uso": "Variável utilizada para o padding-inline (horizontal) de um utilitário que faça uso de padding. Valor inicial: 0.<br /><code>--pd-i: 1em;</code><br/><code>padding-inline: var(--pd-i);</code>",
+        'categoria': 'aberta',
+        'atualizada': '0.2.0'
+    },
+    {
+        "nome": "--pd-b",
+        "tipo": "porcentagem / medida",
+        "heranca": "sim",
+        "uso": "Variável utilizada para o padding-block (vertical) de um utilitário que faça uso de padding. Valor inicial: 0.<br /><code>--pd-h: 1em;</code><br/><code>padding-block: var(--pd-b);</code>",
+        'categoria': 'aberta',
+        'atualizada': '0.2.0'
+    },
+    {
+        "nome": "--mg-i",
+        "tipo": "porcentagem / medida",
+        "heranca": "sim",
+        "uso": "Variável utilizada para o margin-inline (horizontal) de um utilitário que faça uso de margem. Valor inicial: 0.<br /><code>--mg-i: auto;</code><br/><code>margin-inline: var(--mg-i);</code>",
+        'categoria': 'aberta',
+        'atualizada': '0.2.0'
+    },
+    {
+        "nome": "--mg-b",
+        "tipo": "porcentagem / medida",
+        "heranca": "sim",
+        "uso": "Variável utilizada para o margin-block (vertical) de um utilitário que faça uso de margem. Valor inicial: 0.<br /><code>--mg-h: 1rem 0;</code><br/><code>margin-block: var(--mg-b);</code>",
+        'categoria': 'aberta',
+        'atualizada': '0.2.0'
     },
 ]

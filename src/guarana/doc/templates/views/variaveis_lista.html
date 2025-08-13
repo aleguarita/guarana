@@ -1,0 +1,17 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Todas as variáveis{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='variaveis_lista' data-categoria='listas'>
+    <header class='conteudo__header'>
+        <h1>Todas as variáveis</h1>
+        <p>Todas as variáveis (propriedades) utilizadas</p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>Para mais detalhes veja <a href="/propriedades">Propriedades</a>.</p>
+        {% include "partials/tabela_propriedades.html" %}
+    </section>
+</article>
+{% endblock conteudo %}

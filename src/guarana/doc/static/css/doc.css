@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 
 
-/* CORREÇÃO TAGS */
+/* CORREÇÃO TAGS E TEMAS */
 @layer doc_gua {
     :root {
         --fonte: "Source Sans 3", var(--sans);
@@ -23,7 +23,6 @@
         --cor-1: hsl(195, 77%, 32%);
         --cor-2: hsl(353, 57%, 36%);
         --cor-3: hsl(31, 100%, 50%);
-
     }
 
 
@@ -53,10 +52,7 @@
             --cor-bd: currentColor;
         }
     }
-}
 
-/* CLASSES */
-@layer doc_gua {
     h1, h2, h3, h4, h5, h6 {
         --cor-txt: light-dark(
             hsl(from var(--cor-1) h s calc(l * .35)),
@@ -66,7 +62,10 @@
             --cor-txt: var(--cor-2);
         }
     }
+}
 
+/* CLASSES PRÓPRIAS */
+@layer doc_gua {
     .links_header {
         display: flex;
         gap: 0.5em;
@@ -182,6 +181,46 @@
     }
 }
 
+/* CLASSES ORIGINAIS */
+@layer doc_gua {
+    .menu:not(.demo) {
+        --rd: var(--gua_raio);
+        --pd-i: .5em;
+        --pd-b: .5em;
+
+        .menu__link {
+            --cor-txt:var(--cor-base);
+            --cor-bg: hsl(from var(--cor-base) h s l / .15);
+            outline: 2px solid var(--cor-bg);
+            font-weight: bold;
+            transition-property: none;
+            
+            &.ativo, &:hover {
+                --cor-bg: hsl(from var(--cor-base) h s l / .1);
+                outline: 2px solid var(--cor-base);
+                transition-property: background-color, outline;
+            }
+
+            @starting-style {
+                --cor-txt:var(--cor-base);
+                --cor-bg: hsl(from var(--cor-base) h s l / .15);
+            }
+
+            .tema_alto_contraste & {
+                --cor-bg: transparent;
+                outline: 1px solid var(--cor-base);
+
+                &.ativo, &:hover {
+                    --cor-bg: var(--cor-base);
+                    --cor-txt: #000;
+                }
+            }
+        }
+    }
+
+}
+
+/* CORREÇÃO DO PRISM */
 @layer prism {
     pre[class*="language-"] {
         & span {

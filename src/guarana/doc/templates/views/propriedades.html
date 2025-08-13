@@ -1,5 +1,5 @@
 {% macro tabela_propriedade(categoria)%}
-<table>
+<table class="tabela">
     <thead>
         <tr>
             <th>Propriedade</th>
@@ -26,10 +26,12 @@
 
 {% extends '_modelo.html' %}
 
+{% block titulo %} | Propriedades (variáveis){% endblock %}
+
 {% block conteudo %}
 <article class='conteudo__artigo' id='propriedades' data-categoria='base'>
     <header class='conteudo__header'>
-        <h1>Propriedades personalizadas</h1>
+        <h1>Propriedades (variáveis)</h1>
         <nav class="links_header">
             <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@property" class="link_externo" target="_blank">
                 <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">

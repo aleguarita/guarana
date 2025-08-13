@@ -9,8 +9,7 @@ hoje = date.today().strftime("%d/%m/%Y")
 
 # region HEADERS
 texto_base_header =\
-f"""
-/*
+f"""/*
 {separador()}
 ARQUIVO BASE DE {NOME}
 NÃO ALTERE! ELE É GERADO AUTOMATICAMENTE E TUDO SE PERDE AO ATUALIZAR
@@ -23,8 +22,7 @@ Versão: {VERSAO}
 """
 
 texto_estilo_header =\
-f"""
-/*
+f"""/*
 {separador()}
 Arquivo principal do sistema utilizando {NOME}
 Se for o usar o estilo-min.css, altere tudo aqui e execute o comando:
@@ -51,19 +49,57 @@ def criar_base_css():
     texto = texto_base_header
 
     for arquivo in arquivos:
-        texto += arquivo.read_text()
+        texto += arquivo.read_text().strip() + '\n'
 
     if not arquivo_destino.exists():
         print(f'Arquivo {COR_VERDE}{pasta_destino}/{ARQUIVO_BASE}{COR_FIM} criado')
     else:
         print(f'Arquivo {COR_VERMELHO}{pasta_destino}/{ARQUIVO_BASE}{COR_FIM} reescrito')
 
+    texto += criar_import_utils_css()
     arquivo_destino.write_text(texto)
 
 
+def preencher_pasta_utils(resetar:bool=False):
+    origem = PASTA_ORIGEM/'css/utils'
+    destino = caminho_pasta_existente('guarana')
+    arquivos = list(origem.glob('*'))
+
+    for arquivo in arquivos:
+        arquivo_destino = destino/arquivo.name
+        
+        if arquivo_destino.exists() and not resetar:
+            print(f'O {COR_VERMELHO}{arquivo}{COR_FIM} já existe e não foi reescrito')
+            continue
+
+        if arquivo_destino.exists():
+            print(f'Arquivo {COR_VERMELHO}{arquivo}{COR_FIM} reescrito')
+        else:
+            print(f'Arquivo {COR_AMARELO}{arquivo}{COR_FIM} criado')
+
+        texto_data = f'\n{separador('-')}\n'
+        texto_data += f'Versão: {VERSAO}.\nArquivo criado em: {hoje}\n'
+        texto_data += separador()
+
+        texto = arquivo.read_text()
+        texto = texto.replace('/*\n', f'/*\n{separador()}\n', 1)
+        texto = texto.replace('\n*/', f'{texto_data}\n*/', 1)
+
+        arquivo_destino.write_text(texto)
+
+
 def criar_import_utils_css():
-    # TODO: verifica a pasta PASTA_UTILS no sistema e importa tudo
-    pass
+    texto =  '/*\n'
+    texto += separador()
+    texto += '\nIMPORTS\n'
+    texto += separador()
+    texto += '\n*/\n'
+
+    arquivos = list(caminho_pasta_existente('guarana').glob('*.css'))
+    for arquivo in arquivos:
+        texto += f'@import url(guarana/{arquivo.name});\n'
+
+    return texto
 
 
 def criar_estilo_css(resetar:bool=False):

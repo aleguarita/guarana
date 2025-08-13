@@ -1,5 +1,7 @@
 {% extends '_modelo.html' %}
 
+{% block titulo %} | JavaScript{% endblock %}
+
 {% block conteudo %}
 <article class='conteudo__artigo' id='javascript' data-categoria='facilitadores'>
     <header class='conteudo__header'>
@@ -21,5 +23,7 @@
         
         {% include "partials/js_aplicar_tema.html" %}
     </section>
+
+    <!-- TODO: aplicar ativo -->
 </article>
 {% endblock conteudo %}

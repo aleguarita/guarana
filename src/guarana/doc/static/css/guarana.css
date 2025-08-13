@@ -1,4 +1,4 @@
-/*11/08/2025*/
+/*13/08/2025*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -36,7 +36,6 @@ PROPRIEDADES PERSONALIZADAS BASE
     inherits: true;
     initial-value: "padrão";
 }
-
 
 /*
 RESET
@@ -117,6 +116,95 @@ Com alterações pontuais
     }
 
 }
+
+/* 
+================================================================================
+MENU
+Formatação básica do menu
+================================================================================
+*/
+@layer base {
+    .menu {
+        display: flex;
+        gap: var(--gap);
+        flex-flow: column;
+        user-select: none; /* impede que o texto seja selecionado */
+        container-type: inline-size;
+        container-name: menu;
+    }
+    
+    .menu--horizontal {
+        flex-flow: row wrap;
+        align-items: baseline;
+        justify-content: flex-start;
+    }
+
+    .menu__link {
+        transition: var(--transicao);
+        transition-property: background, border, color;
+        background-color: var(--cor-bg);
+        padding-inline: var(--pd-i, 1em);
+        padding-block: var(--pd-b, 1em);
+        text-decoration: none;
+        border-radius: var(--rd);
+    }
+
+    .menu__titulo {
+        background-color: var(--cor-bg);
+        color: var(--cor-txt);
+        padding-inline: var(--pd-i, 1em);
+        padding-block: var(--pd-b, 0);
+        margin-block: var(--mg-b, inherit);
+        margin-inline: var(--mg-i, inherit);
+    }
+}
+
+
+
+/*
+MENU
+--------------------------------------------------------------------------------
+HTML base para a criação
+<nav class="menu">
+    <a class="menu__link" href="">Link</a>
+</nav>
+
+snippets: gua_menu para a base e gua_menu_link para cada item
+*/
+
+@layer util {
+    /* BASE */
+    .menu {
+        --cor-secundaria: light-dark(
+            hsl(from var(--cor-1) h s 100%),
+            hsl(from var(--cor-1) h s 0%));
+        --pd-i: 1em;
+        --pd-h: 1em;
+        --gap: .5rem;
+    }
+
+    /* ELEMENTOS FILHOS */
+    .menu__link {
+        --cor-txt: var(--cor-secundaria);
+        --cor-bg: var(--cor-base);
+
+        &.ativo, &:hover {
+            --cor-txt: var(--cor-base);
+            --cor-bg: var(--cor-secundaria);
+        }
+    }
+    .menu__titulo {
+        --pd-b: 0;
+        --mg-b: calc(1rem +.5em) 0;
+        font-size: 1.1em;
+    }
+
+    /* MODIFICADORES */
+    .menu--horizontal {
+        /* configuração básica na camada @layer base */
+    }
+}
+
 /* LAYERS */
 @layer reset, base, utils, layout, views, doc_gua, view, prism;
 
@@ -140,6 +228,22 @@ Com alterações pontuais
 }
 
 /* Elementos genéricos para formatação */
+@property --pd-i { /* padding horizontal, inline */
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 0;
+}
+@property --pd-b { /* padding vertical, bloco */
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 0;
+}
+@property --gap {
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 0;
+}
+
 @property --rd { /* para uso em border-radius */
     syntax: "<length-percentage>+";
     inherits: true;
@@ -205,7 +309,8 @@ Com alterações pontuais
         --cor-txt: var(--cor-2);
     }
 
-    a {
+    /* formata apenas o link que não tenha classe */
+    a:not([class]) {
         --cor-base: var(--cor-3);
         --cor-txt: var(--cor-base);
         transition: var(--transicao);

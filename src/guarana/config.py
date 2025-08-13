@@ -13,7 +13,7 @@ except (FileNotFoundError, tomllib.TOMLDecodeError):
     PROJETO_METADATA = {}
 
 APP = PROJETO_METADATA.get('name', 'Front_End_Base')
-NOME = APP.replace('_aag', '')
+NOME = APP.replace('_aag', '').capitalize().replace('na', 'ná')
 VERSAO = PROJETO_METADATA.get('version', '0.0.0-dev')
 _autores = PROJETO_METADATA.get('authors', [{'name': 'Alessandro Guarita'}])
 AUTOR = _autores[0].get('name', 'Alessandro Guarita') if _autores else 'Alessandro Guarita'

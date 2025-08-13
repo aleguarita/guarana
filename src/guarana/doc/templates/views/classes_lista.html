@@ -1,0 +1,16 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Todos as classes{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='classes_lista' data-categoria='listas'>
+    <header class='conteudo__header'>
+        <h1>Todos as classes</h1>
+        <p>Lista de todos as classes utilizadas</p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        {% include "partials/tabela_classes.html" %}
+    </section>
+</article>
+{% endblock conteudo %}

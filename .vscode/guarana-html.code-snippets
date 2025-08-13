@@ -1,0 +1,20 @@
+{
+	"Menu": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_menu",
+		"body": [
+            "<nav class=\"menu\">",
+			"    <a href=\"$1\", class=\"menu__item\">$2</a>$3",
+            "</nav>"
+		],
+		"description": "Insere um menu com o primeiro link"
+	},
+	"Link de menu": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_menu_link",
+		"body": [
+			"<a href=\"$1\", class=\"menu__link\">$2</a>"
+		],
+		"description": "Insere um link de menu"
+	}
+}

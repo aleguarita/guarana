@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{app}}</title>
+    <title>{{app}} {%block titulo%} {%endblock%} </title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/doc.css') }}">
     <link rel="icon" type="image/png" href="{{ url_for('static', filename='favicon.png') }}">
     <style>
         .tema_diario {
             --tema: "diário";
-            --cor-1: hsl({{hoje * 10}}, 60%, 30%);
+            --cor-1: hsl({{hoje * 12}}, 60%, 30%);
             --cor-2: hsl(from var(--cor-1) calc(h + 90) 60% 40%);
             --cor-3: hsl(from var(--cor-1) calc(h - 90) 40% 20%);
         }
@@ -26,11 +26,21 @@
 {% endfor %}</pre>
 {% endmacro %}
 
+{% macro lista_prop(lista)%}
+{% for linha in lista|sort() %}
+{% set item = prop_css | selectattr('nome', 'equalto', linha) | list %}
+<details>
+    <summary><code>{{linha}}</code></summary>
+    {{item[0].uso | safe}}
+</details>
+{% endfor %}
+{% endmacro %}
+
 
 {%set categorias=[
     'base',
     'util',
-    'ferramentas',
+    'listas',
     'facilitadores',
 ]%}
 
@@ -54,11 +64,11 @@
         </p>
 
         {% for categoria in categorias %}
-        <span class='gua_menu__titulo'>{{categoria.title()}}</span>
+        <span class='menu__titulo'>{{categoria.title() if categoria != 'util' else 'Utilitários'}}</span>
 
         {% for item in views %}
         {% if item['categoria'] == categoria %}
-        <a href="/{{item['id']}}" class="gua_menu__item">{{item['titulo']}}</a>
+        <a href="/{{item['id']}}" class="menu__link">{{item['titulo']}}</a>
         {% endif %}
         {% endfor %}
 

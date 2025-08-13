@@ -1,0 +1,43 @@
+/*
+MENU
+--------------------------------------------------------------------------------
+HTML base para a criação
+<nav class="menu">
+    <a class="menu__link" href="">Link</a>
+</nav>
+
+snippets: gua_menu para a base e gua_menu_link para cada item
+*/
+
+@layer util {
+    /* BASE */
+    .menu {
+        --cor-secundaria: light-dark(
+            hsl(from var(--cor-1) h s 100%),
+            hsl(from var(--cor-1) h s 0%));
+        --pd-i: 1em;
+        --pd-h: 1em;
+        --gap: .5rem;
+    }
+
+    /* ELEMENTOS FILHOS */
+    .menu__link {
+        --cor-txt: var(--cor-secundaria);
+        --cor-bg: var(--cor-base);
+
+        &.ativo, &:hover {
+            --cor-txt: var(--cor-base);
+            --cor-bg: var(--cor-secundaria);
+        }
+    }
+    .menu__titulo {
+        --pd-b: 0;
+        --mg-b: calc(1rem +.5em) 0;
+        font-size: 1.1em;
+    }
+
+    /* MODIFICADORES */
+    .menu--horizontal {
+        /* configuração básica na camada @layer base */
+    }
+}

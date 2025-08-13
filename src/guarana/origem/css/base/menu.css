@@ -1,0 +1,42 @@
+/* 
+================================================================================
+MENU
+Formatação básica do menu
+================================================================================
+*/
+@layer base {
+    .menu {
+        display: flex;
+        gap: var(--gap);
+        flex-flow: column;
+        user-select: none; /* impede que o texto seja selecionado */
+        container-type: inline-size;
+        container-name: menu;
+    }
+    
+    .menu--horizontal {
+        flex-flow: row wrap;
+        align-items: baseline;
+        justify-content: flex-start;
+    }
+
+    .menu__link {
+        transition: var(--transicao);
+        transition-property: background, border, color;
+        background-color: var(--cor-bg);
+        padding-inline: var(--pd-i, 1em);
+        padding-block: var(--pd-b, 1em);
+        text-decoration: none;
+        border-radius: var(--rd);
+    }
+
+    .menu__titulo {
+        background-color: var(--cor-bg);
+        color: var(--cor-txt);
+        padding-inline: var(--pd-i, 1em);
+        padding-block: var(--pd-b, 0);
+        margin-block: var(--mg-b, inherit);
+        margin-inline: var(--mg-i, inherit);
+    }
+}
+

@@ -1,0 +1,111 @@
+{% macro tabela_classe(tipo, container=False)%}
+<table class="tabela">
+    <thead>
+        <tr>
+            <th>Classe</th>
+            {% if container %}<th>Container</th>{% endif %}
+            <th>Documentação</th>
+            <th>Uso</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in classe_css|sort(attribute="nome") %}
+        {% if item.tipo == tipo %}
+        <tr>
+            <td><code>{{item.nome}}</code></td>
+            {% if container %}<td>{{item.container}}</td>{% endif %}
+            <!-- TODO: ícone no lugar do texto -->
+            <td><a href="{{item.link}}">doc</a></td>
+            <td>{{item.uso | safe}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+{% endmacro %}
+
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Todas as classes{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='classes' data-categoria='base'>
+    <header class='conteudo__header'>
+        <h1>Classes</h1>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            As classes fazem uso de snake case, para selecionar o nome
+            rapidamente e uma versão simplificada do
+            <a href="https://desenvolvimentoparaweb.com/css/bem/" target="_blank">BEM</a>,
+            considerando apenas <strong>um nível</strong> para manter os nomes
+            mais enxutos.
+        </p>
+
+        <ul>
+            <li>
+                Elemento filho: nome da classe container, dois sublinhados e
+                o nome dele. Mantendo apenas um elemento, não importa quão
+                distante esteja do elemento container. Exemplo:
+                <ul>
+                    <li>container: <code>.artigo</code></li>
+                    <li>filho: <code>.artigo__header</code></li>
+                    <li>filho do filho: <code>.artigo__titulo</code>
+                        (no lugar de <code>.artigo__header__titulo</code>)</li>
+                </ul>
+            </li>
+            <li>
+                Modificador: uma classe que modifica o elemento atual. Ela deve
+                ser inserida <strong>junto</strong> da classe que modifica no HTML.
+                O nome é a combinação do nome da classe que altera, dois traços
+                e o nome da modificação. Exemplos:
+                <ul>
+                    <li>Modifica o artigo todo acima: <code>.artigo--destaque</code></li>
+                    <li>Modifica apenas o título: <code>.artigo__titulo--ingles</code></li>
+                </ul>
+            </li>
+        </ul>
+
+        <p>
+            Os tipos de classe no {{app}} são:
+        </p>
+
+        <ul>
+            <li>
+                <strong>genérica</strong> - classes que são aplicadas a diversos
+                elementos e seletores. Exemplo: <code>.ativo</code>
+            </li>
+            <li>
+                <strong>container</strong> - o elemento pai de um grupo. Serve
+                para formatar diversos filhos. Inclui diversas variáveis para
+                formatação em cascata e, na maioria dos casos, recebe a 
+                propriedade <code>container-name</code>
+            </li>
+            <li>
+                <strong>elemento</strong> - um elemento específico, que aparece
+                dentro do container
+            </li>
+            <li>
+                <strong>modificador</strong> - modifica uma classe específica
+            </li>
+        </ul>
+
+        <h2>Classes genéricas</h2>
+        {{tabela_classe('generica')}}
+        
+        <h2>Classes containers</h2>
+        {{tabela_classe('container', True)}}
+        
+        <h2>Classes elementos</h2>
+        {{tabela_classe('elemento')}}
+        
+        <h2>Classes modificadoras</h2>
+        {{tabela_classe('modificador')}}
+
+        <h2>Todas as classes</h2>
+        {% include "partials/tabela_classes.html" %}
+
+    </section>
+</article>
+{% endblock conteudo %}

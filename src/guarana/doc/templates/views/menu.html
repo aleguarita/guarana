@@ -1,0 +1,116 @@
+{% macro menu(tipo=None) %}
+    <h3>Menu: {{tipo}}</h3>
+    <div class="exemplo">
+        <nav class="menu demo{% if tipo=='horizontal' %} menu--horizontal{% endif %}">
+            {% for i in range(5) %}
+            <a class="menu__link{% if i == 3 %} ativo{% endif %}">
+                Item {{i + 1}}{%if i == 3 %} (ativo){%endif%}
+            </a>
+            {% endfor %}
+        </nav>
+    </div>
+{% endmacro %}
+
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Menu{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='menu' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Menu</h1>
+        <p>Arquivo em <code>guarana/menu.scss</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            Exemplo de um menu básico:
+        </p>
+        {{codigo('html',[
+        '<nav class="menu">',
+        '    <a href="" class="menu__link ativo">Item 1</a>',
+        '    <a href="" class="menu__link">Item 2</a>',
+        '</nav>',
+        ],
+        )}}
+
+        <h2>Demos</h2>
+        {{ menu("normal (vertical)") }}
+        {{ menu("horizontal") }}
+
+        <h2>Classes e seletores</h2>
+        <h3><code>.menu</code></h3>
+        <p>
+            Essa é a classe básica do menu, o container do conteúdo e deve
+            incluir as variáveis de CSS. Por padrão ele é vertical. Essas são
+            as variáveis usadas internamente:
+        </p>
+
+        {{lista_prop([
+            '--gap',
+            '--pd-i', 
+            '--pd-b',
+            '--cor-base',
+            '--cor-secundaria',
+            '--transicao',
+            '--rd',
+            '--cor-bg',
+            '--cor-txt',
+            '--mg-b'])}}
+
+        <p>
+            O menu é um container com o nome "menu".
+        </p>
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>
+                O {{app}} vem com um snippet para inserir o menu com um link no HTML:
+                <code>gua_menu</code>
+            </p>
+        </blockquote>
+
+        <h3><code>.menu--horizontal</code></h3>
+        <p>
+            Aplique esse modificador junto de <code>.menu</code> para formatá-lo
+            na horizontal ao invés de vertical.
+        </p>
+
+        <h3><code>.menu__link</code></h3>
+        <p>
+            Cada link do menu. A formatação inclue o estado <code>:hover</code>
+        </p>
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir o <code>.menu__link</code> no HTML: <code>gua_menu_link</code></p>
+        </blockquote>
+
+        <h4><code>.menu__link:hover</code></h4>
+        <p>
+            Destaque quando passa o mouse por cima. Por padrão, compartilha a formatação
+            de <code>.ativo</code>.
+        </p>
+
+        <h3><code>.ativo</code></h3>
+        <p>
+            O item do menu que está ativo (clicado). Ele é aplicado através de JS.
+        </p>
+        
+        <h3><code>.menu__titulo</code></h3>
+        <p>
+            Esse seletor é para itens que não são links, como títulos para
+            separar categorias (o menu da documentação faz uso dele).
+        </p>
+        
+        <h2>Javascript</h2>
+        <p>
+            O arquivo <code>guarana.js</code> já usa o script abaixo para a
+            classe <code>.menu</code>. Se você alterar a classe ou criar outro
+            menu, lembre-se de utilizar do script para isso, alterando os parâmetros.
+        </p>
+
+        {% include "partials/js_ativar_desativar.html" %}
+
+    </section>
+</article>
+{% endblock conteudo %}

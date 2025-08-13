@@ -19,6 +19,8 @@
     | sort(attribute="nome")
 %}
 
+{% block titulo %} | Cores{% endblock %}
+
 {% block conteudo %}
 <article class='conteudo__artigo' id='cores' data-categoria='base'>
     <header class='conteudo__header'>
@@ -39,6 +41,10 @@
             <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS/color-scheme" target="_blank" class="link_externo">
                 <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
                 color-scheme
+            </a>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector" target="_blank" class="link_externo">
+                <img src="{{ url_for('static', filename='img/mdn.svg') }}" alt="MDN">
+                seletor de aninhamento &
             </a>
         </nav>
     </header>
@@ -139,20 +145,21 @@
         
         <h3>Formatação específica por módulos</h3>
         <p>
-            Com o uso de <a href="/container_media">containers</a> é possível
-            fazer personalizações específicas por modo de cor (para retirar uma
-            sombra que ficaria ruim no modo escuro, por exemplo):
+            Com o uso de <a href="/container_media">prefers-color-scheme no media-query</a>
+            é possível fazer personalizações específicas por modo de cor
+            (para retirar uma sombra que ficaria ruim no modo escuro, por exemplo):
         </p>
 
-        {{codigo('css', [
-        '@container style(--modo: dark) {',
-        '    box-shadow: none',
-        '}',
-        ])}}
+        {% include "partials/codigo_color_scheme.html" %}
+        {% include "partials/snippet_color_scheme.html" %}
 
-        <blockquote class='dica-snippet'>
-            <p>Snippet</p>
-            <p>O {{app}} vem com um snippet para inserir o modo: <code>gua_modo</code></p>
+
+        <!-- classe de aviso moderado -->
+        <blockquote>
+            <p>
+                Também é possível formatar utilizando <code>@container style(--modo: dark)</code>
+                mas esse recurso ainda não está implementado em 100% dos navegadores.
+            </p>
         </blockquote>
         
         <h2>Temas de cores</h2>
@@ -191,13 +198,16 @@
         </blockquote>
 
         <p>
-            Ajustes de tags específicos devem ser feitos
-            dentro do próprio tag com uso de <a href="/container_media">@container</a>:
+            Ajustes de tags específicos devem ser feitos dentro da classe com uso
+            do <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector" target="_blank">
+            seletor de aninhamento &</a> dentro da própria tag (quando
+            <a href="/container_media">@container</a> estiver totalmente implementado
+            com uso de estilos, priorizar esse caso):
 
             {{codigo('css', [
             '--cor-txt: hsl(from var(--cor-2) h s calc(l * 1.25));',
             ' ',
-            '@container style(--tema: "alto contraste") {',
+            '.tema_alto_contraste & {',
             '    --cor-txt: var(--cor-2);',
             '}'
             ])}}

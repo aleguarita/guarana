@@ -31,35 +31,25 @@
 		],
 		"description": "Insere a função de calc() para alterar percentualmente a luminosidade da cor já pronta para CSS - dentro de hsl(from var(--cor) h s l)"
 	},
-	"Modo escuro": {
+	"Modo de cor": {
 		"scope": "css",
-		"prefix": "gua_dark",
+		"prefix": "gua_modo",
 		"body": [
-			"@container style(--modo: dark) {",
-			"    $1",
+			"@media (-prefers-color-scheme: ${1|dark, light|}) {",
+			"    $2",
 			"}"
 		],
 		"description": "Insere o container para o modo escuro"
-	},
-	"Modo claro": {
-		"scope": "css",
-		"prefix": "gua_ligth",
-		"body": [
-			"@container style(--modo: light) {",
-			"    $1",
-			"}"
-		],
-		"description": "Insere o container para o modo claro"
 	},
 	"Aplica tema de cor": {
 		"scope": "css",
 		"prefix": "gua_tema",
 		"body": [
-			"@container style(--tema: \"$1\") {",
+			".tema_$1 & {",
 			"    $2",
 			"}"
 		],
-		"description": "Insere o container para um tema específico"
+		"description": "Insere o seletor para formatar o tema"
 	},
 	"Cria tema de cor": {
 		"scope": "css",

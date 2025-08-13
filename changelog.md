@@ -1,10 +1,15 @@
 # Changelog
 
+## 0.2.0
+- Menu
+- JS para inserir/retirar a classe `.ativo` para seletores
+- O uso de `@container style(--mode: dark | light)` foi substituído por `@midia (prefers-color-scheme: dark | light)` para melhor compatibilidade entre navegadores
+- Uso de `@container style(--tema: 'nome tema')` foi trocado para `.tema_nome_tema &` para melhor compatibilidade entre navegadores
+
 ## 0.1.1
 - Documentação para JS
 - Snippets de JS
 - Aplicação de temas na documentação
-
 
 ## 0.1.0
 - Definição de layers

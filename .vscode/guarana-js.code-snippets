@@ -14,5 +14,13 @@
             "guaRemoverTemas()"
         ],
         "description": "Remove todos os temas do body."
+    },
+    "Ativar ou Desativar": {
+        "scope": "javascript",
+        "prefix": "gua_ativar",
+        "body": [
+            "guaAtivarDesativar('$1')"
+        ],
+        "description": "Aplica ou retira a classe `ativo` ao clicar em um item com a classe passada como parâmetro"
     }
 }

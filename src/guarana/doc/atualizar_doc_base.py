@@ -9,9 +9,11 @@ pasta_atual = Path(__file__).parent
 pasta_destino = pasta_atual/'static/css'
 pasta_origem = pasta_atual.parent/'origem/css'
 pasta_base = pasta_origem/'base'
+pasta_utils = pasta_origem/'utils'
 
 arquivo_destino = pasta_destino/'guarana.css'
-arquivos = list(pasta_base.glob('*'))
+arquivos_base = list(pasta_base.glob('*'))
+arquivos_utils = list(pasta_utils.glob('*'))
 # endregion
 
 
@@ -22,10 +24,12 @@ texto = f'/*{date.today().strftime("%d/%m/%Y")}*/\n'
 regex_layers = r'(\s*@layer\s+.*?)(\s*);'
 estilo_original = pasta_origem/'estilo.css'
 
-for arquivo in arquivos:
-    texto += '\n'
-    texto += arquivo.read_text()
-    texto += '\n'
+for arquivo in arquivos_base:
+    texto += f'\n{arquivo.read_text()}\n'
+
+for arquivo in arquivos_utils:
+    texto += f'\n{arquivo.read_text()}\n'
+
     
 texto += re.sub(regex_layers, r'\1' + f', {CAMADAS}' + r';', estilo_original.read_text())
 texto = texto.replace('/* IMPORTS */\n@import url(ARQUIVO_BASE);\n', '')

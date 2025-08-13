@@ -23,6 +23,22 @@
 }
 
 /* Elementos genéricos para formatação */
+@property --pd-i { /* padding horizontal, inline */
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 0;
+}
+@property --pd-b { /* padding vertical, bloco */
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 0;
+}
+@property --gap {
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 0;
+}
+
 @property --rd { /* para uso em border-radius */
     syntax: "<length-percentage>+";
     inherits: true;
@@ -88,7 +104,8 @@
         --cor-txt: var(--cor-2);
     }
 
-    a {
+    /* formata apenas o link que não tenha classe */
+    a:not([class]) {
         --cor-base: var(--cor-3);
         --cor-txt: var(--cor-base);
         transition: var(--transicao);

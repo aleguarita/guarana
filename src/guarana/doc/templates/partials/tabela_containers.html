@@ -1,0 +1,24 @@
+<table class="tabela">
+    <thead>
+        <tr>
+            <th>Container</th>
+            <th>Classe</th>
+            <th>Link</th>
+            <th>Uso</th>
+            <th>Versão</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in classe_css|sort(attribute="nome") %}
+        {% if item.tipo == 'container' %}
+        <tr>
+            <td>{{item.container}}</td>
+            <td><code>{{item.nome}}</code></td>
+            <!-- TODO: ícone no lugar do texto -->
+            <td><a href="{{item.link}}">doc</a></td>
+            <td>{{item.uso | safe}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>

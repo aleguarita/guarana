@@ -4,7 +4,7 @@ from ..config import *
 from .helpers import criar_pasta, copiar_arquivo, copiar_pasta_inteira, separador, caminho_pasta_existente
 from .js import gerar_js
 from .snippets import gerar_snippets
-from .criar_css import criar_base_css, criar_estilo_css
+from .criar_css import criar_base_css, criar_estilo_css, preencher_pasta_utils
 
 
 def atualizar(resetar:bool=False):
@@ -15,5 +15,6 @@ def atualizar(resetar:bool=False):
     
     criar_base_css()
     criar_estilo_css(resetar)
+    preencher_pasta_utils(resetar)
     gerar_js(resetar)
     gerar_snippets()
