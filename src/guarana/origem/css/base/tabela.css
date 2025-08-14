@@ -1,0 +1,72 @@
+/* 
+================================================================================
+TABELA
+Formatação básica de tabela
+================================================================================
+*/
+@layer base {
+    .tabela {
+        background-color: var(--cor-bg);
+        border-radius: var(--rd);
+        overflow: auto;
+        
+        /* REGIÕES DA TABELA */
+        & thead {
+            font-size: var(--txt);
+        }
+        & tbody {
+            font-size: var(--txt);
+        }
+        & tfoot {
+            font-size: var(--txt);
+        }
+
+        /* LINHAS E CÉLULAS */
+        tr {
+            background-color: var(--cor-bg);
+        }
+
+        th {
+            background-color: var(--cor-bg);
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        td, th {
+            padding-inline: var(--pd-i, 0);
+            padding-block: var(--pd-b, 0);
+
+            border: var(--borda) var(--cor-borda);
+            border-inline-width: var(--borda-i, 0);
+            border-block-width: var(--borda-b, 0);
+            
+            width: attr(data-largura px, auto);
+            min-width: attr(data-largura-min px, auto);
+            max-width: attr(data-largura px, auto);
+        }
+
+        /* CÉLULAS COM APENAS UM LINK */
+        td:has(a:only-child, input:only-child, select:only-child) {
+            padding: 0;
+
+            & > * {
+                display: block;
+                padding-inline: var(--pd-i, 0);
+                padding-block: var(--pd-b, 0);
+                height: 100%;
+                width: 100%;
+            }
+            
+            & a {
+                text-decoration: none;
+            }
+
+            & input, select {
+                border: 0;
+            }
+        }
+
+    }
+
+}

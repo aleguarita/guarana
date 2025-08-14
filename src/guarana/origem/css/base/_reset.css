@@ -76,4 +76,14 @@ Com alterações pontuais
         font-size: 1.2em;
     }
 
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+    }
+
+    td, th {
+        color: var(--cor-txt);
+    }
+
 }

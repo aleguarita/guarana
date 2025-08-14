@@ -1,4 +1,4 @@
-/*13/08/2025*/
+/*14/08/2025*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -30,12 +30,12 @@ PROPRIEDADES PERSONALIZADAS BASE
     inherits: true;
     initial-value: Times, Georgia, serif;
 }
-
 @property --tema {
     syntax: "<string>";
     inherits: true;
     initial-value: "padrão";
 }
+
 
 /*
 RESET
@@ -115,6 +115,16 @@ Com alterações pontuais
         font-size: 1.2em;
     }
 
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+        width: 100%;
+    }
+
+    td, th {
+        color: var(--cor-txt);
+    }
+
 }
 
 /* 
@@ -131,6 +141,7 @@ Formatação básica do menu
         user-select: none; /* impede que o texto seja selecionado */
         container-type: inline-size;
         container-name: menu;
+        font-size: var(--txt);
     }
     
     .menu--horizontal {
@@ -147,6 +158,7 @@ Formatação básica do menu
         padding-block: var(--pd-b, 1em);
         text-decoration: none;
         border-radius: var(--rd);
+        box-shadow: var(--sombra);
     }
 
     .menu__titulo {
@@ -161,6 +173,102 @@ Formatação básica do menu
 
 
 
+/* 
+================================================================================
+TABELA
+Formatação básica de tabela
+================================================================================
+*/
+@layer base {
+    .tabela {
+        background-color: var(--cor-bg);
+        border-radius: var(--rd);
+        overflow: auto;
+        
+        /* REGIÕES DA TABELA */
+        & thead {
+            font-size: var(--txt);
+        }
+        & tbody {
+            font-size: var(--txt);
+        }
+        & tfoot {
+            font-size: var(--txt);
+        }
+
+        /* LINHAS E CÉLULAS */
+        tr {
+            background-color: var(--cor-bg);
+        }
+
+        th {
+            background-color: var(--cor-bg);
+            position: sticky;
+            top: 0;
+            left: 0;
+        }
+
+        td, th {
+            padding-inline: var(--pd-i, 0);
+            padding-block: var(--pd-b, 0);
+
+            border: var(--borda) var(--cor-borda);
+            border-inline-width: var(--borda-i, 0);
+            border-block-width: var(--borda-b, 0);
+            
+            width: attr(data-largura px, auto);
+            min-width: attr(data-largura-min px, auto);
+            max-width: attr(data-largura px, auto);
+        }
+
+        /* CÉLULAS COM APENAS UM LINK */
+        td:has(a:only-child, input:only-child, select:only-child) {
+            padding: 0;
+
+            & > * {
+                display: block;
+                padding-inline: var(--pd-i, 0);
+                padding-block: var(--pd-b, 0);
+                height: 100%;
+                width: 100%;
+            }
+            
+            & a {
+                text-decoration: none;
+            }
+
+            & input, select {
+                border: 0;
+            }
+        }
+
+    }
+
+}
+
+/*
+CLASSES GLOBAIS
+--------------------------------------------------------------------------------
+Esse arquivo inclui classes que podem ser usadas em alguns elementos e que 
+não são de nenhum componentem específico
+*/
+
+/*
+ROLAGEM X
+Adicione essa classe a algum elemento pai cujos filhos tenham uma largura
+mínima fixa para ter um scroll horizontal. Um exemplo disso é tabela para ser
+bem visualizada em celulares ainda de forma tabular
+--------------------------------------------------------------------------------
+*/
+
+@layer utils {
+    .rolagem_x {
+        overflow-x: auto;
+        position: relative;
+    }
+}
+
+
 /*
 MENU
 --------------------------------------------------------------------------------
@@ -169,24 +277,26 @@ HTML base para a criação
     <a class="menu__link" href="">Link</a>
 </nav>
 
-snippets: gua_menu para a base e gua_menu_link para cada item
+Snippets: gua_menu para a base e gua_menu_link para cada item
+Existe mais variáveis que são usadas mas não estão aqui por herdarem um valor
+padrão. Rode a documentação e veja em /menu
 */
 
-@layer util {
+@layer utils {
     /* BASE */
     .menu {
         --cor-secundaria: light-dark(
             hsl(from var(--cor-1) h s 100%),
             hsl(from var(--cor-1) h s 0%));
-        --pd-i: 1em;
-        --pd-h: 1em;
         --gap: .5rem;
     }
-
+    
     /* ELEMENTOS FILHOS */
     .menu__link {
         --cor-txt: var(--cor-secundaria);
         --cor-bg: var(--cor-base);
+        --pd-i: 1em;
+        --pd-h: 1em;
 
         &.ativo, &:hover {
             --cor-txt: var(--cor-base);
@@ -195,7 +305,7 @@ snippets: gua_menu para a base e gua_menu_link para cada item
     }
     .menu__titulo {
         --pd-b: 0;
-        --mg-b: calc(1rem +.5em) 0;
+        --mg-b: calc(1rem + .5em) 0;
         font-size: 1.1em;
     }
 
@@ -205,6 +315,78 @@ snippets: gua_menu para a base e gua_menu_link para cada item
     }
 }
 
+
+/*
+TABELA
+--------------------------------------------------------------------------------
+Para determinar largura das colunas utilize no th do thead (ou nos td)
+os seguintes parâmetros:
+  data-largura     - largura fixa
+  data-largura-min - largura mínima
+  data-largura-max - largura máxima
+esses parâmetros são opcionais e podem ser omitidos
+essas medidas devem ser apenas número e são medidas em PX. Caso deseje
+fazer uso de em, rem, vw, etc, chame novamente com:
+width: attr(atributo medida);
+*/
+
+@layer utils {
+    .tabela {
+        --cor-bg: transparent;
+        --txt: .87em;
+    
+        --borda: 1px solid;
+        --borda-b: 1px;
+        --borda-i: 0;
+        --cor-borda: var(--cor-base);
+
+        /* para dar a largura mínima da tabela (evitando que ela comprima mais no
+        modo responsivo, acrescente o atributo abaixo no <table> */
+        min-width: attr(data-largura-min px, 500px);
+
+        /* AJUSTES DE TEMA */
+        .tema_alto_contraste & {
+            --cor-destaque: var(--cor-base);
+        }
+    
+        /* REGIÕES DA TABELA */
+        & thead {
+            --cor-txt: var(--cor-destaque);
+            --txt: .92em;
+            --borda-b: 0 2px;
+            --cor-borda: currentColor;
+        }
+        & tbody {
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+        & tfoot {
+            --borda-b: 0 2px;
+            --cor-bg: var(--cor-destaque);
+            --cor-txt: var(--cor-suave);
+            --cor-borda: var(--cor-destaque);
+        }
+    
+        /* LINHAS E CÉLULAS */
+        tr {
+            /* zebra */
+            &:nth-child(even) {
+                --cor-bg: var(--cor-suave);
+
+                .tema_alto_contraste & {
+                    --cor-bg: var(--cor-destaque);
+                    --cor-txt: hsl(0 0% 0%);
+                }
+            }
+        }
+        th {
+            text-align: left;
+        }
+        td {
+            
+        }
+    }
+
+}
 /* LAYERS */
 @layer reset, base, utils, layout, views, doc_gua, view, prism;
 
@@ -229,12 +411,22 @@ snippets: gua_menu para a base e gua_menu_link para cada item
 
 /* Elementos genéricos para formatação */
 @property --pd-i { /* padding horizontal, inline */
-    syntax: "<length-percentage>";
+    syntax: "<length-percentage>+";
     inherits: true;
     initial-value: 0;
 }
 @property --pd-b { /* padding vertical, bloco */
-    syntax: "<length-percentage>";
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --mg-i { /* margem horizontal, inline */
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: auto;
+}
+@property --mg-b { /* margin vertical, bloco */
+    syntax: "<length-percentage>+";
     inherits: true;
     initial-value: 0;
 }
@@ -252,12 +444,33 @@ snippets: gua_menu para a base e gua_menu_link para cada item
 @property --sombra {
     syntax: "*";
     inherits: true;
-    initial-value: 1px 1px 0 hsl(0 0% 0% / .3);
+    initial-value: 2px 2px 0 hsl(0 0% 0% / .1);
 }
 @property --transicao { /* sem determinar qual a propriedade */
     syntax: "*";
     inherits: true;
     initial-value: 0.5s ease-in-out 0s;
+}
+@property --txt { /* tamanho da fonte */
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 1em;
+}
+
+@property --borda {
+    syntax: "*";
+    inherits: true;
+    initial-value: 1px solid;
+}
+@property --borda-b {
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --borda-i {
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
 }
 
 /* modo de cor, por padrão usa tanto o claro e escuro */
@@ -272,8 +485,15 @@ snippets: gua_menu para a base e gua_menu_link para cada item
     :root {
         --cor-base: var(--cor-1);
         --cor-secundaria: var(--cor-2);
+        --cor-destaque: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .65)),
+            hsl(from var(--cor-base) h s calc(l * 1.35)));
+        --cor-suave: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.85)),
+            hsl(from var(--cor-base) h s calc(l * .65)));
         --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
         --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+        --cor-borda: var(--cor-base);
         
         --fonte: var(--sans);
     

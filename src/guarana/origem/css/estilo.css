@@ -24,12 +24,22 @@
 
 /* Elementos genéricos para formatação */
 @property --pd-i { /* padding horizontal, inline */
-    syntax: "<length-percentage>";
+    syntax: "<length-percentage>+";
     inherits: true;
     initial-value: 0;
 }
 @property --pd-b { /* padding vertical, bloco */
-    syntax: "<length-percentage>";
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --mg-i { /* margem horizontal, inline */
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: auto;
+}
+@property --mg-b { /* margin vertical, bloco */
+    syntax: "<length-percentage>+";
     inherits: true;
     initial-value: 0;
 }
@@ -47,12 +57,33 @@
 @property --sombra {
     syntax: "*";
     inherits: true;
-    initial-value: 1px 1px 0 hsl(0 0% 0% / .3);
+    initial-value: 2px 2px 0 hsl(0 0% 0% / .1);
 }
 @property --transicao { /* sem determinar qual a propriedade */
     syntax: "*";
     inherits: true;
     initial-value: 0.5s ease-in-out 0s;
+}
+@property --txt { /* tamanho da fonte */
+    syntax: "<length-percentage>";
+    inherits: true;
+    initial-value: 1em;
+}
+
+@property --borda {
+    syntax: "*";
+    inherits: true;
+    initial-value: 1px solid;
+}
+@property --borda-b {
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
+}
+@property --borda-i {
+    syntax: "<length-percentage>+";
+    inherits: true;
+    initial-value: 0;
 }
 
 /* modo de cor, por padrão usa tanto o claro e escuro */
@@ -67,8 +98,15 @@
     :root {
         --cor-base: var(--cor-1);
         --cor-secundaria: var(--cor-2);
+        --cor-destaque: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .65)),
+            hsl(from var(--cor-base) h s calc(l * 1.35)));
+        --cor-suave: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.85)),
+            hsl(from var(--cor-base) h s calc(l * .65)));
         --cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));
         --cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+        --cor-borda: var(--cor-base);
         
         --fonte: var(--sans);
     

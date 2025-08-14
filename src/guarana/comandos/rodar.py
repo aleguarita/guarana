@@ -99,6 +99,13 @@ def rodar_doc():
     }
 
     # --------------------------------------------------------------------------
+    #  CONVERTE TEXTO MARKDOWN PARA HTML
+    # --------------------------------------------------------------------------
+    @app.template_filter("markdown")
+    def md_para_html(texto):
+        return markdown.markdown(texto, extensions=['extra', 'tables', 'fenced_code'])
+
+    # --------------------------------------------------------------------------
     #  GERANDO AS ROTAS
     # --------------------------------------------------------------------------
     @app.route('/')

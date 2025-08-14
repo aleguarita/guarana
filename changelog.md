@@ -2,6 +2,8 @@
 
 ## 0.2.0
 - Menu
+- Tabela
+- Classes globais: rolagem_x
 - JS para inserir/retirar a classe `.ativo` para seletores
 - O uso de `@container style(--mode: dark | light)` foi substituído por `@midia (prefers-color-scheme: dark | light)` para melhor compatibilidade entre navegadores
 - Uso de `@container style(--tema: 'nome tema')` foi trocado para `.tema_nome_tema &` para melhor compatibilidade entre navegadores

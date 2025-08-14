@@ -1,4 +1,4 @@
-<table class="tabela">
+<table class="tabela tabela--header_fixo">
     <thead>
         <th>Propriedade</th>
         <th>Tipo</th>
@@ -12,7 +12,7 @@
             <td><code>{{item.nome}}</code><br/>{{item.categoria}}</td>
             <td>{{item.tipo}}</td>
             <td>{{item.heranca}}</td>
-            <td>{{item.uso|safe}}</td>
+            <td>{{item_uso(item.uso)}}</td>
             <td>{{item.atualizada}}</td>
         </tr>
         {% endfor %}

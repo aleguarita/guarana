@@ -1,0 +1,71 @@
+/*
+TABELA
+--------------------------------------------------------------------------------
+Para determinar largura das colunas utilize no th do thead (ou nos td)
+os seguintes parâmetros:
+  data-largura     - largura fixa
+  data-largura-min - largura mínima
+  data-largura-max - largura máxima
+esses parâmetros são opcionais e podem ser omitidos
+essas medidas devem ser apenas número e são medidas em PX. Caso deseje
+fazer uso de em, rem, vw, etc, chame novamente com:
+width: attr(atributo medida);
+*/
+
+@layer utils {
+    .tabela {
+        --cor-bg: transparent;
+        --txt: .87em;
+    
+        --borda: 1px solid;
+        --borda-b: 1px;
+        --borda-i: 0;
+        --cor-borda: var(--cor-base);
+
+        /* para dar a largura mínima da tabela (evitando que ela comprima mais no
+        modo responsivo, acrescente o atributo abaixo no <table> */
+        min-width: attr(data-largura-min px, 500px);
+
+        /* AJUSTES DE TEMA */
+        .tema_alto_contraste & {
+            --cor-destaque: var(--cor-base);
+        }
+    
+        /* REGIÕES DA TABELA */
+        & thead {
+            --cor-txt: var(--cor-destaque);
+            --txt: .92em;
+            --borda-b: 0 2px;
+            --cor-borda: currentColor;
+        }
+        & tbody {
+            border-bottom: 2px solid var(--cor-destaque);
+        }
+        & tfoot {
+            --borda-b: 0 2px;
+            --cor-bg: var(--cor-destaque);
+            --cor-txt: var(--cor-suave);
+            --cor-borda: var(--cor-destaque);
+        }
+    
+        /* LINHAS E CÉLULAS */
+        tr {
+            /* zebra */
+            &:nth-child(even) {
+                --cor-bg: var(--cor-suave);
+
+                .tema_alto_contraste & {
+                    --cor-bg: var(--cor-destaque);
+                    --cor-txt: hsl(0 0% 0%);
+                }
+            }
+        }
+        th {
+            text-align: left;
+        }
+        td {
+            
+        }
+    }
+
+}

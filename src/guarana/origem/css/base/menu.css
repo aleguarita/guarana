@@ -12,6 +12,7 @@ Formatação básica do menu
         user-select: none; /* impede que o texto seja selecionado */
         container-type: inline-size;
         container-name: menu;
+        font-size: var(--txt);
     }
     
     .menu--horizontal {
@@ -28,6 +29,7 @@ Formatação básica do menu
         padding-block: var(--pd-b, 1em);
         text-decoration: none;
         border-radius: var(--rd);
+        box-shadow: var(--sombra);
     }
 
     .menu__titulo {

@@ -69,15 +69,15 @@
 		],
 		"description": "Aplica a dica para snippet"
 	},
-	"Propriedae CSS": {
+	"Propriedade CSS": {
 		"prefix": "py_prop_css",
-		"scope": "Python",
+		"scope": "python",
 		"body": [
 			"{",
 			"    'nome': '$1',",
 			"    'tipo': '$2',",
 			"    'heranca': '${3|sim,não|}',",
-			"    'uso': '$4',",
+			"    'uso': ['$4'],",
 			"    'categoria': '${5|fechada,aberta,root|}',",
 			"    'atualizada': '$6',",
 			"},",
@@ -92,7 +92,7 @@
 			"{",
 			"    'nome': '.$1',",
 			"    'tipo': '${2|generica,container,elemento,modificador|}',",
-			"    'uso': '$3',",
+			"    'uso': ['$3'],",
 			"    'container': ${4|None,''|},",
 			"    'pagina': ${5|None,''|},",
 			"    'atualizada': '$6',",

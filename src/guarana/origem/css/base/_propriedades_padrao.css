@@ -28,7 +28,6 @@ PROPRIEDADES PERSONALIZADAS BASE
     inherits: true;
     initial-value: Times, Georgia, serif;
 }
-
 @property --tema {
     syntax: "<string>";
     inherits: true;

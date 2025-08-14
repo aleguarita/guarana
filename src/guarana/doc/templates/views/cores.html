@@ -102,7 +102,9 @@
             em componentes. São elas:
         </p>
         <ul>
-            {% for cor in cores_comp %}<li><code>{{cor.nome}}</code> - {{cor.uso|safe}}</li>{% endfor %}
+            {% for cor in cores_comp %}
+            <li><code>{{cor.nome}}</code> - {{item_uso(cor.uso)}}</li>
+            {% endfor %}
         </ul>
 
         <h2>Modos de cor: claro e escuro</h2>

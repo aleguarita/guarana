@@ -1,5 +1,5 @@
 {% macro menu(tipo=None) %}
-    <h3>Menu: {{tipo}}</h3>
+    <h6>Menu: {{tipo}}</h6>
     <div class="exemplo">
         <nav class="menu demo{% if tipo=='horizontal' %} menu--horizontal{% endif %}">
             {% for i in range(5) %}
@@ -34,9 +34,12 @@
         ],
         )}}
 
-        <h2>Demos</h2>
-        {{ menu("normal (vertical)") }}
-        {{ menu("horizontal") }}
+        <!-- TODO: formatar o details -->
+        <details class="demo" open>
+            <summary>Demonstração:</summary>
+            {{ menu("normal (vertical)") }}
+            {{ menu("horizontal") }}
+        </details>
 
         <h2>Classes e seletores</h2>
         <h3><code>.menu</code></h3>
@@ -56,6 +59,8 @@
             '--rd',
             '--cor-bg',
             '--cor-txt',
+            '--sombra',
+            '--txt',
             '--mg-b'])}}
 
         <p>

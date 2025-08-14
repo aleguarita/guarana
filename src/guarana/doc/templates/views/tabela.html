@@ -1,0 +1,115 @@
+{% macro tabela(tem_foot=False) %}
+    {% set col=4 %}
+    {% set row=5 %}
+    {% set abc = ['A', 'B', 'C', 'D', 'E'] %}
+    <h6>Tabela {% if not tem_foot %}tradicional{% else %} com tfoot{% endif %}</h6>
+    <table class="tabela demo">
+        <thead>
+            <tr>
+                {% for c in range(col) %}
+                <th{% if c == 0 %} data-largura=300{% endif %}>
+                    Coluna {{abc[c]}}{% if c == 0 %} (largura 300px){% endif %}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+        {% if tem_foot %}
+        <tfoot>
+            <tr>
+                {% for c in range(col) %}<td>Total {{abc[c]}}</td>{% endfor %}
+            </tr>
+        </tfoot>
+        {% endif %}
+        <tbody>
+            {% for r in range(row) %}
+            <tr>
+                {% for c in range(col) %}<td>Célula {{abc[c]}}{{r+1}}</td>{% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endmacro %}
+
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Tabela{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='tabela' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Tabela</h1>
+        <p>Arquivo em <code>utils/tabela.css</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            As tabelas são formatadas com a classe <code>.tabela</code>. Exemplo de
+            tabela:
+        </p>
+
+        {{codigo('html', [
+        '<table class="tabela" data-largura-min="750">',
+        '    <thead>',
+        '        <tr>',
+        '            <th data-largura="300">Coluna 1</th>',
+        '            <th data-largura-min="400">Coluna 2</th>',
+        '            <th data-largura-max="170">Coluna 3</th>',
+        '        </tr>',
+        '    </thead>',
+        '    <tbody>',
+        '        <tr>',
+        '            <td>Célula 1</td>',
+        '            <td>Célula 2</td>',
+        '            <td>Célula 3</td>',
+        '        </tr>',
+        '    </tbody>',
+        '</table>'
+        ])}}
+
+        <p>Variáveis usadas em <code>.tabela</code></p>
+
+        {{lista_prop([
+            '--cor-bg',
+            '--cor-destaque',
+            '--cor-suave',
+            '--txt',
+            '--borda',
+            '--borda-b',
+            '--borda-i',
+            '--cor-borda',
+            '--cor-base',
+            '--cor-txt',
+            '--rd',
+            '--pd-i',
+            '--pd-b',
+        ])}}
+
+        <details class="demo" open>
+            <summary>Demonstração:</summary>
+            {{tabela()}}
+            {{tabela(True)}}
+        </details>
+
+        <h2>Trabalhando com larguras</h2>
+        <p>
+            A largura das colunas é feita incluindo um ou mais atributo no <code>&lt;th&gt;</code>
+            que esteja no <code>&lt;thead&gt;</code>:
+        </p>
+
+        <ul>
+            <li><code>data-largura</code> - largura fixa</li>
+            <li><code>data-largura-min</code> - largura mínima</li>
+            <li><code>data-largura-max</code> - largura máxima</li>
+        </ul>
+
+        <p>
+            Esses parâmetros são opcionais e podem ser omitidos essas medidas
+            devem ser apenas número e são medidas em PX. Caso deseje fazer uso
+            de em, rem, vw, etc, chame novamente com:
+        </p>
+
+        {{codigo('scss', ['width: attr(atributo medida)'])}}
+
+    </section>
+</article>
+{% endblock conteudo %}

@@ -16,8 +16,9 @@
             <td>{{item.tipo}}</td>
             <td>{{item.container}}</td>
             <!-- TODO: ícone no lugar do texto -->
-            <td><a href="{{item.link}}">doc</a></td>
-            <td>{{item.uso | safe}}</td>
+            <td><a href="{{item.pagina}}">doc</a></td>
+            <td>{{item_uso(item.uso)}}</td>
+            <td>{{item.atualizada}}</td>
         </tr>
         {% endfor %}
     </tbody>

@@ -4,7 +4,7 @@ classes_css = [
     {
         'nome': '.ativo',
         'tipo': 'generica',
-        'uso': 'Ativa ou desativa o elemento do qual é vinculada. Varia conforme o elemento.',
+        'uso': ['Ativa ou desativa o elemento do qual é vinculada. Varia conforme o elemento.'],
         'container': None,
         'pagina': None,
         'atualizada': '0.2.0',
@@ -12,7 +12,7 @@ classes_css = [
     {
         'nome': '.menu',
         'tipo': 'container',
-        'uso': 'Container do menu.',
+        'uso': ['Container do menu.'],
         'container': 'menu',
         'pagina': '/menu',
         'atualizada': '0.2.0',
@@ -20,7 +20,7 @@ classes_css = [
     {
         'nome': '.menu--horizontal',
         'tipo': 'modificador',
-        'uso': 'Junto de <code>.menu</code> para colocá-lo na horizontal.',
+        'uso': ['Junto de <code>.menu</code> para colocá-lo na horizontal.'],
         'container': None,
         'pagina': '/menu',
         'atualizada': '0.2.0',
@@ -28,7 +28,7 @@ classes_css = [
     {
         'nome': '.menu__link',
         'tipo': 'elemento',
-        'uso': 'Link do menu',
+        'uso': ['Link do menu'],
         'container': None,
         'pagina': '/menu',
         'atualizada': '0.2.0',
@@ -36,9 +36,25 @@ classes_css = [
     {
         'nome': '.menu__titulo',
         'tipo': 'elemento',
-        'uso': 'Títulos e subtítulos dentro do menu.',
+        'uso': ['Títulos e subtítulos dentro do menu.'],
         'container': None,
         'pagina': '/menu',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '.rolagem_x',
+        'tipo': 'generica',
+        'uso': ['Classe para scroll horizontal em elementos com largura fixa. Útil para tabelas em dispositivos móveis.'],
+        'container': None,
+        'pagina': '/classes_globais',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '.tabela',
+        'tipo': 'elemento',
+        'uso': ['Classe básica para formatar uma tabela'],
+        'container': None,
+        'pagina': '/tabela',
         'atualizada': '0.2.0',
     },
     

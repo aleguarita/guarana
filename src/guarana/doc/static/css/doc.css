@@ -62,6 +62,15 @@
             --cor-txt: var(--cor-2);
         }
     }
+
+    /* TODO: deixar lista mais agradável visualmente */
+    li code + p {
+        display: inline;
+    }
+
+    li p {
+        margin-block: 0;
+    }
 }
 
 /* CLASSES PRÓPRIAS */
@@ -113,7 +122,7 @@
         grid-template-columns: clamp(5rem, 17cqi, 25rem) auto;
         background-color: var(--gua_bg);
 
-        a {
+        a:not([class]) {
             --cor-base: light-dark(var(--cor-3), hsl(from var(--cor-3) h s calc(l * 1.95)));
             
             @container style(--tema: "alto contraste") {
@@ -184,6 +193,8 @@
 /* CLASSES ORIGINAIS */
 @layer doc_gua {
     .menu:not(.demo) {
+        --cor-base: var(--cor-2);
+        --sombra: none;
         --rd: var(--gua_raio);
         --pd-i: .5em;
         --pd-b: .5em;
@@ -216,6 +227,57 @@
                 }
             }
         }
+    }
+
+    .tabela:not(.demo) {
+        --cor-b: hsl(from var(--cor-base) h s calc(l * 1.5));
+        --txt: .79em;
+        /* --borda-i: 1px; */
+        --cor-borda: var(--cor-b);
+        --pd-i: .25rem;
+        --rd: var(--gua_raio);
+        --cor-bg: light-dark(hsl(0 0% 100% / .65), hsl(0 0% 0% / .65));
+        --cor-destaque: hsl(from var(--cor-1) h s calc(l * .2));
+
+        margin-top: 1rem;
+        outline: 1px solid var(--cor-b);
+
+        p {
+            margin: 0;
+        }
+
+        td {
+            vertical-align: top;
+        }
+
+        th {
+            font-size: var(--txt);
+        }
+
+        tr:nth-child(even) {
+            --cor-bg: transparent;
+        }
+
+        thead {
+            --txt: .85em;
+            --cor-borda: var(--cor-b);
+            --cor-bg: var(--cor-b);
+            & tr {
+                --borda-b: 1px;
+            }
+        }
+        tbody {
+            border-bottom: 0;
+        }
+    }
+
+    .tabela.demo {
+        width: calc(100% - 2x);
+    }
+
+    .rolagem_x {
+        width: calc(100% + 2px);
+        height: max-content;
     }
 
 }
