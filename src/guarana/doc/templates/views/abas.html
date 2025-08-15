@@ -1,0 +1,133 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Abas{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='abas' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Abas</h1>
+        <p>Arquivo em <code>utils/abas.css</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+                <p>
+            O sistema de abas está dividido em três partes:
+        </p>
+        <ol>
+            <li>O container principal, que inclue tanto a navegação quanto os conteúdos</li>
+            <li>O container de navegação, com os botões que representam cada aba</li>
+            <li>O conteúdo de cada aba</li>
+        </ol>
+
+        {{codigo('html', [
+            '<section class="abas__estrutura">',
+            '    <nav class="abas__nav">',
+            '        <a data-aba="#aba-1" class="abas__item ativo">Aba 1</a>',
+            '        <a data-aba="#aba-2" class="abas__item">Aba 2</a>',
+            '        <a data-aba="#aba-3" class="abas__item">Aba 3</a>',
+            '    </nav>',
+            ' ',
+            '    <article class="abas__conteudo ativo">',
+            '        Conteúdo da aba 01',
+            '    </article>',
+            ' ',
+            '    <article class="abas__conteudo">',
+            '        Conteúdo da aba 02',
+            '    </article>',
+            ' ',
+            '    <article class="abas__conteudo">',
+            '        Conteúdo da aba 03',
+            '    </article>',
+            '</section>'
+        ])}}
+
+        <details class="demo" open>
+            <summary>Exemplo de abas:</summary>
+            <div class="abas__estrutura">
+                <nav class="abas__nav">
+                    <a data-aba="#gua_aba_ex_1" class="abas__item ativo">Aba 1</a>
+                    <a data-aba="#gua_aba_ex_2" class="abas__item">Aba 2</a>
+                    <a data-aba="#gua_aba_ex_3" class="abas__item">Aba 3</a>
+                    <a data-aba="#gua_aba_ex_4" class="abas__item">Aba 4</a>
+                </nav>
+                <article id="gua_aba_ex_1" class="abas__conteudo ativo">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in risus venenatis, scelerisque massa eget, viverra sapien. Sed sodales tortor quis lobortis gravida. Sed gravida ligula porttitor lorem auctor euismod. Morbi rutrum, quam eu pellentesque vestibulum, purus dui sagittis justo, ac vulputate est leo id nulla. Morbi nec enim id magna rutrum aliquam tristique sit amet tellus. Nulla nec augue ac diam condimentum feugiat vel vel arcu. Donec varius rhoncus turpis, non euismod massa vulputate sit amet. Cras at felis turpis. Mauris ullamcorper erat lacus, ac euismod dui varius tristique. Donec bibendum risus et hendrerit vulputate.</p>
+                </article>
+                <article id="gua_aba_ex_2" class="abas__conteudo">
+                    <p>Conteúdo da Aba 2</p>
+                </article>
+                <article id="gua_aba_ex_3" class="abas__conteudo">
+                    <p>Conteúdo da Aba 3</p>
+                </article>
+                <article id="gua_aba_ex_4" class="abas__conteudo">
+                    <p>Conteúdo da Aba 4</p>
+                </article>
+            </div>
+        </details>
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>
+                O {{app}} vem com um snippet para a estrutura básica
+                <code>gua_aba_estrutura</code>.
+            </p>
+        </blockquote>
+
+        <h2>Seletores</h2>
+        <h3><code>.abas__estrutura</code></h3>
+        {% set abas=classe_css | selectattr('nome', 'equalto', '.abas__estrutura') | list %}
+        {% for p in abas[0].uso %}<p>{{p}}</p>{% endfor %}
+        
+        <h3><code>.abas__nav</code></h3>
+        {% set abas=classe_css | selectattr('nome', 'equalto', '.abas__nav') | list %}
+        {% for p in abas[0].uso %}<p>{{p}}</p>{% endfor %}
+        
+        <h3><code>.abas__item</code></h3>
+        {% set abas=classe_css | selectattr('nome', 'equalto', '.abas__nav') | list %}
+        {% for p in abas[0].uso %}<p>{{p}}</p>{% endfor %}
+        <p>
+            Cada item da navegação deve ter um <code>data-aba="#id"</code> onde o 
+            id é o mesmo que a aba que ele está relacionado. Isso é feito para
+            evitar mudar a posição da tela ao mudar com href.
+        </p>
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>
+                O {{app}} vem com um snippet para cada item da navegação
+                <code>gua_aba_item</code>.
+            </p>
+        </blockquote>
+        
+        <h3><code>.abas__item.ativo</code></h3>
+        <p>O item de navegação ativo.</p>
+        
+        <h3><code>.abas__conteudo</code></h3>
+        {% set abas=classe_css | selectattr('nome', 'equalto', '.abas__conteudo') | list %}
+        {% for p in abas[0].uso %}<p>{{p}}</p>{% endfor %}
+        <p>Cada conteúdo deve ter o parâmetro id passado pelo item da navegação.</p>
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>
+                O {{app}} vem com um snippet para cada conteúdo da aba
+                <code>gua_aba_conteudo</code>.
+            </p>
+        </blockquote>
+        
+        <h3><code>.abas__conteudo.ativo</code></h3>
+        <p>A aba ativa.</p>
+        <p>O item ativo inicial deve receber a classe.</p>
+
+        <h2>Javascript</h2>
+
+        <p>
+            O arquivo <code>guarana.js</code> já usa o script abaixo para a
+            classe <code>.aba</code>. Se você alterar a classe ou criar outro
+            conjunto de abas, lembre-se de utilizar do script para isso,
+            alterando os parâmetros.
+        </p>
+
+        {% include "partials/js_ativar_desativar_menu.html" %}
+
+    </section>
+</article>
+{% endblock conteudo %}

@@ -1,4 +1,4 @@
-/*14/08/2025*/
+/*15/08/2025*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -85,11 +85,19 @@ Com alterações pontuais
     p {
         text-wrap: pretty;
         margin-block: calc(1em + 0.5rem);
+
+        &:first-child {
+            margin-block-start: 0;
+        }
     }
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
         margin-block: calc(1em + 0.5rem) 1em;
+
+        &:first-child {
+            margin-block-start: 0;
+        }
     }
 
     a, strong, span, label, em, b, i, table, blockquote, details, li {
@@ -129,6 +137,55 @@ Com alterações pontuais
 
 /* 
 ================================================================================
+ABAS
+Formatação básica de abas
+================================================================================
+*/
+@layer base {
+    .abas__estrutura {
+        background-color: var(--cor-bg, transparent);
+        container-type: inline-size;
+        container-name: abas;
+    }
+
+    .abas__nav {
+        user-select: none;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: baseline;
+        justify-content: flex-start;
+        gap: var(--gap);
+    }
+
+    .abas__item {
+        padding-inline: var(--pd-i);
+        padding-block: var(--pd-b);
+        background-color: var(--cor-bg);
+        color: var(--cor-txt);
+        border: var(--borda) var(--cor-borda);
+        cursor: pointer;
+
+        &.ativo {
+            transition: var(--transicao);
+            transition-property: background, color, border;
+        }
+    }
+
+    .abas__conteudo {
+        border: var(--borda) var(--cor-borda);
+        background-color: var(--cor-bg);
+        padding-inline: var(--pd-i);
+        padding-block: var(--pd-b);
+
+        &:not(&.ativo) {
+            display: none;
+        }
+    }
+}
+
+
+/* 
+================================================================================
 MENU
 Formatação básica do menu
 ================================================================================
@@ -164,10 +221,10 @@ Formatação básica do menu
     .menu__titulo {
         background-color: var(--cor-bg);
         color: var(--cor-txt);
-        padding-inline: var(--pd-i, 1em);
-        padding-block: var(--pd-b, 0);
-        margin-block: var(--mg-b, inherit);
-        margin-inline: var(--mg-i, inherit);
+        padding-inline: var(--pd-i);
+        padding-block: var(--pd-b);
+        margin-block: var(--mg-b);
+        margin-inline: var(--mg-i);
     }
 }
 
@@ -246,6 +303,48 @@ Formatação básica de tabela
 
 }
 
+/* 
+ABAS
+--------------------------------------------------------------------------------
+snippet VSCode para criar a estrutura no HTML: gua_aba_estrutura
+snippet VSCode para criar o item de navegação no HTML: gua_aba_item
+snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
+*/
+@layer utils {
+    /* container */
+    .abas__estrutura {
+        --cor-bg: transparent;
+        --cor-secundaria: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
+        --borda: 0 solid;
+    }
+
+    /* a parte de navegação */
+    .abas__nav {
+        --gap: .15rem;
+    }
+
+    /* item das navegações */
+    .abas__item {
+        --pd-i: 1em;
+        --pd-b: .5em;
+        --cor-bg: var(--cor-base);
+        --cor-txt: var(--cor-secundaria);
+        
+        &.ativo {
+            --cor-bg: var(--cor-secundaria);
+            --cor-txt: var(--cor-base);
+        }
+    }
+
+    /* a parte de cada conteúdo da aba */
+    .abas__conteudo {
+        --cor-bg: var(--cor-secundaria);
+
+        --pd-i: 1rem;
+        --pd-b: 1rem;
+    }
+}
+
 /*
 CLASSES GLOBAIS
 --------------------------------------------------------------------------------
@@ -274,10 +373,11 @@ MENU
 --------------------------------------------------------------------------------
 HTML base para a criação
 <nav class="menu">
-    <a class="menu__link" href="">Link</a>
+<a class="menu__link" href="">Link</a>
 </nav>
 
 Snippets: gua_menu para a base e gua_menu_link para cada item
+--------------------------------------------------------------------------------
 Existe mais variáveis que são usadas mas não estão aqui por herdarem um valor
 padrão. Rode a documentação e veja em /menu
 */
@@ -292,21 +392,22 @@ padrão. Rode a documentação e veja em /menu
     }
     
     /* ELEMENTOS FILHOS */
+    .menu__titulo {
+        --mg-b: 1rem 0;
+        --pd-b: 0;
+        font-size: 1.1em;
+    }
+
     .menu__link {
         --cor-txt: var(--cor-secundaria);
         --cor-bg: var(--cor-base);
-        --pd-i: 1em;
-        --pd-h: 1em;
+        --pd-i: .5em;
+        --pd-b: .5em;
 
         &.ativo, &:hover {
             --cor-txt: var(--cor-base);
             --cor-bg: var(--cor-secundaria);
         }
-    }
-    .menu__titulo {
-        --pd-b: 0;
-        --mg-b: calc(1rem + .5em) 0;
-        font-size: 1.1em;
     }
 
     /* MODIFICADORES */
@@ -321,13 +422,16 @@ TABELA
 --------------------------------------------------------------------------------
 Para determinar largura das colunas utilize no th do thead (ou nos td)
 os seguintes parâmetros:
-  data-largura     - largura fixa
-  data-largura-min - largura mínima
-  data-largura-max - largura máxima
+data-largura     - largura fixa
+data-largura-min - largura mínima
+data-largura-max - largura máxima
 esses parâmetros são opcionais e podem ser omitidos
 essas medidas devem ser apenas número e são medidas em PX. Caso deseje
 fazer uso de em, rem, vw, etc, chame novamente com:
 width: attr(atributo medida);
+--------------------------------------------------------------------------------
+Existe mais variáveis que são usadas mas não estão aqui por herdarem um valor
+padrão. Rode a documentação e veja em /tabela
 */
 
 @layer utils {

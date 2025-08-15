@@ -35,10 +35,10 @@ Formatação básica do menu
     .menu__titulo {
         background-color: var(--cor-bg);
         color: var(--cor-txt);
-        padding-inline: var(--pd-i, 1em);
-        padding-block: var(--pd-b, 0);
-        margin-block: var(--mg-b, inherit);
-        margin-inline: var(--mg-i, inherit);
+        padding-inline: var(--pd-i);
+        padding-block: var(--pd-b);
+        margin-block: var(--mg-b);
+        margin-inline: var(--mg-i);
     }
 }
 

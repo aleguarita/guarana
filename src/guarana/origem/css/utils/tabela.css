@@ -3,13 +3,16 @@ TABELA
 --------------------------------------------------------------------------------
 Para determinar largura das colunas utilize no th do thead (ou nos td)
 os seguintes parâmetros:
-  data-largura     - largura fixa
-  data-largura-min - largura mínima
-  data-largura-max - largura máxima
+data-largura     - largura fixa
+data-largura-min - largura mínima
+data-largura-max - largura máxima
 esses parâmetros são opcionais e podem ser omitidos
 essas medidas devem ser apenas número e são medidas em PX. Caso deseje
 fazer uso de em, rem, vw, etc, chame novamente com:
 width: attr(atributo medida);
+--------------------------------------------------------------------------------
+Existe mais variáveis que são usadas mas não estão aqui por herdarem um valor
+padrão. Rode a documentação e veja em /tabela
 */
 
 @layer utils {

@@ -202,6 +202,7 @@
         .menu__link {
             --cor-txt:var(--cor-base);
             --cor-bg: hsl(from var(--cor-base) h s l / .15);
+            --pd-b: .5em;
             outline: 2px solid var(--cor-bg);
             font-weight: bold;
             transition-property: none;
@@ -232,7 +233,7 @@
     .tabela:not(.demo) {
         --cor-b: hsl(from var(--cor-base) h s calc(l * 1.5));
         --txt: .79em;
-        /* --borda-i: 1px; */
+        --borda-i: 1px;
         --cor-borda: var(--cor-b);
         --pd-i: .25rem;
         --rd: var(--gua_raio);
@@ -250,8 +251,13 @@
             vertical-align: top;
         }
 
-        th {
-            font-size: var(--txt);
+        td, th {
+            &:first-child {
+                border-left-width: 0;
+            }
+            &:last-child {
+                border-right-width: 0;
+            }
         }
 
         tr:nth-child(even) {
@@ -269,15 +275,6 @@
         tbody {
             border-bottom: 0;
         }
-    }
-
-    .tabela.demo {
-        width: calc(100% - 2x);
-    }
-
-    .rolagem_x {
-        width: calc(100% + 2px);
-        height: max-content;
     }
 
 }

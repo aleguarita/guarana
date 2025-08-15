@@ -4,7 +4,7 @@
             <th>Classe</th>
             <th>Tipo</th>
             <th>Container</th>
-            <th>Documentação</th>
+            <th>Link</th>
             <th>Uso</th>
             <th>Versão</th>
         </tr>
@@ -14,7 +14,13 @@
         <tr>
             <td><code>{{item.nome}}</code></td>
             <td>{{item.tipo}}</td>
-            <td>{{item.container}}</td>
+            <td>
+                {% if item.container %}
+                {{item.container}}
+                {% else %}
+                
+                {% endif %}
+            </td>
             <!-- TODO: ícone no lugar do texto -->
             <td><a href="{{item.pagina}}">doc</a></td>
             <td>{{item_uso(item.uso)}}</td>

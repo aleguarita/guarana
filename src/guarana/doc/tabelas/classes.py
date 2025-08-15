@@ -57,5 +57,37 @@ classes_css = [
         'pagina': '/tabela',
         'atualizada': '0.2.0',
     },
+    {
+        'nome': '.abas__estrutura',
+        'tipo': 'container',
+        'uso': ['Container das abas.'],
+        'container': 'abas',
+        'pagina': '/abas',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '.abas__nav',
+        'tipo': 'elemento',
+        'uso': ['Grupo dos botões das abas.'],
+        'container': None,
+        'pagina': '/abas',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '.abas__item',
+        'tipo': 'elemento',
+        'uso': ['Cada botão de aba.'],
+        'container': None,
+        'pagina': '/abas',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '.abas__conteudo',
+        'tipo': 'elemento',
+        'uso': ['Cada conteúdo de aba.'],
+        'container': None,
+        'pagina': '/abas',
+        'atualizada': '0.2.0',
+    },
     
 ]

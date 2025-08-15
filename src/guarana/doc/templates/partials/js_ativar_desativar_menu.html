@@ -1,0 +1,33 @@
+<h3><code>guaAtivarDesativarAbas(classe="abas", sufixo_ativo="ativo", atributo="data-aba")</code></h3>
+
+<p>
+    Esse script vai observar quatro classes, baseadas nos parâmetro:
+</p>
+<ul>
+    <li>
+        <code>classe</code>
+        - a classe pai a ser buscada para alteração dos filhos
+        (por exemplo <code>abas</code>). <code>abas</code> é o padrão. As classes
+        que vai ser observada será <code>classe__nav__item</code> e
+        <code>classe__conteudo</code>.
+    </li>
+    <li>
+        <code>sufixo_ativo</code>
+        - esse sufixo ('ativo', por padrão) é aplicado nas classes acima como
+        modificador <a href="https://desenvolvimentoparaweb.com/css/bem/" target="_blank">BEM</a>.
+        No exemplo, a classe se tornaria <code>abas__conteudo--ativo</code>.</li>
+    <li>
+        <code>atributo</code>
+        - o atributo que contém o nome da aba a exibir ou ocultar.
+    </li>
+</ul>
+
+<p>
+    Ao clicar em um item que tenha a <code>classe__nav__item</code>,
+    o script remove dos demais itens e do conteúdo a variação <code>--ativo</code>
+    e aplica essa classe no item clicado, permitindo destacar qual o item de
+    navegação ativa e exibe a aba atual.
+</p>
+
+{{codigo('JS', ["guaAtivarDesativarAbas()"])}}
+

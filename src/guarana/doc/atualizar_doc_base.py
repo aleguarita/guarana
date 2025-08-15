@@ -12,7 +12,7 @@ pasta_base = pasta_origem/'base'
 pasta_utils = pasta_origem/'utils'
 
 arquivo_destino = pasta_destino/'guarana.css'
-arquivos_base = list(pasta_base.glob('*'))
+arquivos_base = sorted(list(pasta_base.glob('*')))
 arquivos_utils = list(pasta_utils.glob('*'))
 # endregion
 

@@ -1,7 +1,7 @@
-{% macro tabela(tem_foot=False) %}
-    {% set col=4 %}
-    {% set row=5 %}
-    {% set abc = ['A', 'B', 'C', 'D', 'E'] %}
+{% macro tabela(tem_foot=False, colunas=4, linhas=5) %}
+    {% set col=colunas %}
+    {% set row=linhas %}
+    {% set abc = ['A', 'B', 'C', 'D', 'E', 'F', 'G'] %}
     <h6>Tabela {% if not tem_foot %}tradicional{% else %} com tfoot{% endif %}</h6>
     <table class="tabela demo">
         <thead>
@@ -66,7 +66,7 @@
         '</table>'
         ])}}
 
-        <p>Variáveis usadas em <code>.tabela</code></p>
+        <p>Variáveis usadas em <code>.tabela</code>:</p>
 
         {{lista_prop([
             '--cor-bg',
@@ -109,6 +109,17 @@
         </p>
 
         {{codigo('scss', ['width: attr(atributo medida)'])}}
+
+        <h2>Permitindo rolamento em telas menores</h2>
+        <p>
+            Quando a tabela ultrapassa o limite da tela, o cabeçalho é fixado
+            automaticamente. O mesmo vale para a primeira coluna.
+        </p>
+        <p>
+            Para fazer com que a tabela role na horizontal em telas menores,
+            insira a tabela dentro de um div com a classe
+            <a href="/classes_globais#rolagem_x"><code>.rolagem_x</code></a>.
+        </p>
 
     </section>
 </article>

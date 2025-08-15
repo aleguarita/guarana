@@ -16,5 +16,37 @@
 			"<a href=\"$1\", class=\"menu__link\">$2</a>"
 		],
 		"description": "Insere um link de menu"
+	},
+		"Estrutura de abas": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_aba_estrutura",
+		"body": [
+			"<section class\"abas__estrutura\">",
+			"    <nav class=\"abas__nav\">",
+			"        $1",
+			"    </nav>",
+			"    $2",
+			"</section>"
+		],
+		"description": "Insere uma estrutura de aba inteira"
+	},
+	"Item de aba": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_aba_item",
+		"body": [
+			"<a data-aba=\"#aba_$1\" class=\"abas__item\">$2</a>"
+		],
+		"description": "Insere um item de aba"
+	},
+	"Conteúdo de aba": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_aba_conteudo",
+		"body": [
+			"<article class=\"abas__conteudo\" id=\"aba_$1\">",
+			"    $2",
+			"</article>"
+		],
+		"description": "Insere o conteúdo de uma aba"
 	}
 }
+

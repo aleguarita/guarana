@@ -1,0 +1,47 @@
+/* 
+================================================================================
+ABAS
+Formatação básica de abas
+================================================================================
+*/
+@layer base {
+    .abas__estrutura {
+        background-color: var(--cor-bg, transparent);
+        container-type: inline-size;
+        container-name: abas;
+    }
+
+    .abas__nav {
+        user-select: none;
+        display: flex;
+        flex-flow: row wrap;
+        align-items: baseline;
+        justify-content: flex-start;
+        gap: var(--gap);
+    }
+
+    .abas__item {
+        padding-inline: var(--pd-i);
+        padding-block: var(--pd-b);
+        background-color: var(--cor-bg);
+        color: var(--cor-txt);
+        border: var(--borda) var(--cor-borda);
+        cursor: pointer;
+
+        &.ativo {
+            transition: var(--transicao);
+            transition-property: background, color, border;
+        }
+    }
+
+    .abas__conteudo {
+        border: var(--borda) var(--cor-borda);
+        background-color: var(--cor-bg);
+        padding-inline: var(--pd-i);
+        padding-block: var(--pd-b);
+
+        &:not(&.ativo) {
+            display: none;
+        }
+    }
+}

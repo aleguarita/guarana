@@ -28,3 +28,5 @@ window.addEventListener('DOMContentLoaded', () => {
         guaAplicarTema(temaSalvo)
     }
 });
+
+guaAtivarDesativarAbas()

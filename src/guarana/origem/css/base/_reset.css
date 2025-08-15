@@ -46,11 +46,19 @@ Com alterações pontuais
     p {
         text-wrap: pretty;
         margin-block: calc(1em + 0.5rem);
+
+        &:first-child {
+            margin-block-start: 0;
+        }
     }
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
         margin-block: calc(1em + 0.5rem) 1em;
+
+        &:first-child {
+            margin-block-start: 0;
+        }
     }
 
     a, strong, span, label, em, b, i, table, blockquote, details, li {
