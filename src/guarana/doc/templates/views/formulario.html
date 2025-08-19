@@ -1,0 +1,51 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Formulário{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='formulario' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Formulário</h1>
+        <p></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p class="campo">
+            <label for="input_t" class="label">Label</label>
+            <input type="text" name="" id="input_t">
+        </p>
+        <p class="campo">
+            <label for="input_s" class="label">Label</label>
+            <select name="" id="input_s">
+                {% for i in range(5) %}
+                <option value="{{i+1}}">Valor {{i+1}}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p class="campo">
+            <label for="texta" class="label">Label</label>
+            <textarea name="" id="texta"></textarea>
+        </p>
+        <div class="campo">
+            <input type="checkbox" name="input_c" id="input_c">
+            <label for="input_c" class="label">checkbox</label>
+        </div>
+        <div class="campo">
+            <input type="checkbox" name="input_c" id="input_cc" checked>
+            <label for="input_cc" class="label">checkbox checado</label>
+        </div>
+        
+        {% for r in range(4) %}
+        <div class="campo">
+            <input type="radio" name="grupo_radio" id="radio_{{r}}">
+            <label for="radio_{{r}}" class="label">radio</label>
+        </div>
+        {% endfor %}
+        <div class="campo">
+            <input type="radio" name="grupo_radio" id="radio_c" checked>
+            <label for="radio_c" class="label">radio checado</label>
+        </div>
+
+    </section>
+</article>
+{% endblock conteudo %}

@@ -21,7 +21,7 @@
 		"scope": "html, django-html, erb",
 		"prefix": "gua_aba_estrutura",
 		"body": [
-			"<section class\"abas__estrutura\">",
+			"<section class\"abas\">",
 			"    <nav class=\"abas__nav\">",
 			"        $1",
 			"    </nav>",

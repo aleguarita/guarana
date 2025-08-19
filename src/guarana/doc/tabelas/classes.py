@@ -58,7 +58,7 @@ classes_css = [
         'atualizada': '0.2.0',
     },
     {
-        'nome': '.abas__estrutura',
+        'nome': '.abas',
         'tipo': 'container',
         'uso': ['Container das abas.'],
         'container': 'abas',

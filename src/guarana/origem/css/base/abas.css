@@ -5,7 +5,7 @@ Formatação básica de abas
 ================================================================================
 */
 @layer base {
-    .abas__estrutura {
+    .abas {
         background-color: var(--cor-bg, transparent);
         container-type: inline-size;
         container-name: abas;

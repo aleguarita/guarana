@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0
+- Formulários
+- Abas voltou a ser `.abas` para melhor uso do BEM
+
 ## 0.2.0
 - Menu
 - Tabela

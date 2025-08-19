@@ -22,12 +22,11 @@ Formatação básica de tabela
         }
 
         /* LINHAS E CÉLULAS */
-        tr {
+        :is(tr, th) {
             background-color: var(--cor-bg);
         }
 
         th {
-            background-color: var(--cor-bg);
             position: sticky;
             top: 0;
             left: 0;
@@ -47,7 +46,7 @@ Formatação básica de tabela
         }
 
         /* CÉLULAS COM APENAS UM LINK */
-        td:has(a:only-child, input:only-child, select:only-child) {
+        td:has(:is(a, input, select):only-child) {
             padding: 0;
 
             & > * {

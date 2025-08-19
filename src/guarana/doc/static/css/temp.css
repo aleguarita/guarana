@@ -1,0 +1,18 @@
+/* AQUI FICARIA EVENTUAL RESET.CSS */
+@layer reset {
+
+}
+
+/* PARA A PASTA BASE */
+@layer base {
+    .campo, .field {
+
+    }
+}
+
+/* PARA A PASTA UTILS */
+@layer utils {
+    .campo, .field {
+        
+    }
+}
