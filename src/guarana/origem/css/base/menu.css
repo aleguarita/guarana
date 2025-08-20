@@ -22,6 +22,7 @@ Formatação básica do menu
     }
 
     .menu__link {
+        --cor-visitado: var(--cor-link);
         transition: var(--transicao);
         transition-property: background, border, color;
         background-color: var(--cor-bg);

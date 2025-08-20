@@ -66,6 +66,65 @@ propriedades_css = [
         'atualizada': '0.1.0'
     },
     {
+        "nome": "--transicao",
+        "tipo": "valores separados por espaço",
+        "heranca": "sim",
+        "uso": [f"variável para a transição padrão, sem indicar qual a nome afetada. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`transition: var(--transicao)`'],
+        'categoria': 'aberta',
+        'atualizada': '0.1.0'
+    },
+    {
+        "nome": "--cor-bg",
+        "tipo": "cor",
+        "heranca": "-",
+        "uso": ["variável usada em diversos elementos e no body (no reset) que já contam com `background-color` para essa cor, bastando alterar essa variável.", '`--cor-bg: red`'],
+        'categoria': 'variável',
+        'atualizada': '0.1.0'
+    },
+    {
+        "nome": "--cor-txt",
+        "tipo": "cor",
+        "heranca": "-",
+        "uso": ["variável usada em diversos elementos e no body (no reset) que já contam com `color` para essa cor, bastando alterar essa variável.", '`--cor-txt: hsl(0, 0%, 0%)`'],
+        'categoria': 'variável',
+        'atualizada': '0.1.0'
+    },
+    {
+        'nome': '--cor-link',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Utilizada para definir a cor de texto (ou fundo) do link, no estado normal.', 'Está declarado diretamente na tag `a` dentro da layer `base`, mas pode ser aplicado por cascata', 'Se eliminada, utiliza o valor padrão de CSS', '`--cor-link: var(--cor-2);`'],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '--cor-hover',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Utilizada para definir a cor de texto (ou fundo) do link, no estado hover.', 'Está declarado diretamente no seletor `a:hover` dentro da layer `base`, mas pode ser aplicado por cascata', 'Se eliminada, utiliza o valor padrão de CSS', '`--cor-hover: var(--cor-2);`'],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '--cor-visitado',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Utilizada para definir a cor de texto (ou fundo) do link, no estado visitado.', 'Está declarado diretamente no seletor `a:visited` dentro da layer `base`, mas pode ser aplicado por cascata', 'Se eliminada, utiliza o valor padrão de CSS', '`--cor-hover: var(--cor-link);`'],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '--cor-titulo',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Utilizada para definir a cor do título (normalmente do texto). Se for usar a cor padrão, pode simplesmente eliminar a variável.', '`--cor-titulo: var(--cor-2);`'],
+        'categoria': 'fechada',
+        'atualizada': '0.3.0',
+    },
+    
+    
+
+    {
         "nome": "--rd",
         "tipo": "porcentagem / medida",
         "heranca": "sim",
@@ -82,19 +141,11 @@ propriedades_css = [
         'atualizada': '0.1.0'
     },
     {
-        "nome": "--transicao",
-        "tipo": "valores separados por espaço",
-        "heranca": "sim",
-        "uso": [f"variável para a transição padrão, sem indicar qual a nome afetada. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`transition: var(--transicao)`'],
-        'categoria': 'aberta',
-        'atualizada': '0.1.0'
-    },
-    {
         "nome": "--cor-base",
         "tipo": "cor",
         "heranca": "-",
         "uso": ["variável usada em diversos elementos internos. Serve como base para que seja aplicado tons nos elementos e permitindo alterações rápidas em todo o componente alterando apenas essa variável.", '`--cor-bg: hsl(from var(--cor-base) h s calc(l * 1.25)`'],
-        'categoria': 'root',
+        'categoria': 'variável',
         'atualizada': '0.1.0'
     },
     {
@@ -102,23 +153,7 @@ propriedades_css = [
         "tipo": "cor",
         "heranca": "-",
         "uso": ["variável usada em diversos elementos internos (menos usada que a `--cor-base`). Serve como base de cor secundária para que seja aplicado tons nos elementos e permitindo alterações rápidas em todo o componente alterando apenas essa variável.", '`--cor-txt: hsl(from var(--cor-sec) h calc(s - 10) calc(l * .25)`'],
-        'categoria': 'root',
-        'atualizada': '0.1.0'
-    },
-    {
-        "nome": "--cor-bg",
-        "tipo": "cor",
-        "heranca": "-",
-        "uso": ["variável usada em diversos elementos e tags, mesmo no reset, que já contam com `background-color` para essa cor, bastando alterar essa variável.", '`--cor-bg: red`'],
-        'categoria': 'root',
-        'atualizada': '0.1.0'
-    },
-    {
-        "nome": "--cor-txt",
-        "tipo": "cor",
-        "heranca": "-",
-        "uso": ["variável usada em diversos elementos e tags, mesmo no reset, que já contam com `color` para essa cor, bastando alterar essa variável.", '`--cor-txt: hsl(0, 0%, 0%)`'],
-        'categoria': 'root',
+        'categoria': 'variável',
         'atualizada': '0.1.0'
     },
     {
@@ -134,7 +169,7 @@ propriedades_css = [
         "tipo": "texto separado por vírgula",
         "heranca": "-",
         "uso": ["variável usada no `<body>` e já conta com`font-family` para essa essa fonte, bastando alterar essa variável. Caso algum elemento vá apresentar outra fonte, chamar o `font-family` normalmente e declare nova variável de fonte no `:root`.", '`--fonte: \'Roboto\', var(--sans)`'],
-        'categoria': 'root',
+        'categoria': 'variável',
         'atualizada': '0.1.0'
     },
     {
@@ -142,7 +177,7 @@ propriedades_css = [
         "tipo": "texto",
         "heranca": "sim",
         "uso": ["variável usada no `:root` para indicar qual o tema de cores utilizado. Valor inicial: \"padrão\".", '`--tema: \"alto contraste\"`'],
-        'categoria': 'root',
+        'categoria': 'variável',
         'atualizada': '0.1.0'
     },
     {
@@ -230,7 +265,7 @@ propriedades_css = [
         'tipo': 'cor',
         'heranca': 'sim',
         'uso': ['Uma variação de destaque de uma cor escolhida.', 'Lembre-se de redeclarar no seletor, caso você altere a `cor-base`'],
-        'categoria': 'root',
+        'categoria': 'variável',
         'atualizada': '0.2.0',
     },
     {
@@ -238,8 +273,7 @@ propriedades_css = [
         'tipo': 'cor',
         'heranca': 'sim',
         'uso': ['Uma variação de suave de uma cor escolhida.', 'Lembre-se de redeclarar no seletor, caso você altere a `cor-base`'],
-        'categoria': 'root',
+        'categoria': 'variável',
         'atualizada': '0.2.0',
     },
-    
 ]

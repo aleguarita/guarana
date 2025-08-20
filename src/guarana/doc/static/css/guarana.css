@@ -1,4 +1,4 @@
-/*19/08/2025*/
+/*20/08/2025*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -63,8 +63,8 @@ Com alterações pontuais
     }
 
     body {
-        background-color: var(--cor-bg);
-        color: var(--cor-txt);
+        background-color: var(--cor-bg, light-dark(hsl(0 0% 97%), hsl(0 0% 3%)));
+        color: var(--cor-txt, light-dark(hsl(0 0% 3%), hsl(0 0 97%)));
         font-family: var(--fonte, sans-serif);
     }
 
@@ -79,25 +79,17 @@ Com alterações pontuais
 
     p, h1, h2, h3, h4, h5, h6 {
         overflow-wrap: break-word;
-        color: var(--cor-txt);
     }
 
     p {
         text-wrap: pretty;
         margin-block: calc(1em + 0.5rem);
-
-        &:first-child {
-            margin-block-start: 0;
-        }
     }
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
         margin-block: calc(1em + 0.5rem) 1em;
-    }
-
-    a, strong, span, label, em, b, i, table, blockquote, details, li {
-        color: var(--cor-txt);
+        color: var(--cor-titulo, initial);
     }
 
     h1 {
@@ -124,10 +116,22 @@ Com alterações pontuais
         border-spacing: 0;
         width: 100%;
     }
-    td, th {
-        color: var(--cor-txt);
-    }
 
+    a {
+        color: var(--cor-link, initial);
+        transition: var(--transicao);
+        transition-property: color;
+
+
+        &:visited {
+            color: var(--cor-visitado, initial);
+        }
+
+        &:hover {
+            color: var(--cor-hover, initial);
+        }
+
+    }
 }
 
 /* 
@@ -203,6 +207,7 @@ Formatação básica do menu
     }
 
     .menu__link {
+        --cor-visitado: var(--cor-link);
         transition: var(--transicao);
         transition-property: background, border, color;
         background-color: var(--cor-bg);
@@ -249,12 +254,11 @@ Formatação básica de tabela
         }
 
         /* LINHAS E CÉLULAS */
-        tr {
+        :is(tr, th) {
             background-color: var(--cor-bg);
         }
 
         th {
-            background-color: var(--cor-bg);
             position: sticky;
             top: 0;
             left: 0;
@@ -274,7 +278,7 @@ Formatação básica de tabela
         }
 
         /* CÉLULAS COM APENAS UM LINK */
-        td:has(a:only-child, input:only-child, select:only-child) {
+        td:has(:is(a, input, select):only-child) {
             padding: 0;
 
             & > * {
@@ -394,13 +398,14 @@ padrão. Rode a documentação e veja em /menu
     }
 
     .menu__link {
-        --cor-txt: var(--cor-secundaria);
+        --cor-link: var(--cor-secundaria);
+        --cor-hover: var(--cor-base);
         --cor-bg: var(--cor-base);
         --pd-i: .5em;
         --pd-b: .5em;
 
         &.ativo, &:hover {
-            --cor-txt: var(--cor-base);
+            color: var(--cor-hover);
             --cor-bg: var(--cor-secundaria);
         }
     }
@@ -582,6 +587,14 @@ padrão. Rode a documentação e veja em /tabela
 /* root */
 @layer layout {
     :root {
+        --cor-txt: light-dark(hsl(0 0% 3%), hsl(0 0% 97%));
+        --cor-bg: light-dark(hsl(0 0% 97%), hsl(0 0% 3%));
+
+        --cor-link: var(--cor-3);
+        --cor-hover: hsl(from var(--cor-link) h s calc(l * 1.35));
+        --cor-visitado: var(--cor-link);
+        --cor-titulo: var(--cor-2);
+
         --cor-base: var(--cor-1);
         --cor-secundaria: var(--cor-2);
         --cor-destaque: light-dark(
@@ -590,8 +603,6 @@ padrão. Rode a documentação e veja em /tabela
         --cor-suave: light-dark(
             hsl(from var(--cor-base) h s calc(l * 1.85)),
             hsl(from var(--cor-base) h s calc(l * .65)));
-        --cor-txt: light-dark(hsl(0 0% 3%), hsl(0 0% 97%));
-        --cor-bg: light-dark(hsl(0 0% 97%), hsl(0 0% 3%));
         --cor-borda: var(--cor-base);
         
         --fonte: var(--sans);
@@ -619,32 +630,7 @@ padrão. Rode a documentação e veja em /tabela
         
         --cor-txt: var(--cor-1);
         --cor-bg: hsl(0 0% 0%);
-    }
-}
+        --cor-hover: hsl(from var(--cor-base) calc(h + 175) s l);
 
-/* definição básica de seletores */
-@layer base {
-    h1, h2, h3, h4, h5, h6 {
-        --cor-txt: var(--cor-2);
-    }
-
-    /* formata apenas o link que não tenha classe */
-    a:not([class]) {
-        --cor-base: var(--cor-3);
-        --cor-txt: var(--cor-base);
-        transition: var(--transicao);
-        transition-property: --cor-txt;
-
-        &:hover {
-            --cor-txt: hsl(from var(--cor-base) h s calc(l * 1.25));
-
-            @container style(--tema: "alto contraste") {
-                --cor-txt: hsl(from var(--cor-base) calc(h + 175) s l);
-            }
-        }
-
-        &:visited {
-            --cor-txt: hsl(from var(--cor-base) h calc(s * 0.4) calc(l * 0.8));
-        }
     }
 }

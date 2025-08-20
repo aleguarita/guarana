@@ -56,8 +56,9 @@
         <!-- TODO: criar classe de aviso -->
          <blockquote class="aviso">
             Note, no entanto, que uma propriedade definida dessa forma
-            <strong>não aceita</strong> (no momento) o uso de variáveis como
-            <code>initial-value</code>.
+            <strong>não aceita</strong> (no momento) o uso de outra variáveis como
+            <code>initial-value</code>. Nesse caso ela deve ser criada como uma
+            variável, dentro do <code>:root</code> ou do elemento.
          </blockquote>
 
          <h2>Propriedades fechadas</h2>
@@ -75,10 +76,41 @@
         {{tabela_propriedade('aberta')}}
 
         <h2>Variáveis</h2>
-        Essas propriedades são inseridas diretamente no <code>:root</code> ou
-        seletores internos e foram incluidas dessa forma por limitações atuais
-        no <code>@property</code>
-        {{tabela_propriedade('root')}}
+        <p>
+            Essas propriedades são inseridas diretamente no <code>:root</code> ou
+            seletores internos e foram incluidas dessa forma por limitações atuais
+            no <code>@property</code>.
+        </p>
+        <p>
+            As variáveis são aplicadas nas propriedades na camada <code>base</code>
+            e seus valores são atribuídos nos elementos na camada <code>utils</code>
+            ou superior.
+        </p>
+        <p>
+            Essas variáveis tem os seguintes objetivos:
+        </p>
+        <ol>
+            <li>
+                <strong>consistência</strong>: é possível eliminar essas variáveis
+                do elemento e inseri-las diretamente no <code>:root</code> de
+                forma a criar um padrão para todos os elementos.
+            </li>
+            <li>
+                <strong>valores padrão</strong>: ao eliminar uma variável de um
+                elemento e não atribui-la a um elemento pai, ela continua
+                funcionando com o valor padrão. Devido à limitação atual das
+                propriedades isso é feito à maneira antiga: a chamada de variável
+                inclui um valor inicial.
+            </li>
+            <li>
+                <strong>personalização local</strong>: ao utilizar o mesmo grupo
+                de variáveis para todos os elementos, podemos personalizar um
+                elemento (ou um variante do elemento base) sem quebrar os demais
+                e ainda é possível voltar ao valor padrão ao eliminar a variável.
+            </li>
+        </ol>
+
+        {{tabela_propriedade('variável')}}
 
         <h2>Todas as propriedades</h2>
         {% include "partials/tabela_propriedades.html" %}

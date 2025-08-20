@@ -24,8 +24,8 @@ Com alterações pontuais
     }
 
     body {
-        background-color: var(--cor-bg);
-        color: var(--cor-txt);
+        background-color: var(--cor-bg, light-dark(hsl(0 0% 97%), hsl(0 0% 3%)));
+        color: var(--cor-txt, light-dark(hsl(0 0% 3%), hsl(0 0 97%)));
         font-family: var(--fonte, sans-serif);
     }
 
@@ -40,25 +40,17 @@ Com alterações pontuais
 
     p, h1, h2, h3, h4, h5, h6 {
         overflow-wrap: break-word;
-        color: var(--cor-txt);
     }
 
     p {
         text-wrap: pretty;
         margin-block: calc(1em + 0.5rem);
-
-        &:first-child {
-            margin-block-start: 0;
-        }
     }
 
     h1, h2, h3, h4, h5, h6 {
         text-wrap: balance;
         margin-block: calc(1em + 0.5rem) 1em;
-    }
-
-    a, strong, span, label, em, b, i, table, blockquote, details, li {
-        color: var(--cor-txt);
+        color: var(--cor-titulo, initial);
     }
 
     h1 {
@@ -85,8 +77,20 @@ Com alterações pontuais
         border-spacing: 0;
         width: 100%;
     }
-    td, th {
-        color: var(--cor-txt);
-    }
 
+    a {
+        color: var(--cor-link, initial);
+        transition: var(--transicao);
+        transition-property: color;
+
+
+        &:visited {
+            color: var(--cor-visitado, initial);
+        }
+
+        &:hover {
+            color: var(--cor-hover, initial);
+        }
+
+    }
 }

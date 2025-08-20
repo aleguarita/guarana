@@ -35,9 +35,9 @@
 - Reset de CSS
 - Comando flask agora é subcomando de instalar
 - Comando para criar CSS minificado
-- Arquivo `_guarana_base.css` -> contém toda a base do Guaraná
-- Arquivo `estilo.css` -> arquivo de usuário para usar
-- Arquivo `estilo-min.css` -> arquivo minificado para o usuário
+- Arquivo `_guarana_base.css` → contém toda a base do Guaraná
+- Arquivo `estilo.css` → arquivo de usuário para usar
+- Arquivo `estilo-min.css` → arquivo minificado para o usuário
 
 ## 0.0.1
 - Abandando o SCSS

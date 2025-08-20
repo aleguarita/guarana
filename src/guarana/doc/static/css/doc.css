@@ -13,9 +13,14 @@
             hsl(from var(--cor-1) h s calc(l * .15)),
             hsl(from var(--cor-1) h s calc(l + 20))
         );
+        --cor-titulo: light-dark(
+            hsl(from var(--cor-1) h s calc(l * .35)),
+            hsl(from var(--cor-1) h s calc(l * 1.45))
+        );
     }
     .tema_alto_contraste {
         --cor-txt: var(--cor-1);
+        --cor-titulo: var(--cor-2);
     }
 
     .tema_guarana_original {
@@ -55,13 +60,6 @@
     }
 
     h1, h2, h3, h4, h5, h6 {
-        --cor-txt: light-dark(
-            hsl(from var(--cor-1) h s calc(l * .35)),
-            hsl(from var(--cor-1) h s calc(l * 1.45))
-        );
-        @container style(--tema: "alto contraste") {
-            --cor-txt: var(--cor-2);
-        }
         &:has(code) {
             font-size: 1.2rem;
         }
@@ -218,7 +216,7 @@
         --pd-b: .5em;
 
         .menu__link {
-            --cor-txt:var(--cor-base);
+            --cor-link: var(--cor-base);
             --cor-bg: hsl(from var(--cor-base) h s l / .15);
             --pd-b: .5em;
             outline: 2px solid var(--cor-bg);

@@ -78,8 +78,8 @@
 			"    'tipo': '$2',",
 			"    'heranca': '${3|sim,não|}',",
 			"    'uso': ['$4'],",
-			"    'categoria': '${5|fechada,aberta,root|}',",
-			"    'atualizada': '$6',",
+			"    'categoria': '${5|fechada,aberta,variável|}',",
+			"    'atualizada': '0.3.0',",
 			"},",
 			"$7"
 		],
@@ -95,7 +95,7 @@
 			"    'uso': ['$3'],",
 			"    'container': ${4|None,''|},",
 			"    'pagina': ${5|None,''|},",
-			"    'atualizada': '$6',",
+			"    'atualizada': '0.3.0',",
 			"},",
 			"$7"
 		]

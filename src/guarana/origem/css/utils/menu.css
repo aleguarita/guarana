@@ -29,13 +29,14 @@ padrão. Rode a documentação e veja em /menu
     }
 
     .menu__link {
-        --cor-txt: var(--cor-secundaria);
+        --cor-link: var(--cor-secundaria);
+        --cor-hover: var(--cor-base);
         --cor-bg: var(--cor-base);
         --pd-i: .5em;
         --pd-b: .5em;
 
         &.ativo, &:hover {
-            --cor-txt: var(--cor-base);
+            color: var(--cor-hover);
             --cor-bg: var(--cor-secundaria);
         }
     }
