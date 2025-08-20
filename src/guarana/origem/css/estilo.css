@@ -23,16 +23,6 @@
 }
 
 /* Elementos genéricos para formatação */
-@property --pd-i { /* padding horizontal, inline */
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --pd-b { /* padding vertical, bloco */
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
 @property --mg-i { /* margem horizontal, inline */
     syntax: "<length-percentage>+";
     inherits: true;
@@ -40,11 +30,6 @@
 }
 @property --mg-b { /* margin vertical, bloco */
     syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --gap {
-    syntax: "<length-percentage>";
     inherits: true;
     initial-value: 0;
 }
@@ -62,7 +47,7 @@
 @property --transicao { /* sem determinar qual a propriedade */
     syntax: "*";
     inherits: true;
-    initial-value: 0.5s ease-in-out 0s;
+    initial-value: .5s ease-in-out 0s;
 }
 @property --txt { /* tamanho da fonte */
     syntax: "<length-percentage>";
@@ -70,21 +55,6 @@
     initial-value: 1em;
 }
 
-@property --borda {
-    syntax: "*";
-    inherits: true;
-    initial-value: 1px solid;
-}
-@property --borda-b {
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --borda-i {
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
 
 /* modo de cor, por padrão usa tanto o claro e escuro */
 @property --modo {
@@ -104,6 +74,9 @@
         --cor-visitado: var(--cor-link);
         --cor-titulo: var(--cor-2);
 
+        --fonte: var(--sans);
+
+        /* TODO: REMOVER */
         --cor-base: var(--cor-1);
         --cor-secundaria: var(--cor-2);
         --cor-destaque: light-dark(
@@ -112,9 +85,6 @@
         --cor-suave: light-dark(
             hsl(from var(--cor-base) h s calc(l * 1.85)),
             hsl(from var(--cor-base) h s calc(l * .65)));
-        --cor-borda: var(--cor-base);
-        
-        --fonte: var(--sans);
     
         color-scheme: var(--modo);
     }

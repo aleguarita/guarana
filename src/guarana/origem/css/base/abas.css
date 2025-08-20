@@ -17,28 +17,26 @@ Formatação básica de abas
         flex-flow: row wrap;
         align-items: baseline;
         justify-content: flex-start;
-        gap: var(--gap);
+        gap: var(--gap, 0);
     }
 
     .abas__item {
-        padding-inline: var(--pd-i);
-        padding-block: var(--pd-b);
-        background-color: var(--cor-bg);
-        color: var(--cor-txt);
-        border: var(--borda) var(--cor-borda);
+        padding: var(--pd, .5em 1em);
+        background-color: var(--cor-bg, var(--cor-base));
+        color: var(--cor-txt, var(--cor-secundaria));
+        border: var(--borda, 0);
         cursor: pointer;
 
         &.ativo {
-            transition: var(--transicao);
+            transition: var(--transicao, .5s ease-in-out 0s);
             transition-property: background, color, border;
         }
     }
 
     .abas__conteudo {
-        border: var(--borda) var(--cor-borda);
-        background-color: var(--cor-bg);
-        padding-inline: var(--pd-i);
-        padding-block: var(--pd-b);
+        border: var(--borda, 0);
+        background-color: var(--cor-bg, var(--cor-secundaria));
+        padding: var(--pd, .5rem 1rem);
 
         &:not(&.ativo) {
             display: none;

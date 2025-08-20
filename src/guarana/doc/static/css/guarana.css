@@ -153,28 +153,26 @@ Formatação básica de abas
         flex-flow: row wrap;
         align-items: baseline;
         justify-content: flex-start;
-        gap: var(--gap);
+        gap: var(--gap, 0);
     }
 
     .abas__item {
-        padding-inline: var(--pd-i);
-        padding-block: var(--pd-b);
-        background-color: var(--cor-bg);
-        color: var(--cor-txt);
-        border: var(--borda) var(--cor-borda);
+        padding: var(--pd, .5em 1em);
+        background-color: var(--cor-bg, var(--cor-base));
+        color: var(--cor-txt, var(--cor-secundaria));
+        border: var(--borda, 0);
         cursor: pointer;
 
         &.ativo {
-            transition: var(--transicao);
+            transition: var(--transicao, .5s ease-in-out 0s);
             transition-property: background, color, border;
         }
     }
 
     .abas__conteudo {
-        border: var(--borda) var(--cor-borda);
-        background-color: var(--cor-bg);
-        padding-inline: var(--pd-i);
-        padding-block: var(--pd-b);
+        border: var(--borda, 0);
+        background-color: var(--cor-bg, var(--cor-secundaria));
+        padding: var(--pd, .5rem 1rem);
 
         &:not(&.ativo) {
             display: none;
@@ -312,11 +310,12 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
 @layer utils {
     /* container */
     .abas {
+        --cor-base: var(--cor-1);
+        --cor-secundaria: light-dark(hsl(0 0% 97%), hsl(0 0% 3%));
         --cor-bg: transparent;
-        --cor-secundaria: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
-        --borda: 0 solid;
+        --borda: 0;
     }
-
+    
     /* a parte de navegação */
     .abas__nav {
         --gap: .15rem;
@@ -324,8 +323,7 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
 
     /* item das navegações */
     .abas__item {
-        --pd-i: 1em;
-        --pd-b: .5em;
+        --pd: .5em 1em;
         --cor-bg: var(--cor-base);
         --cor-txt: var(--cor-secundaria);
         
@@ -338,9 +336,7 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
     /* a parte de cada conteúdo da aba */
     .abas__conteudo {
         --cor-bg: var(--cor-secundaria);
-
-        --pd-i: 1rem;
-        --pd-b: 1rem;
+        --pd: .5rem 1rem;
     }
 }
 
@@ -514,16 +510,6 @@ padrão. Rode a documentação e veja em /tabela
 }
 
 /* Elementos genéricos para formatação */
-@property --pd-i { /* padding horizontal, inline */
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --pd-b { /* padding vertical, bloco */
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
 @property --mg-i { /* margem horizontal, inline */
     syntax: "<length-percentage>+";
     inherits: true;
@@ -531,11 +517,6 @@ padrão. Rode a documentação e veja em /tabela
 }
 @property --mg-b { /* margin vertical, bloco */
     syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --gap {
-    syntax: "<length-percentage>";
     inherits: true;
     initial-value: 0;
 }
@@ -553,7 +534,7 @@ padrão. Rode a documentação e veja em /tabela
 @property --transicao { /* sem determinar qual a propriedade */
     syntax: "*";
     inherits: true;
-    initial-value: 0.5s ease-in-out 0s;
+    initial-value: .5s ease-in-out 0s;
 }
 @property --txt { /* tamanho da fonte */
     syntax: "<length-percentage>";
@@ -561,21 +542,6 @@ padrão. Rode a documentação e veja em /tabela
     initial-value: 1em;
 }
 
-@property --borda {
-    syntax: "*";
-    inherits: true;
-    initial-value: 1px solid;
-}
-@property --borda-b {
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
-@property --borda-i {
-    syntax: "<length-percentage>+";
-    inherits: true;
-    initial-value: 0;
-}
 
 /* modo de cor, por padrão usa tanto o claro e escuro */
 @property --modo {
@@ -595,6 +561,9 @@ padrão. Rode a documentação e veja em /tabela
         --cor-visitado: var(--cor-link);
         --cor-titulo: var(--cor-2);
 
+        --fonte: var(--sans);
+
+        /* TODO: REMOVER */
         --cor-base: var(--cor-1);
         --cor-secundaria: var(--cor-2);
         --cor-destaque: light-dark(
@@ -603,9 +572,6 @@ padrão. Rode a documentação e veja em /tabela
         --cor-suave: light-dark(
             hsl(from var(--cor-base) h s calc(l * 1.85)),
             hsl(from var(--cor-base) h s calc(l * .65)));
-        --cor-borda: var(--cor-base);
-        
-        --fonte: var(--sans);
     
         color-scheme: var(--modo);
     }

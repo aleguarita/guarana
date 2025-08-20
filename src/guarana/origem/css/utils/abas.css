@@ -8,11 +8,12 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
 @layer utils {
     /* container */
     .abas {
+        --cor-base: var(--cor-1);
+        --cor-secundaria: light-dark(hsl(0 0% 97%), hsl(0 0% 3%));
         --cor-bg: transparent;
-        --cor-secundaria: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));
-        --borda: 0 solid;
+        --borda: 0;
     }
-
+    
     /* a parte de navegação */
     .abas__nav {
         --gap: .15rem;
@@ -20,8 +21,7 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
 
     /* item das navegações */
     .abas__item {
-        --pd-i: 1em;
-        --pd-b: .5em;
+        --pd: .5em 1em;
         --cor-bg: var(--cor-base);
         --cor-txt: var(--cor-secundaria);
         
@@ -34,8 +34,6 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
     /* a parte de cada conteúdo da aba */
     .abas__conteudo {
         --cor-bg: var(--cor-secundaria);
-
-        --pd-i: 1rem;
-        --pd-b: 1rem;
+        --pd: .5rem 1rem;
     }
 }
