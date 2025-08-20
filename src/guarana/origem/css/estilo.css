@@ -49,11 +49,6 @@
     inherits: true;
     initial-value: .5s ease-in-out 0s;
 }
-@property --txt { /* tamanho da fonte */
-    syntax: "<length-percentage>";
-    inherits: true;
-    initial-value: 1em;
-}
 
 
 /* modo de cor, por padrão usa tanto o claro e escuro */

@@ -15,25 +15,29 @@ padrão. Rode a documentação e veja em /menu
 @layer utils {
     /* BASE */
     .menu {
+        --cor-base: var(--cor-1);
         --cor-secundaria: light-dark(
             hsl(from var(--cor-1) h s 100%),
             hsl(from var(--cor-1) h s 0%));
+        --cor-txt: inherit;
+        --cor-link: var(--cor-secundaria);
+        --cor-hover: var(--cor-base);
+
         --gap: .5rem;
+        --rd: inherit;
+        --sombra: inherit;
     }
     
     /* ELEMENTOS FILHOS */
     .menu__titulo {
-        --mg-b: 1rem 0;
-        --pd-b: 0;
+        --mg: 1rem 0 0;
+        --pd: 0;
         font-size: 1.1em;
     }
 
     .menu__link {
-        --cor-link: var(--cor-secundaria);
-        --cor-hover: var(--cor-base);
         --cor-bg: var(--cor-base);
-        --pd-i: .5em;
-        --pd-b: .5em;
+        --pd: .5em;
 
         &.ativo, &:hover {
             color: var(--cor-hover);

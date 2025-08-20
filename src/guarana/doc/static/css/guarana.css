@@ -190,12 +190,11 @@ Formatação básica do menu
 @layer base {
     .menu {
         display: flex;
-        gap: var(--gap);
+        gap: var(--gap, .5rem);
         flex-flow: column;
         user-select: none; /* impede que o texto seja selecionado */
         container-type: inline-size;
         container-name: menu;
-        font-size: var(--txt);
     }
     
     .menu--horizontal {
@@ -206,23 +205,20 @@ Formatação básica do menu
 
     .menu__link {
         --cor-visitado: var(--cor-link);
-        transition: var(--transicao);
+        transition: var(--transicao, .5s ease-in-out 0s);
         transition-property: background, border, color;
-        background-color: var(--cor-bg);
-        padding-inline: var(--pd-i, 1em);
-        padding-block: var(--pd-b, 1em);
+        background-color: var(--cor-bg, var(--cor-1));
+        padding: var(--pd, .5em);
         text-decoration: none;
-        border-radius: var(--rd);
+        border-radius: var(--rd, 0);
         box-shadow: var(--sombra);
     }
 
     .menu__titulo {
-        background-color: var(--cor-bg);
-        color: var(--cor-txt);
-        padding-inline: var(--pd-i);
-        padding-block: var(--pd-b);
-        margin-block: var(--mg-b);
-        margin-inline: var(--mg-i);
+        background-color: var(--cor-bg, var(--cor-1));
+        color: var(--cor-txt, initial);
+        padding: var(--pd, .5em);
+        margin: var(--mg, 1rem 0 0);
     }
 }
 
@@ -380,25 +376,29 @@ padrão. Rode a documentação e veja em /menu
 @layer utils {
     /* BASE */
     .menu {
+        --cor-base: var(--cor-1);
         --cor-secundaria: light-dark(
             hsl(from var(--cor-1) h s 100%),
             hsl(from var(--cor-1) h s 0%));
+        --cor-txt: inherit;
+        --cor-link: var(--cor-secundaria);
+        --cor-hover: var(--cor-base);
+
         --gap: .5rem;
+        --rd: inherit;
+        --sombra: inherit;
     }
     
     /* ELEMENTOS FILHOS */
     .menu__titulo {
-        --mg-b: 1rem 0;
-        --pd-b: 0;
+        --mg: 1rem 0 0;
+        --pd: 0;
         font-size: 1.1em;
     }
 
     .menu__link {
-        --cor-link: var(--cor-secundaria);
-        --cor-hover: var(--cor-base);
         --cor-bg: var(--cor-base);
-        --pd-i: .5em;
-        --pd-b: .5em;
+        --pd: .5em;
 
         &.ativo, &:hover {
             color: var(--cor-hover);
@@ -535,11 +535,6 @@ padrão. Rode a documentação e veja em /tabela
     syntax: "*";
     inherits: true;
     initial-value: .5s ease-in-out 0s;
-}
-@property --txt { /* tamanho da fonte */
-    syntax: "<length-percentage>";
-    inherits: true;
-    initial-value: 1em;
 }
 
 

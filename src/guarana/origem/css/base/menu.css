@@ -7,12 +7,11 @@ Formatação básica do menu
 @layer base {
     .menu {
         display: flex;
-        gap: var(--gap);
+        gap: var(--gap, .5rem);
         flex-flow: column;
         user-select: none; /* impede que o texto seja selecionado */
         container-type: inline-size;
         container-name: menu;
-        font-size: var(--txt);
     }
     
     .menu--horizontal {
@@ -23,23 +22,20 @@ Formatação básica do menu
 
     .menu__link {
         --cor-visitado: var(--cor-link);
-        transition: var(--transicao);
+        transition: var(--transicao, .5s ease-in-out 0s);
         transition-property: background, border, color;
-        background-color: var(--cor-bg);
-        padding-inline: var(--pd-i, 1em);
-        padding-block: var(--pd-b, 1em);
+        background-color: var(--cor-bg, var(--cor-1));
+        padding: var(--pd, .5em);
         text-decoration: none;
-        border-radius: var(--rd);
+        border-radius: var(--rd, 0);
         box-shadow: var(--sombra);
     }
 
     .menu__titulo {
-        background-color: var(--cor-bg);
-        color: var(--cor-txt);
-        padding-inline: var(--pd-i);
-        padding-block: var(--pd-b);
-        margin-block: var(--mg-b);
-        margin-inline: var(--mg-i);
+        background-color: var(--cor-bg, var(--cor-1));
+        color: var(--cor-txt, initial);
+        padding: var(--pd, .5em);
+        margin: var(--mg, 1rem 0 0);
     }
 }
 

@@ -212,13 +212,11 @@
         --cor-base: var(--cor-2);
         --sombra: none;
         --rd: var(--gua_raio);
-        --pd-i: .5em;
-        --pd-b: .5em;
+        --pd: .5em;
 
         .menu__link {
             --cor-link: var(--cor-base);
             --cor-bg: hsl(from var(--cor-base) h s l / .15);
-            --pd-b: .5em;
             outline: 2px solid var(--cor-bg);
             font-weight: bold;
             transition-property: none;
@@ -230,7 +228,7 @@
             }
 
             @starting-style {
-                --cor-txt:var(--cor-base);
+                --cor-txt: var(--cor-base);
                 --cor-bg: hsl(from var(--cor-base) h s l / .15);
             }
 

@@ -138,14 +138,6 @@ propriedades_css = [
         'atualizada': '0.3.0'
     },
     {
-        "nome": "--pd",
-        "tipo": "porcentagem / medida",
-        "heranca": "sim",
-        "uso": ["Variável utilizada para o padding de um utilitário.", '`--pd: .5em 1em;`', '`padding: var(--pd-i);`'],
-        'categoria': 'variável',
-        'atualizada': '0.3.0'
-    },
-    {
         'nome': '--borda',
         'tipo': 'medida, texto e cor separado por espaço',
         'heranca': 'sim',
@@ -161,9 +153,6 @@ propriedades_css = [
         'categoria': 'aberta',
         'atualizada': '0.1.0'
     },
-    
-    
-    
     {
         "nome": "--cor-base",
         "tipo": "cor",
@@ -180,15 +169,34 @@ propriedades_css = [
         'categoria': 'variável',
         'atualizada': '0.1.0'
     },
+    {
+        "nome": "--sombra",
+        "tipo": "valores separados por espaço",
+        "heranca": "sim",
+        "uso": [f"variável para a sombra padrão. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`box-shadow: var(--sombra)`'],
+        'categoria': 'aberta',
+        'atualizada': '0.1.0'
+    },
+    {
+        "nome": "--pd",
+        "tipo": "porcentagem / medida separados por espaço",
+        "heranca": "sim",
+        "uso": ["Variável utilizada para o padding de um utilitário.", '`--pd: .5em 1em;`', '`padding: var(--pd-i);`'],
+        'categoria': 'variável',
+        'atualizada': '0.3.0'
+    },
+    {
+        "nome": "--mg",
+        "tipo": "porcentagem / medida separados por espaço",
+        "heranca": "sim",
+        "uso": ["Variável utilizada para a margem de um utilitário.", '`--mg: 1em auto;`', '`margin: var(--mg);`'],
+        'categoria': 'aberta',
+        'atualizada': '0.3.0'
+    },
+    
+    
+    
 
-    # {
-    #     "nome": "--sombra",
-    #     "tipo": "valores separados por espaço",
-    #     "heranca": "sim",
-    #     "uso": [f"variável para a sombra padrão. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`box-shadow: var(--sombra)`'],
-    #     'categoria': 'aberta',
-    #     'atualizada': '0.1.0'
-    # },
     # {
     #     "nome": "--modo",
     #     "tipo": "color-scheme",
@@ -204,30 +212,6 @@ propriedades_css = [
     #     "uso": ["variável usada no `<body>` e já conta com`font-family` para essa essa fonte, bastando alterar essa variável. Caso algum elemento vá apresentar outra fonte, chamar o `font-family` normalmente e declare nova variável de fonte no `:root`.", '`--fonte: \'Roboto\', var(--sans)`'],
     #     'categoria': 'variável',
     #     'atualizada': '0.1.0'
-    # },
-    # {
-    #     "nome": "--mg-i",
-    #     "tipo": "porcentagem / medida",
-    #     "heranca": "sim",
-    #     "uso": ["Variável utilizada para o margin-inline (horizontal) de um utilitário que faça uso de margem. Valor inicial: auto.", '`--mg-i: auto;`', '`margin-inline: var(--mg-i);`'],
-    #     'categoria': 'aberta',
-    #     'atualizada': '0.2.0'
-    # },
-    # {
-    #     "nome": "--mg-b",
-    #     "tipo": "porcentagem / medida",
-    #     "heranca": "sim",
-    #     "uso": ["Variável utilizada para o margin-block (vertical) de um utilitário que faça uso de margem. Valor inicial: 0.", '`--mg-h: 1rem 0;`', '`margin-block: var(--mg-b);`'],
-    #     'categoria': 'aberta',
-    #     'atualizada': '0.2.0'
-    # },
-    # {
-    #     "nome": "--txt",
-    #     "tipo": "porcentagem / medida",
-    #     "heranca": "sim",
-    #     "uso": ["Formata o tamanho da fonte do elemento. Valor inicial: 1em.", '`--txt: 1em;`'],
-    #     'categoria': 'aberta',
-    #     'atualizada': '0.2.0'
     # },
     # {
     #     'nome': '--borda-b',
