@@ -76,7 +76,7 @@ propriedades_css = [
     {
         "nome": "--cor-bg",
         "tipo": "cor",
-        "heranca": "-",
+        "heranca": 'sim',
         "uso": ["Variável usada em diversos elementos e no body (no reset) que já contam com `background-color` para essa cor, bastando alterar essa variável.", '`--cor-bg: red`'],
         'categoria': 'variável',
         'atualizada': '0.1.0'
@@ -84,7 +84,7 @@ propriedades_css = [
     {
         "nome": "--cor-txt",
         "tipo": "cor",
-        "heranca": "-",
+        "heranca": 'sim',
         "uso": ["Variável usada em diversos elementos e no body (no reset) que já contam com `color` para essa cor, bastando alterar essa variável.", '`--cor-txt: hsl(0, 0%, 0%)`'],
         'categoria': 'variável',
         'atualizada': '0.1.0'
@@ -193,56 +193,70 @@ propriedades_css = [
         'categoria': 'aberta',
         'atualizada': '0.3.0'
     },
-    
-    
+    {
+        "nome": "--modo",
+        "tipo": "color-scheme",
+        "heranca": 'sim',
+        "uso": ["Variável usada no :root e em eventual tema para determinar qual o modo de cor usado. O root já faz uso de", '`color-scheme`', "bastando alterar o modo quando indicado. Veja mais em <a href='cores'>cores</a>", '`--modo: dark`'],
+        'categoria': 'aberto',
+        'atualizada': '0.1.0'
+    },
+    {
+        "nome": "--fonte",
+        "tipo": "texto separado por vírgula",
+        "heranca": 'sim',
+        "uso": ["variável usada no `<body>` e já conta com`font-family` para essa essa fonte, bastando alterar essa variável. Caso algum elemento vá apresentar outra fonte, chamar o `font-family` normalmente e declare nova variável de fonte no `:root`.", '`--fonte: \'Roboto\', var(--sans)`'],
+        'categoria': 'variável',
+        'atualizada': '0.1.0'
+    },
+    {
+        'nome': '--txt',
+        'tipo': 'medida / porcentagem',
+        'heranca': 'sim',
+        'uso': ['Determina o tamanho da fonte em elementos específicos.', '`--txt: 1.2em;`'],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '--cor-destaque',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Uma variação de destaque de uma cor escolhida.', 'Lembre-se de redeclarar no seletor, caso você altere a `cor-base`'],
+        'categoria': 'variável',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '--cor-suave',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Uma variação de suave de uma cor escolhida.', 'Lembre-se de redeclarar no seletor, caso você altere a `cor-base`'],
+        'categoria': 'variável',
+        'atualizada': '0.2.0',
+    },
+    {
+        'nome': '--borda-vertical',
+        'tipo': 'porcentagem / medida separadas por espaço',
+        'heranca': 'sim',
+        'uso': ['Define a espessura da(s) borda(s) vertical(is) do elemento (como nas colunas de uma tabela). Sobrepõe a medida utilizada na variável `--borda`', '`--borda-vertical: 0 1px`', 'border-inline-width: var(--borda-vertical);' ],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '--borda-horizontal',
+        'tipo': 'porcentagem / medida separadas por espaço',
+        'heranca': 'sim',
+        'uso': ['Define a espessura da(s) borda(s) horizontal(is) do elemento (como nas linha de uma tabela). Sobrepõe a medida utilizada na variável `--borda`', '`--borda-horizontal: 0 1px`', 'border-block-width: var(--borda-horizontal);' ],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '--cor-borda',
+        'tipo': 'cor',
+        'heranca': 'sim',
+        'uso': ['Utilizada em alguns elementos para definir a cor da borda, sobrepondo este elemendo da variável `--borda`'],
+        'categoria': 'variável',
+        'atualizada': '0.3.0',
+    },
     
 
-    # {
-    #     "nome": "--modo",
-    #     "tipo": "color-scheme",
-    #     "heranca": "-",
-    #     "uso": ["Variável usada no :root e em eventual tema para determinar qual o modo de cor usado. O root já faz uso de", '`color-scheme`', "bastando alterar o modo quando indicado. Veja mais em <a href='cores'>cores</a>", '`--modo: dark`'],
-    #     'categoria': 'aberto',
-    #     'atualizada': '0.1.0'
-    # },
-    # {
-    #     "nome": "--fonte",
-    #     "tipo": "texto separado por vírgula",
-    #     "heranca": "-",
-    #     "uso": ["variável usada no `<body>` e já conta com`font-family` para essa essa fonte, bastando alterar essa variável. Caso algum elemento vá apresentar outra fonte, chamar o `font-family` normalmente e declare nova variável de fonte no `:root`.", '`--fonte: \'Roboto\', var(--sans)`'],
-    #     'categoria': 'variável',
-    #     'atualizada': '0.1.0'
-    # },
-    # {
-    #     'nome': '--borda-b',
-    #     'tipo': 'porcentagem / medida',
-    #     'heranca': 'sim',
-    #     'uso': ['Define a espessura da borda no eixo bloco (horizontal)'],
-    #     'categoria': 'aberta',
-    #     'atualizada': '0.2.0',
-    # },
-    # {
-    #     'nome': '--borda-i',
-    #     'tipo': 'porcentagem / medida',
-    #     'heranca': 'sim',
-    #     'uso': ['Define a espessura da borda no eixo inline (vertical)'],
-    #     'categoria': 'aberta',
-    #     'atualizada': '0.2.0',
-    # },
-    # {
-    #     'nome': '--cor-destaque',
-    #     'tipo': 'cor',
-    #     'heranca': 'sim',
-    #     'uso': ['Uma variação de destaque de uma cor escolhida.', 'Lembre-se de redeclarar no seletor, caso você altere a `cor-base`'],
-    #     'categoria': 'variável',
-    #     'atualizada': '0.2.0',
-    # },
-    # {
-    #     'nome': '--cor-suave',
-    #     'tipo': 'cor',
-    #     'heranca': 'sim',
-    #     'uso': ['Uma variação de suave de uma cor escolhida.', 'Lembre-se de redeclarar no seletor, caso você altere a `cor-base`'],
-    #     'categoria': 'variável',
-    #     'atualizada': '0.2.0',
-    # },
 ]

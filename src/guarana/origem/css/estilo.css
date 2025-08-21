@@ -70,16 +70,6 @@
         --cor-titulo: var(--cor-2);
 
         --fonte: var(--sans);
-
-        /* TODO: REMOVER */
-        --cor-base: var(--cor-1);
-        --cor-secundaria: var(--cor-2);
-        --cor-destaque: light-dark(
-            hsl(from var(--cor-base) h s calc(l * .65)),
-            hsl(from var(--cor-base) h s calc(l * 1.35)));
-        --cor-suave: light-dark(
-            hsl(from var(--cor-base) h s calc(l * 1.85)),
-            hsl(from var(--cor-base) h s calc(l * .65)));
     
         color-scheme: var(--modo);
     }

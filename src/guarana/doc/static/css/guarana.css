@@ -232,24 +232,24 @@ Formatação básica de tabela
 */
 @layer base {
     .tabela {
-        background-color: var(--cor-bg);
-        border-radius: var(--rd);
+        background-color: var(--cor-bg, transparent);
+        border-radius: var(--rd, 0);
         overflow: auto;
-        
+
         /* REGIÕES DA TABELA */
         & thead {
-            font-size: var(--txt);
+            font-size: var(--txt, 1em);
         }
         & tbody {
-            font-size: var(--txt);
+            font-size: var(--txt, 1em);
         }
         & tfoot {
-            font-size: var(--txt);
+            font-size: var(--txt, 1em);
         }
 
         /* LINHAS E CÉLULAS */
-        :is(tr, th) {
-            background-color: var(--cor-bg);
+        :where(tr, th) {
+            background-color: var(--cor-bg, transparent);
         }
 
         th {
@@ -259,26 +259,25 @@ Formatação básica de tabela
         }
 
         td, th {
-            padding-inline: var(--pd-i, 0);
-            padding-block: var(--pd-b, 0);
-
-            border: var(--borda) var(--cor-borda);
-            border-inline-width: var(--borda-i, 0);
-            border-block-width: var(--borda-b, 0);
+            padding: var(--pd, 0);
+            border: var(--borda, 1px solid currentColor);
+            border-inline-width: var(--borda-vertical, 1px);
+            border-block-width: var(--borda-horizontal, 0);
+            border-color: var(--cor-borda);
+            color: var(--cor-txt);
             
             width: attr(data-largura px, auto);
             min-width: attr(data-largura-min px, auto);
             max-width: attr(data-largura px, auto);
         }
 
-        /* CÉLULAS COM APENAS UM LINK */
+        /* CÉLULAS COM APENAS UM LINK OU ITEM DE FORMULÁRIO */
         td:has(:is(a, input, select):only-child) {
             padding: 0;
 
             & > * {
                 display: block;
-                padding-inline: var(--pd-i, 0);
-                padding-block: var(--pd-b, 0);
+                padding: var(--pd, 0);
                 height: 100%;
                 width: 100%;
             }
@@ -432,13 +431,23 @@ padrão. Rode a documentação e veja em /tabela
 
 @layer utils {
     .tabela {
+        --cor-base: var(--cor-1);
+        --cor-destaque: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .65)),
+            hsl(from var(--cor-base) h s calc(l * 1.35)));
+        --cor-suave: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.85)),
+            hsl(from var(--cor-base) h s calc(l * .65)));
         --cor-bg: transparent;
-        --txt: .87em;
-    
-        --borda: 1px solid;
-        --borda-b: 1px;
-        --borda-i: 0;
         --cor-borda: var(--cor-base);
+
+        --txt: .87em;
+        --rd: 0;
+        --borda: 1px solid;
+        --borda-horizontal: 1px;
+        --borda-vertical: 0;
+
+        --pd: 0;
 
         /* para dar a largura mínima da tabela (evitando que ela comprima mais no
         modo responsivo, acrescente o atributo abaixo no <table> */
@@ -453,17 +462,16 @@ padrão. Rode a documentação e veja em /tabela
         & thead {
             --cor-txt: var(--cor-destaque);
             --txt: .92em;
-            --borda-b: 0 2px;
-            --cor-borda: currentColor;
+            --borda-horizontal: 0 2px;
+            --cor-borda: currentColor
         }
         & tbody {
             border-bottom: 2px solid var(--cor-destaque);
         }
         & tfoot {
-            --borda-b: 0 2px;
+            --borda-horizontal: 0 2px;
             --cor-bg: var(--cor-destaque);
             --cor-txt: var(--cor-suave);
-            --cor-borda: var(--cor-destaque);
         }
     
         /* LINHAS E CÉLULAS */
@@ -557,16 +565,6 @@ padrão. Rode a documentação e veja em /tabela
         --cor-titulo: var(--cor-2);
 
         --fonte: var(--sans);
-
-        /* TODO: REMOVER */
-        --cor-base: var(--cor-1);
-        --cor-secundaria: var(--cor-2);
-        --cor-destaque: light-dark(
-            hsl(from var(--cor-base) h s calc(l * .65)),
-            hsl(from var(--cor-base) h s calc(l * 1.35)));
-        --cor-suave: light-dark(
-            hsl(from var(--cor-base) h s calc(l * 1.85)),
-            hsl(from var(--cor-base) h s calc(l * .65)));
     
         color-scheme: var(--modo);
     }

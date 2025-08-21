@@ -13,7 +13,7 @@
     | sort(attribute="nome")
 %}
 {% set cores_comp = prop_css
-    | selectattr("categoria", "equalto", "root")
+    | selectattr("categoria", "equalto", "variável")
     | selectattr("tipo", "equalto", "cor")
     | list
     | sort(attribute="nome")
@@ -49,6 +49,8 @@
         </nav>
     </header>
 
+
+    <!-- TODO: RELER E CORRIGIR DIFERENÇAS -->
     <section class='conteudo__corpo'>
         <p>O {{app}} faz uso de {{cores_paleta|length}} cores base. Para trabalhar com variações de 
             claridade, usa-se a função de css <code>hsl()</code>.</p>
@@ -97,8 +99,8 @@
 
         <h2>Cores de elementos e componentes</h2>
         <p>
-            Existem algumas propriedades para configurar as cores no sistema. Elas
-            estão definidas no <code>:root</code> e algumas vezes alteradas/utilizadas
+            Existem algumas propriedades para configurar as cores no sistema. Algumas
+            estão definidas no <code>:root</code> e outras são alteradas ou utilizadas
             em componentes. São elas:
         </p>
         <ul>

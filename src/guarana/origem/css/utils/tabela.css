@@ -17,13 +17,23 @@ padrão. Rode a documentação e veja em /tabela
 
 @layer utils {
     .tabela {
+        --cor-base: var(--cor-1);
+        --cor-destaque: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .65)),
+            hsl(from var(--cor-base) h s calc(l * 1.35)));
+        --cor-suave: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.85)),
+            hsl(from var(--cor-base) h s calc(l * .65)));
         --cor-bg: transparent;
-        --txt: .87em;
-    
-        --borda: 1px solid;
-        --borda-b: 1px;
-        --borda-i: 0;
         --cor-borda: var(--cor-base);
+
+        --txt: .87em;
+        --rd: 0;
+        --borda: 1px solid;
+        --borda-horizontal: 1px;
+        --borda-vertical: 0;
+
+        --pd: 0;
 
         /* para dar a largura mínima da tabela (evitando que ela comprima mais no
         modo responsivo, acrescente o atributo abaixo no <table> */
@@ -38,17 +48,16 @@ padrão. Rode a documentação e veja em /tabela
         & thead {
             --cor-txt: var(--cor-destaque);
             --txt: .92em;
-            --borda-b: 0 2px;
-            --cor-borda: currentColor;
+            --borda-horizontal: 0 2px;
+            --cor-borda: currentColor
         }
         & tbody {
             border-bottom: 2px solid var(--cor-destaque);
         }
         & tfoot {
-            --borda-b: 0 2px;
+            --borda-horizontal: 0 2px;
             --cor-bg: var(--cor-destaque);
             --cor-txt: var(--cor-suave);
-            --cor-borda: var(--cor-destaque);
         }
     
         /* LINHAS E CÉLULAS */
