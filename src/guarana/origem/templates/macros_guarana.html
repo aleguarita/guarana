@@ -1,0 +1,75 @@
+{% macro campo(
+    label,
+    id,
+    type="text",
+    placeholder=None,
+    name=None,
+    required=False,
+    checked=False,
+    erro=None,
+    opcao=False,
+    class="")
+%}
+<div class="{% if opcao %}opcao{% else %}campo{% endif %} {{class}}">
+    {% if type != 'checkbox' and type != 'radio' %}
+    <label for="{{id}}">{{label}}</label>
+    {% endif %}
+    <input type="{{type}}" id="{{id}}"{% if placeholder %} placeholder={{placeholder}}{% endif %}{% if required %} required{% endif %}{% if checked %} checked{% endif %}{% if name %} name={{name}}{% endif %} />
+    {% if erro %}<span class="campo__erro">{{erro}}</span>{% endif %}
+    {% if type == 'checkbox' or type == 'radio' %}
+    <label for="{{id}}">{{label}}</label>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{% macro select(
+    label,
+    id,
+    options,
+    selected=None,
+    name=None,
+    required=False,
+    erro=None,
+    class="")
+%}
+<div class="campo {{class}}">
+    <label for="{{id}}">{{label}}</label>
+    <select id="{{id}}"{% if name %} name="{{name}}"{% endif %}{% if required %}required{% endif %}>
+        {% for valor, texto in options.items() %}
+        <option value="{{valor}}" {% if selected == valor %}selected{% endif %}>{{texto}}</option>
+        {% endfor %}
+    </select>
+    {% if erro %}<span class="campo__erro">{{erro}}</span>{% endif %}
+</div>
+{% endmacro %}
+
+{% macro opcoes(
+    label,
+    campos,
+    type="radio",
+    name=None,
+    required=False,
+    checked=False,
+    erro=None,
+    class="")
+%}
+<div class="campo {{class}}">
+    <legend>{{label}}</legend>
+    <div class="opcoes">
+        {% for item in campos %}
+        {% set id = name ~ '_' ~ loop.index0 %}
+        {% set checked = True if checked == item else False %}
+        {{ campo(
+            item,
+            id,
+            type=type,
+            name=name,
+            required=required,
+            checked=checked,
+            opcao=True
+        )}}
+        {% endfor %}
+    </div>
+    {% if erro %}<span class="campo__erro">{{erro}}</span>{% endif %}
+</div>
+{% endmacro %}

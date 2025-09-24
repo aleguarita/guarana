@@ -10,41 +10,123 @@
     </header>
 
     <section class='conteudo__corpo'>
-        <p class="campo">
-            <label for="input_t" class="label">Label</label>
-            <input type="text" name="" id="input_t">
-        </p>
-        <p class="campo">
-            <label for="input_s" class="label">Label</label>
-            <select name="" id="input_s">
-                {% for i in range(5) %}
-                <option value="{{i+1}}">Valor {{i+1}}</option>
-                {% endfor %}
-            </select>
-        </p>
-        <p class="campo">
-            <label for="texta" class="label">Label</label>
-            <textarea name="" id="texta"></textarea>
-        </p>
-        <div class="campo">
-            <input type="checkbox" name="input_c" id="input_c">
-            <label for="input_c" class="label">checkbox</label>
+        <div class="formulario">
+            <div class="campo">
+                <label for="input_t" >Texto</label>
+                <input type="text" name="" id="input_t" placeholder="placeholder" required />
+                <span class="campo__erro">
+                    Esse campo tem um erro
+                </span>
+            </div>
+            <div class="campo campo--invalido">
+                <label for="input_s" >Select</label>
+                <select name="" id="input_s">
+                    {% for i in range(5) %}
+                    <option value="{{i+1}}">Valor {{i+1}}</option>
+                    {% endfor %}
+                    <option value="teste12" selected="selected">Esse é o padrão</option>
+                </select>
+            </div>
+            <p class="campo">
+                <label for="input_t2" >Txt 2</label>
+                <input type="text" name="" id="input_t2" placeholder="placeholder">
+            </p>
+            <div class="campo">
+                <input type="checkbox" name="input_c" id="input_c">
+                <label for="input_c" >checkbox</label>
+            </div>
+            <p class="campo">
+                <label for="texta" >Área</label>
+                <textarea name="" id="texta"></textarea>
+            </p>
+            <div class="campo campo--invalido">
+                <legend>Grupo de radios</legend>
+                <div class="opcoes">
+                    {% for r in range(4) %}
+                    <div class="opcao">
+                        <input type="radio" name="grupo_radio" id="radio_{{r}}">
+                        <label for="radio_{{r}}">radio</label>
+                    </div>
+                    {% endfor %}
+                </div>
+                <span class="campo__erro">
+                    Esse campo tb tem erro
+                </span>
+            </div>
+            
+            
+            <div class="campo">
+                <input type="checkbox" name="input_c" id="input_cc" checked>
+                <label for="input_cc" >checkbox checado</label>
+            </div>
+            
+            <div class="campo">
+                <input type="radio" name="grupo_radio" id="radio_c" checked>
+                <label for="radio_c" >radio checado</label>
+            </div>
         </div>
-        <div class="campo">
-            <input type="checkbox" name="input_c" id="input_cc" checked>
-            <label for="input_cc" class="label">checkbox checado</label>
-        </div>
-        
-        {% for r in range(4) %}
-        <div class="campo">
-            <input type="radio" name="grupo_radio" id="radio_{{r}}">
-            <label for="radio_{{r}}" class="label">radio</label>
-        </div>
+        <!--
+        TODO: 
+        fazer snippet de select
+        fazer macros de django
+        -->
+{% macro campo(
+    label,
+    id,
+    type="text",
+    placeholder=None,
+    name=None,
+    required=False,
+    checked=False,
+    erro=None,
+    opcao=False,
+    class="")
+%}
+<div class="{% if opcao %}opcao{% else %}campo{% endif %} {{class}}">
+    {% if type != 'checkbox' and type != 'radio' %}
+    <label for="{{id}}">{{label}}</label>
+    {% endif %}
+    <input type="{{type}}" id="{{id}}"{% if placeholder %} placeholder={{placeholder}}{% endif %}{% if required %} required{% endif %}{% if checked %} checked{% endif %}{% if name %} name={{name}}{% endif %} />
+    {% if type == 'checkbox' or type == 'radio' %}
+    <label for="{{id}}">{{label}}</label>
+    {% endif %}
+    {% if erro %}<span class="campo__erro">{{erro}}</span>{% endif %}
+</div>
+{% endmacro %}
+{% macro opcoes(
+    label,
+    campos,
+    type="radio",
+    name=None,
+    required=False,
+    checked=False,
+    erro=None,
+    class="")
+%}
+<div class="campo {{class}}">
+    <legend>{{label}}</legend>
+    <div class="opcoes">
+        {% for item in campos %}
+        {% set id = name ~ '_' ~ loop.index0 %}
+        {% set checked = True if checked == item else False %}
+        {{ campo(
+            item,
+            id,
+            type=type,
+            name=name,
+            required=required,
+            checked=checked,
+            opcao=True
+        )}}
         {% endfor %}
-        <div class="campo">
-            <input type="radio" name="grupo_radio" id="radio_c" checked>
-            <label for="radio_c" class="label">radio checado</label>
-        </div>
+    </div>
+    {% if erro %}<span class="campo__erro">{{erro}}</span>{% endif %}
+</div>
+{% endmacro %}
+
+{% set lista = ['opção 1', 'outra opção', 'wild horses', 'opção 2'] %}
+
+{{opcoes('Lista de radio', lista, name="lista_x", checked='wild horses', erro="erro", type="checkbox")}}
 
     </section>
 </article>
