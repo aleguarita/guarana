@@ -5,14 +5,15 @@
 
 /* PARA A PASTA BASE */
 @layer base {
-    .campo, .field {
-
+    .teste {
+        --cor-destaque: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.5)),
+            hsl(from var(--cor-base) h s calc(l * .5))
+        );
     }
 }
 
 /* PARA A PASTA UTILS */
 @layer utils {
-    .campo, .field {
-        
-    }
+    
 }

@@ -34,6 +34,7 @@ padrão. Rode a documentação e veja em /tabela
         --borda-vertical: 0;
 
         --pd: 0;
+        --placeholder: var(--cor-destaque); /* para o caso de possuir input */
 
         /* para dar a largura mínima da tabela (evitando que ela comprima mais no
         modo responsivo, acrescente o atributo abaixo no <table> */

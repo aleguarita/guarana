@@ -54,7 +54,7 @@ def criar_base_css():
     if not arquivo_destino.exists():
         print(f'Arquivo {COR_VERDE}{pasta_destino}/{ARQUIVO_BASE}{COR_FIM} criado')
     else:
-        print(f'Arquivo {COR_VERMELHO}{pasta_destino}/{ARQUIVO_BASE}{COR_FIM} reescrito')
+        print(f'Arquivo {COR_AMARELO}{pasta_destino}/{ARQUIVO_BASE}{COR_FIM} reescrito')
 
     texto += criar_import_utils_css()
     arquivo_destino.write_text(texto)
@@ -119,7 +119,7 @@ def criar_estilo_css(resetar:bool=False):
             f'Arquivo {COR_VERDE}{pasta_destino}/estilo.css{COR_FIM} criado')
     elif resetar:
         print(
-            f'Arquivo {COR_VERMELHO}{pasta_destino}/estilo.css{COR_FIM} reescrito')
+            f'Arquivo {COR_AMARELO}{pasta_destino}/estilo.css{COR_FIM} reescrito')
     else:
         criar_estilo_css_min()
         return

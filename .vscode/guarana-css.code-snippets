@@ -68,5 +68,43 @@
 			"}"
 		],
 		"description": "Insere a classe de tema"
+	},
+	"Cor base": {
+		"scope": "css",
+		"prefix": "gua_cor_base",
+		"body": [
+			"--cor-base: var(--cor-$1);"
+		],
+		"description": "Insere a cor base"
+	},
+	"Cor secundaria": {
+		"scope": "css",
+		"prefix": "gua_cor_secundaria",
+		"body": [
+			"--cor-secundaria: var(--cor-$1);"
+		],
+		"description": "Insere a cor secundaria"
+	},
+	"Cor destaque": {
+		"scope": "css",
+		"prefix": "gua_cor_destaque",
+		"body": [
+			"--cor-destaque: light-dark(",
+			"    hsl(from var(--cor-$1) h s calc(l * $2)),",
+			"    hsl(from var(--cor-$1) h s calc(l * $3))",
+			");"
+		],
+		"description": "Insere e formata a cor de destaque baseado no tema do sistema"
+	},
+	"Cor suave": {
+		"scope": "css",
+		"prefix": "gua_cor_suave",
+		"body": [
+			"--cor-suave: light-dark(",
+			"    hsl(from var(--cor-$1) h s calc(l * $2)),",
+			"    hsl(from var(--cor-$1) h s calc(l * $3))",
+			");"
+		],
+		"description": "Insere e formata a cor suave baseado no tema do sistema"
 	}
 }

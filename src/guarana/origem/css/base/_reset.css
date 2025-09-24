@@ -83,14 +83,113 @@ Com alterações pontuais
         transition: var(--transicao);
         transition-property: color;
 
-
         &:visited {
             color: var(--cor-visitado, initial);
         }
-
         &:hover {
             color: var(--cor-hover, initial);
         }
-
     }
+
+    /* formulário */
+    input, select, textarea {
+        accent-color: var(--cor-base, var(--cor-1));
+        background-color: var(--cor-bg, light-dark(white, black));
+        border-radius: var(--rd, 0);
+        border: var(--borda, 1px solid hsl(0 0% 20% / .3));
+        caret-color: var(--cor-destaque, initial);
+        color: var(--cor-txt, light-dark(#000, #fff));
+        line-height: calc(1rem + .5em);
+        padding: var(--pd, .3em);
+    }
+   
+    [type="checkbox"], [type="radio"] {
+        --tmn: .9em;
+        --pd: 0;
+        appearance: none;
+        width: var(--tmn, 1em);
+        height: var(--tmn, 1em);
+        display: inline-block;
+        text-align: center;
+        align-content: center;
+        line-height: 0;
+        
+        &::before {
+            color: var(--cor-txt, light-dark(#fff, #000));
+            font-size: .5em;
+            font-family: system-ui;
+            display: block;
+            /* correção para que o posicionamento padrão fique correto */
+            content: ".";
+            opacity: 0;
+        }
+        &:checked::before {
+            opacity: 1;
+        }
+    }
+
+    [type="checkbox"] {
+        border-radius: .15em;
+        &:checked::before {
+            content: "✓";
+        }
+    }
+
+    [type="radio"] {
+        border-radius: 50%;
+        &:checked::before {
+            content: "●";
+        }
+    }
+
+    select, ::picker(select) {
+        appearance: base-select;
+        align-items: center;
+    }
+
+    ::picker-icon {
+        padding-inline: .15em;
+        color: var(--cor-txt, initial);
+        background-color: var(--cor-bg, initial);
+        content: "▴";
+        transform: rotate(180deg);
+        border-radius: var(--rd, 0);
+    }
+
+    ::picker(select) {
+        border: var(--borda, 1px solid hsl(0 0% 20% / .3));
+        border-radius: var(--rd, 0);
+        background-color: var(--cor-bg, light-dark(white, black));
+        box-shadow: var(--sombra, 2px 2px 0 hsl(0 0% 0% / .2));
+    }
+
+    option {
+        background-color: var(--cor-bg, transparent);
+        color: var(--cor-txt, light-dark(#000, #fff));
+
+        &:hover, &:focus {
+            background-color: var(--cor-bg, hsl(0 0% 45%));
+            border: var(--borda, 0);
+        }
+
+        &::checkmark {
+            font-family: system-ui;
+            font-size: .65em;
+        }
+    }
+
+    :focus {
+        outline: var(--outline, none);
+    }
+
+    ::placeholder {
+        color: var(--placeholder, hsl(0 0% 85%));
+    }
+
+    fieldset {
+        padding: 0;
+        border: 0;
+    }
+
+
 }

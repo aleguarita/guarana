@@ -26,6 +26,14 @@
                 {% for c in range(col) %}<td>Célula {{abc[c]}}{{r+1}}</td>{% endfor %}
             </tr>
             {% endfor %}
+            <tr>
+                {% for c in range(col) %}<td><a href="">Link {{abc[c]}}{{row+1}}</a></td>{% endfor %}
+            </tr>
+            <tr>
+                {% for c in range(col) %}<td>
+                    <input type="text" name="" id="" placeholder="Input {{abc[c]}}{{row+2}}">
+                </td>{% endfor %}
+            </tr>
         </tbody>
     </table>
 {% endmacro %}

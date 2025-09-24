@@ -17,6 +17,7 @@
             hsl(from var(--cor-1) h s calc(l * .35)),
             hsl(from var(--cor-1) h s calc(l * 1.45))
         );
+        --rd: .5rem;
     }
     .tema_alto_contraste {
         --cor-txt: var(--cor-1);
@@ -159,10 +160,9 @@
         }
 
         header a {
-            --cor-txt: var(--cor-3);
-            &:hover {
-                --cor-txt: hsl(from var(--cor-3) h s calc(l * 1.25));
-            }
+            --cor-link: var(--cor-3);
+            --cor-hover: hsl(from var(--cor-3) h s calc(l * 1.25));
+            transition-property: color;
         }
     }
 
@@ -222,7 +222,7 @@
             transition-property: none;
             
             &.ativo, &:hover {
-                --cor-bg: hsl(from var(--cor-base) h s l / .1);
+                --cor-bg: light-dark(#fff, #000);
                 outline: 2px solid var(--cor-base);
                 transition-property: background-color, outline;
             }
@@ -238,7 +238,7 @@
 
                 &.ativo, &:hover {
                     --cor-bg: var(--cor-base);
-                    --cor-txt: #000;
+                    color: #000;
                 }
             }
         }

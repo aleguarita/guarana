@@ -3,6 +3,7 @@
 ## 0.3.0
 - Formulários
 - Abas voltou a ser `.abas` para melhor uso do BEM
+- Variáveis locais aparecem no próprio elemento em utils para evitar "adivinhar" qual variável pode ou não ser usada (como no caso de `--cor-base` que é usada em todos e só aparecia no :root)
 
 ## 0.2.0
 - Menu

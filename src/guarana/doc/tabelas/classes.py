@@ -89,5 +89,55 @@ classes_css = [
         'pagina': '/abas',
         'atualizada': '0.2.0',
     },
+    {
+        'nome': '.formulario',
+        'tipo': 'container',
+        'uso': ['Container de formulário (pode ser usado na tag <code>form</code>). Inclui grid.'],
+        'container': 'formulario',
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '.campo',
+        'tipo': 'elemento',
+        'uso': ['Grupo que reune label, input (ou select ou textarea) e texto de erro (opcional)'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '.opcao',
+        'tipo': 'elemento',
+        'uso': ['Campo de formulário para checkbox ou radio button, preferencialmente em um grupo dentro de <code>.campo</code>'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '.opcoes',
+        'tipo': 'elemento',
+        'uso': ['Agrupamento de checkbox ou radio dentro de um <code>.campo</code> que compõe as mesmas opções'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '.campo--invalido',
+        'tipo': 'modificador',
+        'uso': ['Usar junto de campo (através de JS) para indicar que há um erro. Se o campo possuir um input inválido, formata automaticamente sem a classe'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '.campo__erro',
+        'tipo': 'elemento',
+        'uso': ['Elemento filho de <code>.campo</code> que contém o texto para indicar o erro nesse campo'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    
+    
     
 ]

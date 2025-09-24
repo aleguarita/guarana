@@ -1,0 +1,59 @@
+/* 
+================================================================================
+FORMULÁRIOS
+Formatação básica dos formulários
+================================================================================
+*/
+@layer base {
+    /* O containter de todo o formulário */
+    .formulario {
+        container-type: inline-size;
+        container-name: formulario;
+        display: grid;
+        column-gap: var(--gap, .5rem);
+        row-gap: 0;
+        /* cria um sistema de grids responsivo */
+        grid-template-columns: var(--colunas, repeat(auto-fit, minmax(min(100%, 15rem), 1fr)));
+    }
+
+    /* o campo é composto de label; input (ou select, textarea) e o texto do erro (opcional) */
+    .campo,
+    .opcao {
+        display: grid;
+        margin: 0;
+        grid-column-end: initial;
+    }
+    
+    .campo {
+        grid-template-rows: subgrid;
+        grid-row: span 3;
+        margin-bottom: calc(var(--gap, .5rem) * 2);
+        color: var(--cor-txt);
+
+        &:has(> :where([type="checkbox"], [type="radio"])) {
+            input, label {
+                grid-row: 2 / 2;
+            }
+        }
+
+        /* esconde o .campo__erro no estado padrão */
+        &:not(:is(.campo--invalido)) {
+            .campo__erro {
+                display: none;
+            }
+        }
+    }
+
+    .campo:has(> :where([type="checkbox"], [type="radio"])),
+    .opcao {
+        grid-template-columns: calc(1em + .5ch) auto;
+        align-items: center;
+    }
+
+    /* campo de opções */
+    .opcoes {
+        display: flex;
+        gap: var(--gap, .5rem);
+    }
+
+}

@@ -1,4 +1,4 @@
-/*20/08/2025*/
+/*24/09/2025*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -122,16 +122,115 @@ Com alterações pontuais
         transition: var(--transicao);
         transition-property: color;
 
-
         &:visited {
             color: var(--cor-visitado, initial);
         }
-
         &:hover {
             color: var(--cor-hover, initial);
         }
-
     }
+
+    /* formulário */
+    input, select, textarea {
+        accent-color: var(--cor-base, var(--cor-1));
+        background-color: var(--cor-bg, light-dark(white, black));
+        border-radius: var(--rd, 0);
+        border: var(--borda, 1px solid hsl(0 0% 20% / .3));
+        caret-color: var(--cor-destaque, initial);
+        color: var(--cor-txt, light-dark(#000, #fff));
+        line-height: calc(1rem + .5em);
+        padding: var(--pd, .3em);
+    }
+   
+    [type="checkbox"], [type="radio"] {
+        --tmn: .9em;
+        --pd: 0;
+        appearance: none;
+        width: var(--tmn, 1em);
+        height: var(--tmn, 1em);
+        display: inline-block;
+        text-align: center;
+        align-content: center;
+        line-height: 0;
+        
+        &::before {
+            color: var(--cor-txt, light-dark(#fff, #000));
+            font-size: .5em;
+            font-family: system-ui;
+            display: block;
+            /* correção para que o posicionamento padrão fique correto */
+            content: ".";
+            opacity: 0;
+        }
+        &:checked::before {
+            opacity: 1;
+        }
+    }
+
+    [type="checkbox"] {
+        border-radius: .15em;
+        &:checked::before {
+            content: "✓";
+        }
+    }
+
+    [type="radio"] {
+        border-radius: 50%;
+        &:checked::before {
+            content: "●";
+        }
+    }
+
+    select, ::picker(select) {
+        appearance: base-select;
+        align-items: center;
+    }
+
+    ::picker-icon {
+        padding-inline: .15em;
+        color: var(--cor-txt, initial);
+        background-color: var(--cor-bg, initial);
+        content: "▴";
+        transform: rotate(180deg);
+        border-radius: var(--rd, 0);
+    }
+
+    ::picker(select) {
+        border: var(--borda, 1px solid hsl(0 0% 20% / .3));
+        border-radius: var(--rd, 0);
+        background-color: var(--cor-bg, light-dark(white, black));
+        box-shadow: var(--sombra, 2px 2px 0 hsl(0 0% 0% / .2));
+    }
+
+    option {
+        background-color: var(--cor-bg, transparent);
+        color: var(--cor-txt, light-dark(#000, #fff));
+
+        &:hover, &:focus {
+            background-color: var(--cor-bg, hsl(0 0% 45%));
+            border: var(--borda, 0);
+        }
+
+        &::checkmark {
+            font-family: system-ui;
+            font-size: .65em;
+        }
+    }
+
+    :focus {
+        outline: var(--outline, none);
+    }
+
+    ::placeholder {
+        color: var(--placeholder, hsl(0 0% 85%));
+    }
+
+    fieldset {
+        padding: 0;
+        border: 0;
+    }
+
+
 }
 
 /* 
@@ -180,6 +279,66 @@ Formatação básica de abas
     }
 }
 
+
+/* 
+================================================================================
+FORMULÁRIOS
+Formatação básica dos formulários
+================================================================================
+*/
+@layer base {
+    /* O containter de todo o formulário */
+    .formulario {
+        container-type: inline-size;
+        container-name: formulario;
+        display: grid;
+        column-gap: var(--gap, .5rem);
+        row-gap: 0;
+        /* cria um sistema de grids responsivo */
+        grid-template-columns: var(--colunas, repeat(auto-fit, minmax(min(100%, 15rem), 1fr)));
+    }
+
+    /* o campo é composto de label; input (ou select, textarea) e o texto do erro (opcional) */
+    .campo,
+    .opcao {
+        display: grid;
+        margin: 0;
+        grid-column-end: initial;
+    }
+    
+    .campo {
+        grid-template-rows: subgrid;
+        grid-row: span 3;
+        margin-bottom: calc(var(--gap, .5rem) * 2);
+        color: var(--cor-txt);
+
+        &:has(> :where([type="checkbox"], [type="radio"])) {
+            input, label {
+                grid-row: 2 / 2;
+            }
+        }
+
+        /* esconde o .campo__erro no estado padrão */
+        &:not(:is(.campo--invalido)) {
+            .campo__erro {
+                display: none;
+            }
+        }
+    }
+
+    .campo:has(> :where([type="checkbox"], [type="radio"])),
+    .opcao {
+        grid-template-columns: calc(1em + .5ch) auto;
+        align-items: center;
+    }
+
+    /* campo de opções */
+    .opcoes {
+        display: flex;
+        gap: var(--gap, .5rem);
+    }
+
+}
 
 /* 
 ================================================================================
@@ -335,6 +494,121 @@ snippet VSCode para criar o conteúdo de navegação no HTML: gua_aba_conteudo
     }
 }
 
+/* 
+FORMULÁRIO
+--------------------------------------------------------------------------------
+*/
+@layer utils {
+    /* CONTAINER DO FORMULÁRIO */
+    .formulario {
+        /* modelo responsivo: preenche com colunas de até 15rem ou 100% se abaixo dessa largura */
+        --col-max: 15rem;
+        --colunas: repeat(auto-fit, minmax(min(100%, var(--col-max)), 1fr));
+        --gap: .5rem;
+    }
+
+    /* um campo é composto pelo label, input/select/textarea e texto de erro (opcional) */
+    .campo {
+        --cor-base: var(--cor-1);
+        --cor-secundaria: light-dark(hsl(0 0% 100% / .8), hsl(0 0% 0% / .8));
+        --cor-suave: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.8)),
+            hsl(from var(--cor-base) h s calc(l * .2))
+        );
+        --cor-destaque: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .4)),
+            hsl(from var(--cor-base) h s calc(l * 1.6))
+        );
+        --cor-bg: var(--cor-secundaria);
+        --cor-txt: var(--cor-destaque);
+
+        --rd: inherit;
+        --borda: 1px solid var(--cor-suave);
+        --outline: none;
+        --placeholder: var(--cor-suave);
+        --pd: .3em;
+        --sombra: inherit;
+
+
+        /* variações de variáveis conforme temas ou elementos internos */
+        .tema_alto_contraste & {
+            --cor-secundaria: black;
+            --cor-suave: var(--cor-base);
+            --cor-destaque: white;
+        }
+
+        &:is(.campo--invalido) {
+            --cor-base: var(--cor-erro);
+            --cor-txt: var(--cor-base);
+            --borda: 1px solid var(--cor-base);
+        }
+
+        &:focus-within {
+            --borda: 1px solid var(--cor-destaque);
+            --cor-txt: var(--cor-base);
+        }
+
+        & :checked {
+            --cor-txt: var(--cor-secundaria);
+            --cor-bg: var(--cor-base);
+        }
+        
+
+        /* formatação para todos os campos que não contenham check ou radio */
+        &:not(:has(:is([type="checkbox"], [type="radio"]))) {
+            &:focus-within {
+                --outline: 1px solid var(--cor-base);
+            }
+        }
+
+
+        /* elementos filhos */
+        label, legend {
+            font-weight: bold;
+        }
+
+        /* select: formatação da seta */
+        ::picker-icon {
+            
+        }
+
+        /* select: formatação da caixa */
+        ::picker(select) {
+            --cor-txt: var(--cor-destaque);
+            --cor-bg: hsl(from var(--cor-suave) h s calc(l * 1.25));
+            border-color: var(--cor-base);
+        }
+
+        /* select: formatação de cada item */
+        option {
+            .tema_alto_contraste & {
+                --cor-txt: var(--cor-base);
+                --cor-bg: #000;
+            }
+            &:hover, &:focus {
+                --borda: 0;
+                --cor-bg: var(--cor-base);
+
+                .tema_alto_contraste & {
+                    --cor-txt: #000;
+                }
+            }
+        }
+    }
+
+    /* o texto de erro */
+    .campo__erro {
+        
+    }
+
+    .opcao,
+    .campo:has(> :is([type="checkbox"], [type="radio"])) {
+        & label {
+            font-weight: normal;
+        }
+    }
+}
+
 /*
 CLASSES GLOBAIS
 --------------------------------------------------------------------------------
@@ -448,6 +722,7 @@ padrão. Rode a documentação e veja em /tabela
         --borda-vertical: 0;
 
         --pd: 0;
+        --placeholder: var(--cor-destaque); /* para o caso de possuir input */
 
         /* para dar a largura mínima da tabela (evitando que ela comprima mais no
         modo responsivo, acrescente o atributo abaixo no <table> */
