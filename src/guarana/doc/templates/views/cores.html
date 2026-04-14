@@ -105,7 +105,7 @@
         </p>
         <ul>
             {% for cor in cores_comp %}
-            <li><code>{{cor.nome}}</code> - {{item_uso(cor.uso)}}</li>
+            <li><code>{{cor.nome}}</code> - {{macros.item_uso(cor.uso)}}</li>
             {% endfor %}
         </ul>
 
@@ -127,7 +127,7 @@
             esse método, tendo fundo branco no modo claro e preto no escuro, o inverso para o texto:
         </p>
 
-        {{codigo('css', [
+        {{macros.codigo('css', [
         '--cor-bg: light-dark(hsl(0 0% 100%), hsl(0 0% 0%));',
         '--cor-txt: light-dark(hsl(0 0% 0%), hsl(0 0% 100%));'
         ])}}
@@ -181,7 +181,7 @@
         </p>
         <p>Esse é o código para um novo tema:</p>
 
-        {{codigo('css', [
+        {{macros.codigo('css', [
         ".tema_nome_tema {",
         "    --modo: dark | light; /* escolha um ou apague essa linha */",
         "    --tema: nome_tema;",
@@ -208,7 +208,7 @@
             <a href="/container_media">@container</a> estiver totalmente implementado
             com uso de estilos, priorizar esse caso):
 
-            {{codigo('css', [
+            {{macros.codigo('css', [
             '--cor-txt: hsl(from var(--cor-2) h s calc(l * 1.25));',
             ' ',
             '.tema_alto_contraste & {',

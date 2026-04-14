@@ -25,5 +25,5 @@ def gerar_js(resetar: bool = False):
         return
 
     texto_origem = origem.read_text('utf-8')
-    destino.write_text(texto_abertura + texto_origem)
+    destino.write_text(texto_abertura + texto_origem, encoding='utf-8')
 

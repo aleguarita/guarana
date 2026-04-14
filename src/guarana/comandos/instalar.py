@@ -9,6 +9,7 @@ def criar_flask():
     print(f'{COR_AMARELO}Criando estrutura básica\n{separador('-')}{COR_FIM}')
     criar_pasta('app')
     criar_pasta('app/templates')
+    criar_pasta('app/templates/macros')
 
     print(f'\n{COR_AMARELO}Criando base do Flask\n{separador('-')}{COR_FIM}')
     criar_requirements()

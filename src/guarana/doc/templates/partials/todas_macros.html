@@ -1,0 +1,226 @@
+{#
+ARQUIVO AUTOMÁTICO, NÃO ESCREVA
+================================================================================
+#}
+
+{#
+    ESSE ARQUIVO CONTÉM AS MACROS DA DOCUMENTAÇÃO,
+    ALTERE AQUI E NÃO EM macros.html
+#}
+
+{% macro codigo(
+    linguagem,
+    codigo
+) %}
+<pre class='language-{{linguagem}} line-numbers'>
+{% for linha in codigo %}<code>{{linha}}</code>
+{% endfor %}</pre>
+{% endmacro %}
+
+{% macro item_uso(lista) %}
+{% for i in lista %}{{i | markdown | safe }}{% endfor %}
+{% endmacro %}
+
+{% macro lista_prop(lista) %}
+{% for linha in lista|sort() %}
+{% set item = prop_css | selectattr('nome', 'equalto', linha) | list %}
+<details>
+    <summary><code>{{linha}}</code></summary>
+    {{item_uso(item[0].uso)}}
+</details>
+{% endfor %}
+{% endmacro %}
+
+{#
+    MACROS DO GUARANÁ, SUBSTITUA AO USAR
+#}
+
+<!--
+TODO: todo parâmetro não obrigatório entrará em param. possuirá um param pra cada elemento filho
+Manipular variável de params para ser feita fora do local que vai ser inserindo, criando uma
+variável, pra ajudar na legibilidade
+-->
+
+{#
+    MACROS BASE
+    ----------------------------------------------------------------------------
+#}
+{# GERAR ATRIBUTOS: utilizado para gerar atributos em TAGS #}
+{% macro gerar_atributos(atributos) %}
+    {%- set ns = namespace(resultado='') %}
+    {%- for chave, valor in atributos.items() %}
+
+    {# Atributo booleano verdadeiro: renderiza como chave sem valor #}
+    {%- if valor is sameas true %}
+        {%- set ns.resultado = ns.resultado ~ ' ' ~ chave %}
+    {# Lista: junta com espaço ou vírgula dependendo da chave #}
+    {%- elif valor is iterable and not valor is string %}
+        {%- set separador = ',' if chave.startswith('data-') else ' ' %}
+        {%- set texto = valor | join(separador) %}
+        {%- set ns.resultado = ns.resultado ~ ' ' ~ chave ~ ('="' | safe) ~ (texto | e) ~ ('"' | safe) %}
+    {# Valor comum: renderiza como chave="valor" #}
+    {%- elif valor %}
+        {%- set ns.resultado = ns.resultado ~ ' ' ~ chave ~ ('="' | safe) ~ (valor | e) ~ ('"' | safe) %}
+    {%- endif %}
+
+    {%- endfor %}
+    {{- ns.resultado -}}
+{% endmacro %}
+
+{# NORMALIZA TEXTOS: utilizado para retirar acentos e espaços #}
+{% macro normalizar_texto(texto) %}
+    {%- set texto = texto | lower %}
+    {%- set mapa = {
+        'á': 'a', 'à': 'a', 'ã': 'a', 'â': 'a',
+        'é': 'e', 'ê': 'e',
+        'í': 'i',
+        'ó': 'o', 'ô': 'o', 'õ': 'o',
+        'ú': 'u',
+        'ç': 'c',
+        ' ': '_',
+        '-': '_'
+    } %}
+    {%- set ns = namespace(resultado='') %}
+
+    {%- for caractere in texto %}
+        {%- set ns.resultado = ns.resultado ~ (mapa[caractere] if caractere in mapa else caractere) %}
+    {%- endfor %}
+
+    {{- ns.resultado | safe -}}
+{% endmacro %}
+
+
+{#
+    MACROS DE FORMULÁRIO
+    ----------------------------------------------------------------------------
+#}
+{# CAMPO BÁSICO: div.campo > label + input + erro (opcional) #}
+{% macro campo(
+    texto_label,
+    texto_erro=None,
+    opcao=False,
+    props={},
+    props_input={},
+    props_label={},
+    props_erro={}
+)%}
+    {%- set classe = "opcao" if opcao else "campo" -%}
+    {%- set classe = classe ~ ' ' ~ props.class if props.class else classe -%}
+
+    {%- set classe_label = 'class="' ~ props_label.class ~ '"' if props_label.class -%}
+    {%- set classe_input = 'class="' ~ props_input.class ~ '"' if props_input.class -%}
+
+    {%- set classe_erro = "campo__erro" -%}
+    {%- set classe_erro = classe_erro ~ ' ' ~ props_erro.class if props_erro.class else classe_erro -%}
+
+    {%- if props_input and props_input.id -%}
+        {%- set id = props_input.id -%}
+    {%- else -%}
+        {%- set id = normalizar_texto(texto_label) -%}
+    {%- endif -%}
+
+    {%- if not props_input.type -%}
+        {%- set type = 'type="text"' | safe -%}
+    {%- endif -%}
+
+<div class="{{classe}}" {{gerar_atributos(props)}}>
+    {%- if props_input.type != 'checkbox' and props_input.type != 'radio' %}
+    <label for="{{id}}" {{gerar_atributos(props_label)}} {{classe_label | safe}}>{{texto_label}}</label>
+    {%- endif %}
+
+    {% if props_input.type != 'textarea' %}
+    <input {{type}} id="{{id}}" {{classe_input | safe}} {{gerar_atributos(props_input)}} />
+    {% else %}
+    <textarea id="{{id}}" {{classe_input | safe}} {{gerar_atributos(props_input)}}></textarea>
+    {% endif %}
+
+    {% if props_input.type == 'checkbox' or props_input.type == 'radio' %}
+    <label for="{{id}}" {{gerar_atributos(props_label)}} {{classe_label | safe}}>{{texto_label}}</label>
+    {% endif %}
+
+    {% if texto_erro %}<span class="{{classe_erro | safe}}" {{gerar_atributos(props_erro)}}>{{texto_erro}}</span>{% endif %}
+</div>
+{% endmacro %}
+
+{# SELECT: div.campo > label + (select > option) + erro (opcional) #}
+{% macro select(
+    texto_label,
+    options,
+    props={},
+    props_label={},
+    props_select={},
+    props_erro={},
+    selected=None,
+    texto_erro=None
+)%}
+    {%- set classe = 'campo' -%}
+    {%- set classe = classe ~ ' ' ~ props.class if props.class else classe -%}
+
+    {%- set classe_label = 'class="' ~ props_label.class ~ '"' if props_label.class -%}
+    {%- set classe_select = 'class="' ~ props_select.class ~ '"' if props_select.class -%}
+
+    {%- set classe_erro = "campo__erro" -%}
+    {%- set classe_erro = classe_erro ~ ' ' ~ props_erro.class if props_erro.class else classe_erro -%}
+
+    {%- if props_select and props_select.id -%}
+        {%- set id = props_select.id -%}
+    {%- else -%}
+        {%- set id = normalizar_texto(texto_label) -%}
+    {%- endif -%}
+
+<div class="{{classe}}" {{gerar_atributos(props)}}>
+    <label for="{{id}}" {{classe_label | safe}} {{gerar_atributos(props_label)}}>{{texto_label}}</label>
+    <select id="{{id}}" {{classe_select | safe}} {{gerar_atributos(props_select)}}>
+        {% for valor, texto in options.items() %}
+        <option value="{{valor}}" {% if selected == valor %}selected{% endif %}>{{texto}}</option>
+        {% endfor %}
+    </select>
+    {% if texto_erro %}<span class="{{classe_erro | safe}}" {{gerar_atributos(props_erro)}}>{{texto_erro}}</span>{% endif %}
+</div>
+{% endmacro %}
+
+{# OPÇÕES de radios: div.campo > legend + (div.options > label + input:radio) + erro (opcional) #}
+{% macro radios(
+    texto_legend,
+    campos,
+    name,
+    values=None,
+    ids=None,
+    selecionado=None,
+    texto_erro=None,
+    props={},
+    props_legend={},
+    props_opcoes={},
+    props_inputs={},
+    props_erro={}
+)%}
+    {%- set classe = 'campo' -%}
+    {%- set classe = classe ~ ' ' ~ props.class if props.class else classe -%}
+
+    {%- set classe_legend = 'class="' ~ props_legend.class ~ '"' if props_legend.class -%}
+
+    {%- set classe_opcoes = 'opcoes' -%}
+    {%- set classe_opcoes = classe_opcoes ~ ' ' ~ props_opcoes.class if props_opcoes.class else classe_opcoes -%}
+
+<div class="{{classe}}" {{gerar_atributos(props)}}>
+    <legend {{classe_legend | safe}} {{gerar_atributos(props_legend)}}>{{texto_legend}}</legend>
+    <div class="{{classe_opcoes}}" {{gerar_atributos(props_opcoes)}}>
+        {%- for item in campos -%}
+        {%- set id = name ~ '_' ~ loop.index0 if not ids else ids[loop.index0] -%}
+
+        {{ campo(
+            item,
+            opcao=True,
+            props_input={
+                'type': 'radio',
+                'name': name,
+                'value': values[loop.index0] if values else normalizar_texto(item),
+                'checked': True if selecionado == item else False,
+                'id': id
+            }
+        )}}
+        {%- endfor -%}
+    </div>
+    {%- if texto_erro -%}<span class="campo__erro">{{texto_erro}}</span>{%- endif -%}
+</div>
+{% endmacro %}

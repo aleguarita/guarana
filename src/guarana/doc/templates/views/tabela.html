@@ -46,7 +46,7 @@
 <article class='conteudo__artigo' id='tabela' data-categoria='util'>
     <header class='conteudo__header'>
         <h1>Tabela</h1>
-        <p>Arquivo em <code>utils/tabela.css</code></p>
+        <p>Arquivo <code>tabela.css</code></p>
     </header>
 
     <section class='conteudo__corpo'>
@@ -55,7 +55,7 @@
             tabela:
         </p>
 
-        {{codigo('html', [
+        {{macros.codigo('html', [
         '<table class="tabela" data-largura-min="750">',
         '    <thead>',
         '        <tr>',
@@ -101,7 +101,7 @@
             de em, rem, vw, etc, chame novamente com:
         </p>
 
-        {{codigo('scss', ['width: attr(atributo medida)'])}}
+        {{macros.codigo('scss', ['width: attr(atributo medida)'])}}
 
         <h2>Permitindo rolamento em telas menores</h2>
         <p>

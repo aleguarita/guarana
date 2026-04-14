@@ -1,0 +1,32 @@
+{#
+    ESSE ARQUIVO CONTÉM AS MACROS DA DOCUMENTAÇÃO,
+    ALTERE AQUI E NÃO EM macros.html
+#}
+
+{% macro codigo(
+    linguagem,
+    codigo
+) %}
+<pre class='language-{{linguagem}} line-numbers'>
+{% for linha in codigo %}<code>{{linha}}</code>
+{% endfor %}</pre>
+{% endmacro %}
+
+{% macro item_uso(lista) %}
+{% for i in lista %}{{i | markdown | safe }}{% endfor %}
+{% endmacro %}
+
+{% macro lista_prop(lista) %}
+{% for linha in lista|sort() %}
+{% set item = prop_css | selectattr('nome', 'equalto', linha) | list %}
+<details>
+    <summary><code>{{linha}}</code></summary>
+    {{item_uso(item[0].uso)}}
+</details>
+{% endfor %}
+{% endmacro %}
+
+{#
+    MACROS DO GUARANÁ, SUBSTITUA AO USAR
+#}
+

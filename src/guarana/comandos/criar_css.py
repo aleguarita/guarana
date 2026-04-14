@@ -85,7 +85,7 @@ def preencher_pasta_utils(resetar:bool=False):
         texto = texto.replace('/*\n', f'/*\n{separador()}\n', 1)
         texto = texto.replace('\n*/', f'{texto_data}\n*/', 1)
 
-        arquivo_destino.write_text(texto)
+        arquivo_destino.write_text(texto, encoding='utf-8')
 
 
 def criar_import_utils_css():
@@ -125,7 +125,7 @@ def criar_estilo_css(resetar:bool=False):
         return
 
 
-    arquivo_destino.write_text(texto)
+    arquivo_destino.write_text(texto, encoding='utf-8')
     criar_estilo_css_min()
 
 
@@ -144,7 +144,7 @@ def criar_estilo_css_min():
     else:
         print(f'Gerando {COR_AMARELO}estilo-min.css{COR_FIM}')
 
-    arquivo_destino.write_text(header+minificar_css(texto))
+    arquivo_destino.write_text(header+minificar_css(texto), encoding='utf-8')
 
 
 def substituir_imports(css:str):

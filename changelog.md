@@ -2,14 +2,15 @@
 
 ## 0.3.0
 - Formulários
+- Macros de Flask
 - Abas voltou a ser `.abas` para melhor uso do BEM
-- Variáveis locais aparecem no próprio elemento em utils para evitar "adivinhar" qual variável pode ou não ser usada (como no caso de `--cor-base` que é usada em todos e só aparecia no :root)
+- Variáveis locais aparecem no próprio elemento em utils para evitar "adivinhar" qual variável é usada no elemento (como no caso de `--cor-base` que é usada em todos e só aparecia no :root)
 
 ## 0.2.0
 - Menu
 - Tabela
 - Abas
-- Classes globais: rolagem_x
+- Classes globais: `rolagem_x`
 - JS para inserir/retirar a classe `.ativo` para seletores
 - O uso de `@container style(--mode: dark | light)` foi substituído por `@midia (prefers-color-scheme: dark | light)` para melhor compatibilidade entre navegadores
 - Uso de `@container style(--tema: 'nome tema')` foi trocado para `.tema_nome_tema &` para melhor compatibilidade entre navegadores

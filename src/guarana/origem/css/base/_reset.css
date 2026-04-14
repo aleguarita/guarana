@@ -102,7 +102,11 @@ Com alterações pontuais
         line-height: calc(1rem + .5em);
         padding: var(--pd, .3em);
     }
-   
+
+    textarea {
+        min-block-size: 1lh;
+    }   
+
     [type="checkbox"], [type="radio"] {
         --tmn: .9em;
         --pd: 0;
