@@ -35,40 +35,34 @@ ARQUIVO AUTOMÁTICO, NÃO ESCREVA
     MACROS DO GUARANÁ, SUBSTITUA AO USAR
 #}
 
-<!--
-TODO: todo parâmetro não obrigatório entrará em param. possuirá um param pra cada elemento filho
-Manipular variável de params para ser feita fora do local que vai ser inserindo, criando uma
-variável, pra ajudar na legibilidade
--->
-
-{#
+{#-
     MACROS BASE
     ----------------------------------------------------------------------------
 #}
-{# GERAR ATRIBUTOS: utilizado para gerar atributos em TAGS #}
-{% macro gerar_atributos(atributos) %}
+{#- GERAR ATRIBUTOS: utilizado para gerar atributos em TAGS #}
+{%- macro gerar_atributos(atributos) %}
     {%- set ns = namespace(resultado='') %}
     {%- for chave, valor in atributos.items() %}
-
-    {# Atributo booleano verdadeiro: renderiza como chave sem valor #}
+    {#- #}
+    {#- Atributo booleano verdadeiro: renderiza como chave sem valor #}
     {%- if valor is sameas true %}
         {%- set ns.resultado = ns.resultado ~ ' ' ~ chave %}
-    {# Lista: junta com espaço ou vírgula dependendo da chave #}
+    {#- Lista: junta com espaço ou vírgula dependendo da chave #}
     {%- elif valor is iterable and not valor is string %}
         {%- set separador = ',' if chave.startswith('data-') else ' ' %}
         {%- set texto = valor | join(separador) %}
         {%- set ns.resultado = ns.resultado ~ ' ' ~ chave ~ ('="' | safe) ~ (texto | e) ~ ('"' | safe) %}
-    {# Valor comum: renderiza como chave="valor" #}
+    {#- Valor comum: renderiza como chave="valor" #}
     {%- elif valor %}
         {%- set ns.resultado = ns.resultado ~ ' ' ~ chave ~ ('="' | safe) ~ (valor | e) ~ ('"' | safe) %}
     {%- endif %}
 
     {%- endfor %}
     {{- ns.resultado -}}
-{% endmacro %}
-
-{# NORMALIZA TEXTOS: utilizado para retirar acentos e espaços #}
-{% macro normalizar_texto(texto) %}
+{%- endmacro %}
+{#- #}
+{#- NORMALIZA TEXTOS: utilizado para retirar acentos e espaços #}
+{%- macro normalizar_texto(texto) %}
     {%- set texto = texto | lower %}
     {%- set mapa = {
         'á': 'a', 'à': 'a', 'ã': 'a', 'â': 'a',
@@ -81,13 +75,13 @@ variável, pra ajudar na legibilidade
         '-': '_'
     } %}
     {%- set ns = namespace(resultado='') %}
-
+{#- #}
     {%- for caractere in texto %}
         {%- set ns.resultado = ns.resultado ~ (mapa[caractere] if caractere in mapa else caractere) %}
     {%- endfor %}
-
+{#- #}
     {{- ns.resultado | safe -}}
-{% endmacro %}
+{%- endmacro %}
 
 
 {#
@@ -106,19 +100,19 @@ variável, pra ajudar na legibilidade
 )%}
     {%- set classe = "opcao" if opcao else "campo" -%}
     {%- set classe = classe ~ ' ' ~ props.class if props.class else classe -%}
-
+{#- #}
     {%- set classe_label = 'class="' ~ props_label.class ~ '"' if props_label.class -%}
     {%- set classe_input = 'class="' ~ props_input.class ~ '"' if props_input.class -%}
-
+{#- #}
     {%- set classe_erro = "campo__erro" -%}
     {%- set classe_erro = classe_erro ~ ' ' ~ props_erro.class if props_erro.class else classe_erro -%}
-
+{#- #}
     {%- if props_input and props_input.id -%}
         {%- set id = props_input.id -%}
     {%- else -%}
         {%- set id = normalizar_texto(texto_label) -%}
     {%- endif -%}
-
+{#- #}
     {%- if not props_input.type -%}
         {%- set type = 'type="text"' | safe -%}
     {%- endif -%}
@@ -127,20 +121,20 @@ variável, pra ajudar na legibilidade
     {%- if props_input.type != 'checkbox' and props_input.type != 'radio' %}
     <label for="{{id}}" {{gerar_atributos(props_label)}} {{classe_label | safe}}>{{texto_label}}</label>
     {%- endif %}
-
-    {% if props_input.type != 'textarea' %}
+{#- #}
+    {%- if props_input.type != 'textarea' %}
     <input {{type}} id="{{id}}" {{classe_input | safe}} {{gerar_atributos(props_input)}} />
-    {% else %}
+    {%- else %}
     <textarea id="{{id}}" {{classe_input | safe}} {{gerar_atributos(props_input)}}></textarea>
-    {% endif %}
-
-    {% if props_input.type == 'checkbox' or props_input.type == 'radio' %}
+    {%- endif %}
+{#- #}
+    {%- if props_input.type == 'checkbox' or props_input.type == 'radio' %}
     <label for="{{id}}" {{gerar_atributos(props_label)}} {{classe_label | safe}}>{{texto_label}}</label>
-    {% endif %}
-
-    {% if texto_erro %}<span class="{{classe_erro | safe}}" {{gerar_atributos(props_erro)}}>{{texto_erro}}</span>{% endif %}
+    {%- endif %}
+{#- #}
+    {%- if texto_erro %}<span class="{{classe_erro | safe}}" {{gerar_atributos(props_erro)}}>{{texto_erro}}</span>{% endif %}
 </div>
-{% endmacro %}
+{%- endmacro %}
 
 {# SELECT: div.campo > label + (select > option) + erro (opcional) #}
 {% macro select(
@@ -205,7 +199,7 @@ variável, pra ajudar na legibilidade
 <div class="{{classe}}" {{gerar_atributos(props)}}>
     <legend {{classe_legend | safe}} {{gerar_atributos(props_legend)}}>{{texto_legend}}</legend>
     <div class="{{classe_opcoes}}" {{gerar_atributos(props_opcoes)}}>
-        {%- for item in campos -%}
+    {%- for item in campos -%}
         {%- set id = name ~ '_' ~ loop.index0 if not ids else ids[loop.index0] -%}
 
         {{ campo(
@@ -219,7 +213,7 @@ variável, pra ajudar na legibilidade
                 'id': id
             }
         )}}
-        {%- endfor -%}
+    {%- endfor -%}
     </div>
     {%- if texto_erro -%}<span class="campo__erro">{{texto_erro}}</span>{%- endif -%}
 </div>

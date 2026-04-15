@@ -5,7 +5,10 @@ FORMULÁRIO
 @layer utils {
     /* CONTAINER DO FORMULÁRIO */
     .formulario {
-        /* modelo responsivo: preenche com colunas de até 15rem ou 100% se abaixo dessa largura */
+        /*
+        modelo responsivo: preenche com colunas de até 15rem ou 100% se abaixo
+        dessa largura
+        */
         --col-max: 15rem;
         --colunas: repeat(auto-fit, minmax(min(100%, var(--col-max)), 1fr));
         --gap: .5rem;

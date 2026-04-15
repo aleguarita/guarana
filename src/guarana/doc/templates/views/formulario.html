@@ -9,72 +9,217 @@
         <p>Arquivo <code>formulario.css</code></p>
     </header>
 
+    
     <section class='conteudo__corpo'>
-        <div class="formulario">
-            {{
-                macros.campo(
-                    'Campo normal',
-                    props_input={"placeholder": "Um placeholder"}
-                )
-            }}
-            {{
-                macros.campo(
-                    'Campo com erro',
-                    'Esse é o texto de erro',
+
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Classe</th>
+                    <th>Uso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in classe_css|sort(attribute="nome") %}
+                {% if item.pagina == "/formulario" %}
+                <tr>
+                    <td><code>{{item.nome}}</code></td>
+                    <td>{{macros.item_uso(item.uso)}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+        <p>
+            Os inputs tem formatação básica no reset que podem ser manipulados
+            através de variáveis. As alterações mais profundas são feitas em um
+            elemento pai que vai agrupar o input, label e mensagem de erros.
+        </p>
+        <p>
+            Além disso, existe o container de todo o formulário que tem um 
+            sistema de grid responsivo.
+        </p>
+        <p>
+            O código mais básico, incluindo dois campos:
+        </p>
+
+        {{macros.codigo('html', [
+            '<form class="formulario">',
+            '    <div class="campo">',
+            '        <label for="campo_normal">Campo normal</label>',
+            '        <input type="text" id="campo_normal" placeholder="Um placeholder">',
+            '        <span class="campo__erro">Texto com o campo errado</span>',
+            '    </div>',
+            ' ',
+            '    <div class="campo">',
+            '        <label for="select">Select</label>',
+            '        <select id="select">',
+            '            <option value="1">Valor 1</option>',
+            '            <option value="2">Valor 2</option>',
+            '            <option value="3">Valor 3</option>',
+            '            <option value="padrao" selected="">Valor Padrão</option>',
+            '            <option value="4">Valor 4</option>',
+            '        </select>',
+            '    </div>',
+            '</form>'
+        ])}}
+
+        <details class="demo" open>
+            <summary>Exemplo de formulário:</summary>
+            <div class="formulario">
+                {{
+                    macros.campo(
+                        'Campo normal',
+                        props_input={"placeholder": "Um placeholder"},
+                        texto_erro="Texto com o campo errado"
+                    )
+                }}
+                {{
+                    macros.campo(
+                        'Campo com erro',
+                        'Esse é o texto de erro',
+                        props={'class': 'campo--invalido'},
+                        props_input={"placeholder": "Erro"}
+                    )
+                }}
+                {{
+                    macros.select(
+                        'Select',
+                        {"1": "Valor 1", "2": "Valor 2", "3": "Valor 3", "padrao": "Valor Padrão", "4": "Valor 4"},
+                        selected="padrao"
+                    )
+                }}
+                {{
+                    macros.campo(
+                        'Checkbox isolado',
+                        props_input={"type": "checkbox"}
+                    )
+                }}
+                {{
+                    macros.campo(
+                        'Texto de Área',
+                        props_input={"type": "textarea"}
+                    )
+                }}
+                {{
+                    macros.campo(
+                        'Checkbox isolado e checado',
+                        props_input={"type": "checkbox", "checked": True},
+                    )
+                }}
+                {{macros.radios(
+                    'Grupo de radios',
+                    campos=('Item 1', 'Item 2', 'Item 3'),
+                    name='grupo_inputs',
+                    ids=('campo_1_1', 'campo_1_2', 'campo_1_3'),
+                    selecionado='Item 2',
+                )}}
+                {{macros.radios(
+                    'Grupo de radios com erro',
+                    campos=('Item 1', 'Item 2', 'Item 3', 'Item 4'),
+                    name='grupo_inputs_erro',
                     props={'class': 'campo--invalido'},
-                    props_input={"placeholder": "Erro"}
-                )
-            }}
-            {{
-                macros.select(
-                    'Select',
-                    {"1": "Valor 1", "2": "Valor 2", "3": "Valor 3", "padrao": "Valor Padrão", "4": "Valor 4"},
-                    selected="padrao"
-                )
-            }}
-            {{
-                macros.campo(
-                    'Checkbox isolado',
-                    props_input={"type": "checkbox"}
-                )
-            }}
-            {{
-                macros.campo(
-                    'Texto de Área',
-                    props_input={"type": "textarea"}
-                )
-            }}
-            {{
-                macros.campo(
-                    'Checkbox isolado e checado',
-                    props_input={"type": "checkbox", "checked": True},
-                )
-            }}
-            {{macros.radios(
-                'Grupo de radios',
-                campos=('Item 1', 'Item 2', 'Item 3'),
-                name='grupo_inputs',
-                ids=('campo_1_1', 'campo_1_2', 'campo_1_3'),
-                selecionado='Item 2',
-            )}}
-            {{macros.radios(
-                'Grupo de radios com erro',
-                campos=('Item 1', 'Item 2', 'Item 3', 'Item 4'),
-                name='grupo_inputs_erro',
-                props={'class': 'campo--invalido'},
-                texto_erro='Grupo de radios com erro'
-            )}}
+                    texto_erro='Grupo de radios com erro'
+                )}}
 
+                <div class="campo">
+                    <label for="autocomplete">Autocomplete</label>
+                    <input type="text" name="autocomplete" id="autocomplete" placeholder="Classes de D&D">
+                </div>
 
-            
-
-            <div class="campo">
-                <label for="autocomplete">Autocomplete</label>
-                <input type="text" name="autocomplete" id="autocomplete" placeholder="Classes de D&D">
             </div>
+        </details>
 
-        </div>
+        <h2>Container e grid</h2>
+        <p>
+            O container contém uma formatação de grid responsiva que gera colunas
+            automáticas de até a variável <code>--col-max</code> como largura.
+        </p>
 
+        <blockquote class="aviso">
+            <!-- TODO: formatar esse blockquote -->
+             <p>⚠️ Importante</p>
+             <p>
+                Ao criar media query com o container, não utilize variáveis ou 
+                <code>calc()</code> pois alguns navegadores não aceitam e pode
+                haver problema de herança. Ao invés disso use valores absolutos
+                e mude <strong>manualmente</strong> em caso de mudar as variáveis.
+            </p>
+            <p>
+                <strong>Exemplo</strong>: por padrão a coluna está em
+                <code>15rem</code> e o espaço
+                entre elas está de <code>.5rem</code>, nesse caso o código para
+                formatar o container caso ele esteja com duas colunas ou mais:
+            </p>
+            {{macros.codigo('css', [
+                '@container formulario (min-width: 30.5rem) {',
+                '   ...',
+                '}',
+            ])}}
+        </blockquote>
+
+        <p>
+            Para regular qual coluna cada campo ocupe, use <code>grid-column</code>
+            ou <code>grid-column-start e grid-column-end</code>.
+        </p>
+
+        <h2>O grupo .campo</h2>
+        <p>
+            O grupo campo possue três elementos:
+        </p>
+        <ol>
+            <li>O label</li>
+            <li>O input, que deve ser único</li>
+            <li>
+                O <code>&lt;span class="campo__erro"&gt;</code> que formata o
+                erro do campo (opcional).
+            </li>
+        </ol>
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com dois snippets para inserir o campo:
+                <code>gua_campo</code> e <code>gua_select</code>
+            </p>
+        </blockquote>
+
+        <p>
+            Para que o erro fique visível, o grupo deve receber a classe <code>
+            .campo-invalido</code>.
+        </p>
+
+        <p>
+            Para formatar um grupo de checkbox ou radios, insira um <code>
+            &lt;div class="opcoes"&gt;</code> e dentro dele cada campo com a 
+            classe <code>.opcao</code>:
+        </p>
+
+        {{macros.codigo('html', [
+            '<div class="campo">',
+            '    <legend>Grupo de radios</legend>',
+            '    <div class="opcoes">',
+            '        <div class="opcao">',
+            '            <input id="campo_1_1" type="radio" name="grupo_inputs" value="item_1">',
+            '            <label for="campo_1_1">Item 1</label>',
+            '        </div>'
+            '        <div class="opcao">',
+            '            <input id="campo_1_2" type="radio" name="grupo_inputs" value="item_2">',
+            '            <label for="campo_1_2">Item 2</label>',
+            '        </div>'
+            '        <div class="opcao">',
+            '            <input id="campo_1_3" type="radio" name="grupo_inputs" value="item_3">',
+            '            <label for="campo_1_3">Item 2</label>',
+            '        </div>',
+            '    </div>',
+            '</div>',
+        ])}}
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir uma opção: <code>gua_opcao</code></p>
+        </blockquote>
 
     </section>
 </article>

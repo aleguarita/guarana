@@ -33,17 +33,18 @@
             <a href="/">{% include "partials/logo.html" %}</a>
         </header>
 
-        <p>
-            <label for="gua_tema">Tema de cores</label>
-            <select name="gua_tema" id="gua_tema">
-                <option value="tema_padrao">Por sistema</option>
-                <option value="tema_light">Modo Claro</option>
-                <option value="tema_dark">Modo Escuro</option>
-                <option value="tema_alto_contraste">Alto Contraste</option>
-                <option value="tema_guarana_original">Tema variante (modo por sistema)</option>
-                <option value="tema_diario">Tema diário (modo por sistema, alteração diária)</option>
-            </select>
-        </p>
+        {{macros.select(
+            "Tema de cores",
+            {
+                "tema_padrao": "Por Sistema",
+                "tema_light": "Modo Claro",
+                "tema_dark": "Modo Escuro",
+                "tema_alto_contraste": "Alto Contraste",
+                "tema_guarana_original": "Tema variante (modo por sistema)",
+                "tema_diario": "Tema diário (modo por sistema, alteração diária)",
+            },
+            props_select= {"id": "gua_tema", "name": "gua_tema"}
+        )}}
 
         {% for categoria in categorias %}
         <span class='menu__titulo'>{{categoria.title() if categoria != 'util' else 'Utilitários'}}</span>

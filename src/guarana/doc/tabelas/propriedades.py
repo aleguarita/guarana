@@ -274,7 +274,7 @@ propriedades_css = [
         'atualizada': '0.3.0',
     },
     {
-        'nome': '--cor-max',
+        'nome': '--col-max',
         'tipo': 'medida',
         'heranca': 'sim',
         'uso': ['Variável para sistema de grid responsiva, indicando a largura máxima que a coluna pode atingir'],
