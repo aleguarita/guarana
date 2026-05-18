@@ -88,6 +88,8 @@ FORMULÁRIO
 
         /* select: formatação de cada item */
         option {
+            --cor-bg: hsl(from var(--cor-secundaria) h s l / 0.3);
+
             .tema_alto_contraste & {
                 --cor-txt: var(--cor-base);
                 --cor-bg: #000;

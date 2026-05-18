@@ -1,0 +1,239 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Macros{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='macros' data-categoria='facilitadores'>
+    <header class='conteudo__header'>
+        <h1>Macros Jinja</h1>
+        <p>Arquivo: <code>macros/guarana.html</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            Macros para uso em Flask, automatizando o serviço. O mesmo resultado
+            pode ser obtido através dos <a href="/snippets">snippets</a>.
+        </p>
+
+        <p>
+            O arquivo de macros já está importado no <code>_modelo.html</code> e
+            com o prefixo <code>macros</code>.
+        </p>
+
+        <h2>Sumário</h2>
+        <ul>
+            <li><a href='#macro-campo'>campo()</a></li>
+            <li><a href='#macro-radios'>radios()</a></li>
+        </ul>
+
+        <h2 id='macro-campo'>campo()</h2>
+        <p>
+            Gera um campo de formulário completo com label, input e (opcionalmente)
+            mensagem de erro. O tipo do elemento renderizado depende dos <code>props</code>
+            passados ou da presença de <code>options</code>.
+        </p>
+
+        <h3>Estrutura gerada</h3>
+        <ul>
+            <li>Padrão: <code>div.campo &gt; label + input + span.campo_erro?</code></li>
+            <li>Checkbox / Radio: <code>div.opcao &gt; input + label + span.campo_erro?</code></li>
+            <li>Textarea: <code>div.campo &gt; label + textarea + span.campo_erro?</code></li>
+            <li>Select: <code>div.campo &gt; label + (select &gt; option*) + span.campo_erro?</code></li>
+        </ul>
+
+        <h3>Parâmetros</h3>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Parâmetro</th>
+                    <th>Tipo</th>
+                    <th>Padrão</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>texto_label</code></td>
+                    <td>string</td>
+                    <td>—</td>
+                    <td>Texto exibido no <code>&lt;label&gt;</code>. Também usado para gerar o <code>id</code> automaticamente caso não seja informado em <code>props.input</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>props</code></td>
+                    <td>dict</td>
+                    <td><code>{}</code></td>
+                    <td>
+                        Dicionário de atributos por elemento. Chaves aceitas:
+                        <ul>
+                            <li><code>self</code> — atributos do <code>&lt;div&gt;</code> container</li>
+                            <li><code>input</code> — atributos do <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code> ou <code>&lt;select&gt;</code></li>
+                            <li><code>erro</code> — atributos do <code>&lt;span&gt;</code> de erro</li>
+                        </ul>
+                        Para textarea, passe <code>props={'input': {'type': 'textarea'}}</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>opcao</code></td>
+                    <td>bool</td>
+                    <td><code>False</code></td>
+                    <td>Quando <code>True</code>, inverte a ordem label/input e aplica a classe <code>opcao</code> ao container. Usado internamente pela macro <code>radios()</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>texto_erro</code></td>
+                    <td>string</td>
+                    <td><code>None</code></td>
+                    <td>Mensagem de erro exibida abaixo do campo. Se ausente, o <code>&lt;span&gt;</code> de erro não é renderizado.</td>
+                </tr>
+                <tr>
+                    <td><code>options</code></td>
+                    <td>dict</td>
+                    <td><code>None</code></td>
+                    <td>Quando informado, o campo é renderizado como <code>&lt;select&gt;</code>. Formato: <code>{'value': 'Texto exibido'}</code>.</td>
+                </tr>
+                <tr>
+                    <td><code>option_disabled</code></td>
+                    <td>string</td>
+                    <td><code>None</code></td>
+                    <td>Valor da opção que deve ser marcada como <code>disabled</code> e <code>selected</code> simultaneamente (útil para placeholder de select).</td>
+                </tr>
+                <tr>
+                    <td><code>selected</code></td>
+                    <td>string</td>
+                    <td><code>None</code></td>
+                    <td>Valor da opção pré-selecionada no select. Desnecessário se <code>option_disabled</code> já cobre esse caso.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Exemplos</h3>
+        {{macros.codigo('django', [
+            '{{macros.campo("Nome completo")}}',
+            ' ',
+            '{{macros.campo(',
+            '    "E-mail",',
+            '    props={"self": {"class": "campo--invalido"},"input": {"type": "email", "placeholder": "seu@email.com"}},',
+            '    texto_erro="E-mail inválido"',
+            ')}}',
+            ' ',
+            '{{macros.campo(',
+            '    "Mensagem",',
+            '    props={"input": {"type": "textarea", "rows": "5"}}',
+            ')}}',
+            ' ',
+            '{{macros.campo(',
+            '    "Aceito os termos",',
+            '    props={"input": {"type": "checkbox", "name": "termos"}}',
+            ')}}',
+            ' ',
+            '{{macros.campo(',
+            '    "Estado",',
+            '    options={"sp": "São Paulo", "rj": "Rio de Janeiro", "mg": "Minas Gerais"},',
+            '    option_disabled="",',
+            '    props={"input": {"name": "estado"}}',
+            ')}}'
+        ])}}
+
+        {{macros.campo("Nome completo")}}
+ 
+        {{macros.campo(
+            "E-mail",
+            props={"self": {"class": "campo--invalido"}, "input": {"type": "email", "placeholder": "seu@email.com"}},
+            texto_erro="E-mail inválido"
+        )}}
+        
+        {{macros.campo(
+            "Mensagem",
+            props={"input": {"type": "textarea", "rows": "5"}}
+        )}}
+        
+        {{macros.campo(
+            "Aceito os termos",
+            props={"input": {"type": "checkbox", "name": "termos"}}
+        )}}
+        
+        {{macros.campo(
+            "Estado",
+            options={"sp": "São Paulo", "rj": "Rio de Janeiro", "mg": "Minas Gerais"},
+            option_disabled="",
+            props={"input": {"name": "estado"}}
+        )}}
+
+        <h2 id='macro-radios'>radios()</h2>
+        <p>
+            Gera um grupo de inputs <code>radio</code> encapsulado em um
+            <code>&lt;fieldset&gt;</code> semântico com <code>&lt;legend&gt;</code>.
+            Cada opção é renderizada internamente via <code>campo()</code>.
+        </p>
+
+        <h3>Estrutura gerada</h3>
+        <p><code>div.campo &gt; legend + (div.opcoes &gt; div.opcao &gt; input:radio + label)* + span.campo_erro?</code></p>
+
+        <h3>Parâmetros</h3>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Parâmetro</th>
+                    <th>Tipo</th>
+                    <th>Padrão</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>texto_legend</code></td>
+                    <td>string</td>
+                    <td>—</td>
+                    <td>Texto exibido no <code>&lt;legend&gt;</code> do grupo.</td>
+                </tr>
+                <tr>
+                    <td><code>campos</code></td>
+                    <td>dict</td>
+                    <td>—</td>
+                    <td>Opções do grupo. Formato: <code>{'value': 'Texto do label'}</code>. A chave vira o atributo <code>value</code> do radio.</td>
+                </tr>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td><code>None</code></td>
+                    <td>Atributo <code>name</code> compartilhado por todos os radios do grupo. Necessário para o comportamento de seleção exclusiva.</td>
+                </tr>
+                <tr>
+                    <td><code>props</code></td>
+                    <td>dict</td>
+                    <td><code>{}</code></td>
+                    <td>
+                        Dicionário de atributos por elemento. Chaves aceitas:
+                        <ul>
+                            <li><code>self</code> — atributos do <code>&lt;div&gt;</code> container externo</li>
+                            <li><code>legend</code> — atributos do <code>&lt;legend&gt;</code></li>
+                            <li><code>opcoes</code> — atributos do <code>&lt;div&gt;</code> que agrupa as opções</li>
+                            <li><code>input</code> — atributos padrão aplicados a <strong>todos</strong> os radios</li>
+                            <li><code>[valor]</code> — atributos específicos para o radio de uma opção, sobrescrevendo <code>input</code>. A chave deve ser idêntica ao valor no dict <code>campos</code>.</li>
+                            <li><code>erro</code> — atributos do <code>&lt;span&gt;</code> de erro</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>texto_erro</code></td>
+                    <td>string</td>
+                    <td><code>None</code></td>
+                    <td>Mensagem de erro exibida abaixo do grupo. Se ausente, o <code>&lt;span&gt;</code> de erro não é renderizado.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Precedência de <code>props</code> no input</h3>
+        <p>
+            Os atributos de cada radio são montados em três camadas, da menor para
+            a maior precedência:
+        </p>
+        <ol>
+            <li>Base fixa — <code>type: radio</code> e <code>value</code> do campo</li>
+            <li><code>props.input</code> — padrão para todos os radios do grupo</li>
+            <li><code>props[valor]</code> — específico para o radio daquele valor</li>
+        </ol>
+        <p>O parâmetro <code>name</code> é aplicado por último e sempre prevalece.</p>
+
+    </section>
+</article>
+{% endblock conteudo %}

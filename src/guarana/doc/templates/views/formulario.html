@@ -72,55 +72,52 @@
                 {{
                     macros.campo(
                         'Campo normal',
-                        props_input={"placeholder": "Um placeholder"},
-                        texto_erro="Texto com o campo errado"
+                        props={"input": {"placeholder": "Um placeholder"}},
                     )
                 }}
                 {{
                     macros.campo(
                         'Campo com erro',
-                        'Esse é o texto de erro',
-                        props={'class': 'campo--invalido'},
-                        props_input={"placeholder": "Erro"}
+                        texto_erro='Esse é o texto de erro',
+                        props={"self": {'class': 'campo--invalido'}, "input": {"placeholder": "Erro"}},
                     )
                 }}
                 {{
-                    macros.select(
+                    macros.campo(
                         'Select',
-                        {"1": "Valor 1", "2": "Valor 2", "3": "Valor 3", "padrao": "Valor Padrão", "4": "Valor 4"},
+                        options={"1": "Valor 1", "2": "Valor 2", "3": "Valor 3", "padrao": "Valor Padrão", "4": "Valor 4"},
                         selected="padrao"
                     )
                 }}
                 {{
                     macros.campo(
                         'Checkbox isolado',
-                        props_input={"type": "checkbox"}
+                        props={"input":{"type": "checkbox"}}
                     )
                 }}
                 {{
                     macros.campo(
                         'Texto de Área',
-                        props_input={"type": "textarea"}
+                        props={"input":{"type": "textarea"}}
                     )
                 }}
                 {{
                     macros.campo(
                         'Checkbox isolado e checado',
-                        props_input={"type": "checkbox", "checked": True},
+                        props={"input":{"type": "checkbox", "checked": True}},
                     )
                 }}
                 {{macros.radios(
                     'Grupo de radios',
-                    campos=('Item 1', 'Item 2', 'Item 3'),
+                    campos={"item_1": "Item 1", "item_2": "Item 2", "item_3": "Item 3"},
                     name='grupo_inputs',
-                    ids=('campo_1_1', 'campo_1_2', 'campo_1_3'),
-                    selecionado='Item 2',
+                    props={"item_2": {"checked": True}}
                 )}}
                 {{macros.radios(
                     'Grupo de radios com erro',
-                    campos=('Item 1', 'Item 2', 'Item 3', 'Item 4'),
+                    campos={"item_1": "Item 1", "item_2": "Item 2", "item_3": "Item 3", "item_4": "Item 4"},
                     name='grupo_inputs_erro',
-                    props={'class': 'campo--invalido'},
+                    props={"self": {'class': 'campo--invalido'}},
                     texto_erro='Grupo de radios com erro'
                 )}}
 
@@ -203,11 +200,11 @@
             '        <div class="opcao">',
             '            <input id="campo_1_1" type="radio" name="grupo_inputs" value="item_1">',
             '            <label for="campo_1_1">Item 1</label>',
-            '        </div>'
+            '        </div>',
             '        <div class="opcao">',
             '            <input id="campo_1_2" type="radio" name="grupo_inputs" value="item_2">',
             '            <label for="campo_1_2">Item 2</label>',
-            '        </div>'
+            '        </div>',
             '        <div class="opcao">',
             '            <input id="campo_1_3" type="radio" name="grupo_inputs" value="item_3">',
             '            <label for="campo_1_3">Item 2</label>',

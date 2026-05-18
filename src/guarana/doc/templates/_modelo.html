@@ -33,9 +33,9 @@
             <a href="/">{% include "partials/logo.html" %}</a>
         </header>
 
-        {{macros.select(
+        {{macros.campo(
             "Tema de cores",
-            {
+            options={
                 "tema_padrao": "Por Sistema",
                 "tema_light": "Modo Claro",
                 "tema_dark": "Modo Escuro",
@@ -43,7 +43,7 @@
                 "tema_guarana_original": "Tema variante (modo por sistema)",
                 "tema_diario": "Tema diário (modo por sistema, alteração diária)",
             },
-            props_select= {"id": "gua_tema", "name": "gua_tema"}
+            props={"select": {"id": "gua_tema", "name": "gua_tema"}}
         )}}
 
         {% for categoria in categorias %}
