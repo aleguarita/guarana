@@ -234,6 +234,63 @@
         </ol>
         <p>O parâmetro <code>name</code> é aplicado por último e sempre prevalece.</p>
 
+        <h3>Exemplos</h3>
+        {{macros.codigo('html', [
+            '{{macros.radios(',
+            '    "Tamanho",',
+            '    campos={"p": "Pequeno", "m": "Médio", "g": "Grande"},',
+            '    name="tamanho"',
+            ')}}',
+            ' ',
+            '{{macros.radios(',
+            '    "Plano",',
+            '    campos={"basico": "Básico", "pro": "Pro", "enterprise": "Enterprise"},',
+            '    name="plano",',
+            '    props={',
+            '        "input": {"class": "radio-plano"},',
+            '    },',
+            '    texto_erro="Selecione um plano"',
+            ')}}',
+            ' ',
+            '{{macros.radios(',
+            '    "Resposta",',
+            '    campos={"sim": "Sim", "nao": "Não"},',
+            '    name="resposta",',
+            '    props={',
+            '        "input": {"class": "radio-resposta"},',
+            '        "sim":   {"class": "radio-resposta radio-resposta--positivo"},',
+            '        "nao":   {"class": "radio-resposta radio-resposta--negativo"},',
+            '    }',
+            ')}}'
+        ])}}
+
+        {{macros.radios(
+            "Tamanho",
+            campos={"p": "Pequeno", "m": "Médio", "g": "Grande"},
+            name="tamanho"
+        )}}
+        
+        {{macros.radios(
+            "Plano",
+            campos={"basico": "Básico", "pro": "Pro", "enterprise": "Enterprise"},
+            name="plano",
+            props={
+                "input": {"class": "radio-plano"},
+            },
+            texto_erro="Selecione um plano"
+        )}}
+        
+        {{macros.radios(
+            "Resposta",
+            campos={"sim": "Sim", "nao": "Não"},
+            name="resposta",
+            props={
+                "input": {"class": "radio-resposta"},
+                "sim":   {"class": "radio-resposta radio-resposta--positivo"},
+                "nao":   {"class": "radio-resposta radio-resposta--negativo"},
+            }
+        )}}
+
     </section>
 </article>
 {% endblock conteudo %}
