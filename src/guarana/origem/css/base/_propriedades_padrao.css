@@ -33,3 +33,8 @@ PROPRIEDADES PERSONALIZADAS BASE
     inherits: true;
     initial-value: "padrão";
 }
+@property --line-height {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: calc(1em + 0.5rem);
+}

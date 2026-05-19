@@ -1,0 +1,37 @@
+<h3><code>guaGeraAutocomplete(id, itens, tem_erro=false)</code></h3>
+
+<p>
+    Esse script vai buscar um input com o <code>id</code> indicado para inserir
+    um autocomplete à medida que o usuário digita no campo.
+</p>
+
+<p>
+    É necessário seguir a estrutura indicada em <a href="/formulario">formulário</a>.
+</p>
+
+<ul>
+    <li>
+        <code>id</code>
+        - o id do input de texto que possuirá o autocomplete
+    </li>
+    <li>
+        <code>itens</code>
+        - um array com os itens que aparecem no autocomplete. O script vai filtrando
+        esse array para exibir apenas os relevantes.
+    </li>
+    <li>
+        <code>tem_erro</code>
+        - boolen para incluir uma validação de erro caso o que for digitado não
+        faça parte dos itens.
+    </li>
+</ul>
+
+{{macros.codigo('JS', [
+    "let listaAutocomplete = [",
+    "    'item 1',",
+    "    'item 2',",
+    "    'item 3',",
+    "    'item 4',",
+    "],",
+    "guaGeraAutocomplete('id_input', listaAutocomplete, true)"
+])}}

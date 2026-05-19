@@ -30,7 +30,8 @@ FORMULÁRIO
         --cor-txt: var(--cor-destaque);
 
         --rd: inherit;
-        --borda: 1px solid var(--cor-suave);
+        --bd-w: 1px; /* necessário para o autocomplete */
+        --borda: var(--bd-w) solid var(--cor-suave);
         --outline: none;
         --placeholder: var(--cor-suave);
         --pd: .3em;
@@ -103,6 +104,26 @@ FORMULÁRIO
                 }
             }
         }
+
+        /* autocomplete */
+        .autocomplete {
+            background-color: var(--cor-bg);
+            border: var(--borda);
+            border-radius: var(--rd);
+            max-height: calc(8.5 * (1em + var(--pd)));
+            outline: var(--outline);
+        }
+        
+        .autocomplete__item {
+            padding: calc(var(--pd) / 2) var(--pd);
+            background-color: var(--cor-bg);
+
+            &:hover, &.ativo {
+                color: var(--cor-bg);
+                background-color: var(--cor-txt);
+            }
+        }
+
     }
 
     /* o texto de erro */

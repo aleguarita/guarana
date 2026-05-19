@@ -30,3 +30,23 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 guaAtivarDesativarAbas()
+
+
+// exemplo de autocomplete
+const classes = [
+    "Artificer",
+    "Barbarian",
+    "Bard",
+    "Cleric",
+    "Druid",
+    "Fighter",
+    "Monk",
+    "Paladin",
+    "Ranger",
+    "Rogue",
+    "Sorcerer",
+    "Wizard",
+    "Warlock"
+];
+guaGeraAutocomplete('gua_autocomplete', classes, true)
+

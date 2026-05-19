@@ -155,7 +155,7 @@ ARQUIVO AUTOMÁTICO, NÃO ESCREVA
     {% endif -%}
 
     {% if texto_erro -%}
-        <span {{gerar_atributos(props.erro) if props.erro else ('class="campo_erro"' | safe)}}>{{texto_erro}}</span>
+        <span {{gerar_atributos(props.erro) if props.erro else ('class="campo__erro"' | safe)}}>{{texto_erro}}</span>
     {% endif -%}
 </div>
 {% endmacro %}
@@ -164,7 +164,6 @@ ARQUIVO AUTOMÁTICO, NÃO ESCREVA
 {#-
     OPÇÕES de radios:
     div.campo > legend + (div.options > label + input:radio) + erro (opcional)
-    - 
 -#}
 {% macro radios(
     texto_legend,
@@ -193,7 +192,7 @@ ARQUIVO AUTOMÁTICO, NÃO ESCREVA
             {% endfor -%}
         </div>
         {% if texto_erro -%}
-            <span {{gerar_atributos(props.erro) if props.erro else ('class="campo_erro"' | safe)}}>{{texto_erro}}</span>
+            <span {{gerar_atributos(props.erro) if props.erro else ('class="campo__erro"' | safe)}}>{{texto_erro}}</span>
         {% endif -%}
     </div>
 {% endmacro -%}

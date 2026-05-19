@@ -1,4 +1,4 @@
-/*18/05/2026*/
+/*19/05/2026*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -35,6 +35,11 @@ PROPRIEDADES PERSONALIZADAS BASE
     inherits: true;
     initial-value: "padrão";
 }
+@property --line-height {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: calc(1em + 0.5rem);
+}
 
 
 /*
@@ -48,8 +53,9 @@ Com alterações pontuais
 
 @layer reset {
     * {
+        --line-height: calc(1em + 0.5rem);
         margin: 0;
-        line-height: calc(1em + 0.5rem);
+        line-height: var(--line-height);
 
         &::before, &::after {
             box-sizing: border-box;
@@ -336,11 +342,42 @@ Formatação básica dos formulários
         align-items: center;
     }
 
+    /* com autocomplete */
+    .campo:has(.autocomplete) {
+        position: relative;
+
+        &:focus-within:has(.autocomplete:not(:empty)) {
+            .autocomplete {
+                display: initial;
+            }
+            .campo__erro {
+                opacity: 0;
+            }
+        }
+    }
+
+    .autocomplete {
+        position: absolute;
+        overflow: auto;
+        display: none;
+        bottom: 0;
+        transform: translateY(100%);
+        /* hack para a largura ficar do mesmo tamanho do container */
+        width: calc(100% - .1em);
+    }
+
+    .autocomplete__item {
+        display: block;
+        cursor: pointer;
+    }
+
+
     /* campo de opções */
     .opcoes {
         display: flex;
         gap: var(--gap, .5rem);
     }
+
 
 }
 
@@ -530,7 +567,8 @@ FORMULÁRIO
         --cor-txt: var(--cor-destaque);
 
         --rd: inherit;
-        --borda: 1px solid var(--cor-suave);
+        --bd-w: 1px; /* necessário para o autocomplete */
+        --borda: var(--bd-w) solid var(--cor-suave);
         --outline: none;
         --placeholder: var(--cor-suave);
         --pd: .3em;
@@ -603,6 +641,26 @@ FORMULÁRIO
                 }
             }
         }
+
+        /* autocomplete */
+        .autocomplete {
+            background-color: var(--cor-bg);
+            border: var(--borda);
+            border-radius: var(--rd);
+            max-height: calc(8.5 * (1em + var(--pd)));
+            outline: var(--outline);
+        }
+        
+        .autocomplete__item {
+            padding: calc(var(--pd) / 2) var(--pd);
+            background-color: var(--cor-bg);
+
+            &:hover, &.ativo {
+                color: var(--cor-bg);
+                background-color: var(--cor-txt);
+            }
+        }
+
     }
 
     /* o texto de erro */

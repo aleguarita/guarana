@@ -137,6 +137,23 @@ classes_css = [
         'pagina': '/formulario',
         'atualizada': '0.3.0',
     },
+    {
+        'nome': '.autocomplete',
+        'tipo': 'elemento',
+        'uso': ['Elemento filho de <code>.campo</code> que contém as opções do autocomplete. Gerado automaticamente por javascript'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    {
+        'nome': '.autocomplete__item',
+        'tipo': 'elemento',
+        'uso': ['Elemento filho direto de <code>.autocomplete</code>. Item do autocomplete para ser selecionado. Criado por javascript'],
+        'container': None,
+        'pagina': '/formulario',
+        'atualizada': '0.3.0',
+    },
+    
     
     
     

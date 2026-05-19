@@ -20,12 +20,6 @@
             com o prefixo <code>macros</code>.
         </p>
 
-        <h2>Sumário</h2>
-        <ul>
-            <li><a href='#macro-campo'>campo()</a></li>
-            <li><a href='#macro-radios'>radios()</a></li>
-        </ul>
-
         <h2 id='macro-campo'>campo()</h2>
         <p>
             Gera um campo de formulário completo com label, input e (opcionalmente)
@@ -247,7 +241,7 @@
             '    campos={"basico": "Básico", "pro": "Pro", "enterprise": "Enterprise"},',
             '    name="plano",',
             '    props={',
-            '        "input": {"class": "radio-plano"},',
+            '        "self": {"class": "campo--invalido"},',
             '    },',
             '    texto_erro="Selecione um plano"',
             ')}}',
@@ -275,7 +269,7 @@
             campos={"basico": "Básico", "pro": "Pro", "enterprise": "Enterprise"},
             name="plano",
             props={
-                "input": {"class": "radio-plano"},
+                "self": {"class": "campo--invalido"},
             },
             texto_erro="Selecione um plano"
         )}}

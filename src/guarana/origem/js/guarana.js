@@ -78,3 +78,112 @@ function guaAtivarDesativarAbas(classe="abas", ativo="ativo", atributo="data-aba
     }
 
 }
+
+// Gera autocomplete
+// -----------------------------------------------------------------------------
+function guaGeraAutocomplete(id, itens, tem_erro=false) {
+    let campo = document.getElementById(id)
+    let paiCampo = campo.parentElement
+    let msgErro = paiCampo.querySelector('.campo__erro')
+    let containerAutocomplete = paiCampo.querySelector('.autocomplete')
+
+    if (!msgErro) {
+        msgErro = document.createElement('span')
+        msgErro.classList.add('campo__erro')
+        paiCampo.appendChild(msgErro)
+    }
+
+    if (!containerAutocomplete) {
+        containerAutocomplete = document.createElement('nav')
+        containerAutocomplete.classList.add('autocomplete')
+        paiCampo.appendChild(containerAutocomplete)
+    }
+
+    const minChars = itens.length > 100 ? 3 : 1
+    let indiceSelecionado = -1
+
+    function atualizarDestaque() {
+        const spans = containerAutocomplete.querySelectorAll('.autocomplete__item')
+        spans.forEach((span, i) => {
+            span.classList.toggle('ativo', i === indiceSelecionado)
+        })
+    }
+
+    function escreveSugestoes(texto) {
+        containerAutocomplete.innerHTML = ''
+        indiceSelecionado = -1
+
+        if (texto.length < minChars) return
+
+        const filtrados = itens.filter(item =>
+            item.toLowerCase().includes(texto.toLowerCase())
+        )
+
+        filtrados.forEach(item => {
+            const span = document.createElement('span')
+            span.classList.add('autocomplete__item')
+            span.textContent = item
+
+            span.addEventListener('mousedown', () => {
+                campo.value = item
+                containerAutocomplete.innerHTML = ''
+                msgErro.textContent = ''
+                indiceSelecionado = -1
+            })
+
+            containerAutocomplete.appendChild(span)
+        })
+    }
+
+    campo.addEventListener('input', () => {
+        escreveSugestoes(campo.value)
+    })
+
+    campo.addEventListener('keydown', (e) => {
+        const spans = containerAutocomplete.querySelectorAll('.autocomplete__item')
+        if (!spans.length) return
+
+        if (e.key === 'ArrowDown') {
+            e.preventDefault()
+            indiceSelecionado = (indiceSelecionado + 1) % spans.length
+            atualizarDestaque()
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault()
+            indiceSelecionado = (indiceSelecionado - 1 + spans.length) % spans.length
+            atualizarDestaque()
+        } else if (e.key === 'Enter' && indiceSelecionado >= 0) {
+            e.preventDefault()
+            campo.value = spans[indiceSelecionado].textContent
+            containerAutocomplete.innerHTML = ''
+            msgErro.textContent = ''
+            indiceSelecionado = -1
+        } else if (e.key === 'Escape') {
+            containerAutocomplete.innerHTML = ''
+            indiceSelecionado = -1
+        }
+    })
+
+    campo.addEventListener('blur', () => {
+        const valor = campo.value.trim()
+
+        setTimeout(() => {
+            containerAutocomplete.innerHTML = ''
+            indiceSelecionado = -1
+        }, 150)
+
+        if (!tem_erro) return
+
+        if (valor && !itens.includes(valor)) {
+            msgErro.innerHTML = `<em>${valor}</em> não é válido`
+            paiCampo.classList.add('campo--invalido')
+        } else {
+            msgErro.textContent = ''
+            paiCampo.classList.remove('campo--invalido')
+        }
+    })
+
+    campo.addEventListener('focus', () => {
+        msgErro.textContent = ''
+        escreveSugestoes(campo.value)
+    })
+}

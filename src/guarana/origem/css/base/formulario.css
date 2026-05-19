@@ -50,10 +50,41 @@ Formatação básica dos formulários
         align-items: center;
     }
 
+    /* com autocomplete */
+    .campo:has(.autocomplete) {
+        position: relative;
+
+        &:focus-within:has(.autocomplete:not(:empty)) {
+            .autocomplete {
+                display: initial;
+            }
+            .campo__erro {
+                opacity: 0;
+            }
+        }
+    }
+
+    .autocomplete {
+        position: absolute;
+        overflow: auto;
+        display: none;
+        bottom: 0;
+        transform: translateY(100%);
+        /* hack para a largura ficar do mesmo tamanho do container */
+        width: calc(100% - .1em);
+    }
+
+    .autocomplete__item {
+        display: block;
+        cursor: pointer;
+    }
+
+
     /* campo de opções */
     .opcoes {
         display: flex;
         gap: var(--gap, .5rem);
     }
+
 
 }
