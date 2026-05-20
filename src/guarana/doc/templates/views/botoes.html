@@ -1,0 +1,72 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Botões{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='botoes' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Botões</h1>
+        <p>Arquivo <code>botoes.css</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <table class="tabela">
+            <thead>
+                <tr>
+                    <th>Classe</th>
+                    <th>Uso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in classe_css|sort(attribute="nome") %}
+                {% if item.pagina == "/botoes" %}
+                <tr>
+                    <td><code>{{item.nome}}</code></td>
+                    <td>{{macros.item_uso(item.uso)}}</td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>
+            Os botões foram padronizados na classe <code>.bt</code>, independente
+            se estiver usando a tag <code>&lt;button&gt;</code>,
+            <code>&lt;a&gt;</code> ou mesmo <code>&lt;input type="button"&gt;</code>.
+        </p>
+
+        {{macros.codigo('html', [
+            '<button class="bt">Botão básico</button>',
+            '<button class="bt" disabled>Botão inativo</button>',
+            '<button class="bt bt--secundario">Botão secundário</button>',
+            '<button class="bt bt--destaque">Botão destaque</button>',
+            '<button class="bt bt--ok">Botão ok</button>',
+            '<button class="bt bt--aviso">Botão aviso</button>',
+            '<button class="bt bt--erro">Botão erro</button>',
+            '<button class="bt bt--maior">Botão alterado menor</button>',
+            '<button class="bt bt--destaque bt--menor">Botão destaque alterado maior</button>',
+        ])}}
+
+        <details class="demo" open>
+            <summary>Exemplo dos botões acima:</summary>
+            <div class="demo__botoes">
+                <span><button class="bt">Botão básico</button></span>
+                <span><button class="bt" disabled>Botão inativo</button></span>
+                <span><button class="bt bt--secundario">Botão secundário</button></span>
+                <span><button class="bt bt--destaque">Botão destaque</button></span>
+                <span><button class="bt bt--ok">Botão ok</button></span>
+                <span><button class="bt bt--aviso">Botão aviso</button></span>
+                <span><button class="bt bt--erro">Botão erro</button></span>
+                <span><button class="bt bt--maior">Botão alterado menor</button></span>
+                <span><button class="bt bt--destaque bt--menor">Botão destaque alterado maior</button></span>
+            </div>
+        </details>
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir botão: <code>gua_botao</code></p>
+        </blockquote>
+
+    </section>
+</article>
+{% endblock conteudo %}

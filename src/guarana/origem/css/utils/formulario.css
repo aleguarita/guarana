@@ -30,8 +30,7 @@ FORMULÁRIO
         --cor-txt: var(--cor-destaque);
 
         --rd: inherit;
-        --bd-w: 1px; /* necessário para o autocomplete */
-        --borda: var(--bd-w) solid var(--cor-suave);
+        --borda: 1px solid var(--cor-suave);
         --outline: none;
         --placeholder: var(--cor-suave);
         --pd: .3em;

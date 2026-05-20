@@ -1,0 +1,33 @@
+/* 
+================================================================================
+BOTÕES
+Formatação básica dos botões
+================================================================================
+*/
+@layer base {
+    .bt {
+        appearance: none;
+        cursor: pointer;
+        display: inline-block;
+        font: inherit;
+        text-decoration: none;
+        line-height: var(--line-height);
+        background: none;
+        align-content: center;
+        text-align: center;
+
+        border: var(--borda, none);
+        border-radius: var(--rd, 0);        
+        color: var(--cor-txt);
+        font-size: var(--txt);
+        padding: var(--pd, .3em);
+        background-color: var(--cor-bg);
+        transition: initial;
+        
+        &:disabled, &[disabled] {
+            opacity: .5;
+            cursor: not-allowed;
+            background-color: hsl(from var(--cor-bg) h calc(s * .75) calc(l * .75));
+        }
+    }
+}

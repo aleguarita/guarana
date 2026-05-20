@@ -211,6 +211,12 @@
         }
 
     }
+
+    .demo__botoes {
+        display: flex;
+        flex-flow: wrap;
+        gap: .5rem;
+    }
 }
 
 /* CLASSES ORIGINAIS */

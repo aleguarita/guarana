@@ -86,6 +86,14 @@
 			"</div>"
 		],
 		"description": "Insere um campo de select"
+	},
+	"Botão": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_bt",
+		"body": [
+			"<button class=\"bt\">$1</button>"
+		],
+		"description": "Insere um campo de select"
 	}
 }
 

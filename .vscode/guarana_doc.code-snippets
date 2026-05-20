@@ -94,7 +94,7 @@
 			"    'tipo': '${2|generica,container,elemento,modificador|}',",
 			"    'uso': ['$3'],",
 			"    'container': ${4|None,''|},",
-			"    'pagina': ${5|None,''|},",
+			"    'pagina': ${5|None,'/'|},",
 			"    'atualizada': '0.3.0',",
 			"},",
 			"$7"

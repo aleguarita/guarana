@@ -100,7 +100,7 @@ Com alterações pontuais
         border: var(--borda, 1px solid hsl(0 0% 20% / .3));
         caret-color: var(--cor-destaque, initial);
         color: var(--cor-txt, light-dark(#000, #fff));
-        line-height: calc(1rem + .5em);
+        line-height: var(--line-height);
         padding: var(--pd, .3em);
     }
 
