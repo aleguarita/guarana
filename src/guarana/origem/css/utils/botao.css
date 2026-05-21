@@ -1,6 +1,5 @@
 /*
 BOTÕES
---------------------------------------------------------------------------------
 */
 @layer utils {
     /* BOTÃO BASE */
@@ -22,21 +21,7 @@ BOTÕES
         }
     }
 
-    /* Tipos diferentes de botões */
-    .bt--secundario {
-        --cor-base: transparent;
-        --cor-txt: var(--cor-3);
-
-        box-shadow: 0 0 1px inset var(--cor-txt);
-
-        &:hover:not(:disabled, [disabled]) {
-            --cor-txt: light-dark(
-                hsl(from var(--cor-3) h s calc(l * 1.3)),
-                hsl(from var(--cor-3) h s calc(l * .75))
-            );
-        }
-    }
-
+    /* variações de botões */
     .bt--destaque {
         --cor-base: var(--cor-2);
     }
@@ -51,6 +36,22 @@ BOTÕES
 
     .bt--aviso, .bt--alerta {
         --cor-base: var(--cor-alerta);
+    }
+
+    /* modificadores de botões (pode ser usado em conjunto com os variantes */
+    .bt--secundario {
+        --cor-txt: var(--cor-base);
+
+        box-shadow: 0 0 1px inset var(--cor-txt);
+        background-color: transparent;
+        
+        &:hover:not(:disabled, [disabled]) {
+            background-color: transparent;
+            --cor-txt: light-dark(
+                hsl(from var(--cor-base) h s calc(l * 1.3)),
+                hsl(from var(--cor-base) h s calc(l * .75))
+            );
+        }
     }
 
 

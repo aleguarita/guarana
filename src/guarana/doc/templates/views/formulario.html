@@ -11,26 +11,7 @@
 
     
     <section class='conteudo__corpo'>
-
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>Classe</th>
-                    <th>Uso</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in classe_css|sort(attribute="nome") %}
-                {% if item.pagina == "/formulario" %}
-                <tr>
-                    <td><code>{{item.nome}}</code></td>
-                    <td>{{macros.item_uso(item.uso)}}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
-
+        {{macros.tab_classes("/formulario", classe_css)}}
 
         <p>
             Os inputs tem formatação básica no reset que podem ser manipulados

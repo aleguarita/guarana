@@ -26,7 +26,33 @@
 {% endfor %}
 {% endmacro %}
 
+{% macro tab_classes(
+    pagina,
+    classe
+) %}
+<table class="tabela">
+    <thead>
+        <tr>
+            <th>Classe</th>
+            <th>Uso</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in classe|sort(attribute="nome") %}
+        {% if item.pagina == pagina %}
+        <tr>
+            <td><code>{{item.nome}}</code></td>
+            <td>{{item_uso(item.uso)}}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endmacro %}
+
+
 {#
-    MACROS DO GUARANÁ, SUBSTITUA AO USAR
+    MACROS DO GUARANÁ, SUBSTITUI AO USAR
 #}
 

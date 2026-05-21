@@ -23,24 +23,7 @@
     </header>
 
     <section class='conteudo__corpo'>
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>Classe</th>
-                    <th>Uso</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in classe_css|sort(attribute="nome") %}
-                {% if item.pagina == "/menu" %}
-                <tr>
-                    <td><code>{{item.nome}}</code></td>
-                    <td>{{macros.item_uso(item.uso)}}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        {{macros.tab_classes("/menu", classe_css)}}
 
         <p>
             Exemplo de um menu básico:

@@ -1,33 +1,16 @@
 {% extends '_modelo.html' %}
 
-{% block titulo %} | Botões{% endblock %}
+{% block titulo %} | Botão{% endblock %}
 
 {% block conteudo %}
-<article class='conteudo__artigo' id='botoes' data-categoria='util'>
+<article class='conteudo__artigo' id='botao' data-categoria='util'>
     <header class='conteudo__header'>
-        <h1>Botões</h1>
-        <p>Arquivo <code>botoes.css</code></p>
+        <h1>Botão</h1>
+        <p>Arquivo <code>botao.css</code></p>
     </header>
 
     <section class='conteudo__corpo'>
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>Classe</th>
-                    <th>Uso</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in classe_css|sort(attribute="nome") %}
-                {% if item.pagina == "/botoes" %}
-                <tr>
-                    <td><code>{{item.nome}}</code></td>
-                    <td>{{macros.item_uso(item.uso)}}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        {{macros.tab_classes("/botao", classe_css)}}
 
         <p>
             Os botões foram padronizados na classe <code>.bt</code>, independente

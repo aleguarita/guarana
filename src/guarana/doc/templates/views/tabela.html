@@ -50,24 +50,7 @@
     </header>
 
     <section class='conteudo__corpo'>
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>Classe</th>
-                    <th>Uso</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in classe_css|sort(attribute="nome") %}
-                {% if item.pagina == "/tabela" %}
-                <tr>
-                    <td><code>{{item.nome}}</code></td>
-                    <td>{{macros.item_uso(item.uso)}}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        {{macros.tab_classes("/tabela", classe_css)}}
 
         <p>
             As tabelas são formatadas com a classe <code>.tabela</code>. Exemplo de

@@ -10,24 +10,8 @@
     </header>
 
     <section class='conteudo__corpo'>
-        <table class="tabela">
-            <thead>
-                <tr>
-                    <th>Classe</th>
-                    <th>Uso</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in classe_css|sort(attribute="nome") %}
-                {% if item.pagina == "/abas" %}
-                <tr>
-                    <td><code>{{item.nome}}</code></td>
-                    <td>{{macros.item_uso(item.uso)}}</td>
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+        {{macros.tab_classes("/abas", classe_css)}}
+
         <p>
             O sistema de abas está dividido em três partes:
         </p>

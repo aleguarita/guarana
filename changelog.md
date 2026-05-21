@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0
+- Aviso
+- Arquivo `botoes.css` renomeado para `botao.css`
+
 ## 0.3.0
 - Formulários
 - Botões

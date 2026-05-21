@@ -44,9 +44,17 @@
 		"prefix": "codigo",
 		"scope": "html, django-html",
 		"body": [
-			"{{codigo('$1', [$2])}}"
+			"{{macros.codigo('$1', [$2])}}"
 		],
 		"description": "Macro para inserir código"
+	},
+	"Snippet Tabela de classes": {
+		"prefix": "tab_classes",
+		"scope": "html, django-html",
+		"body": [
+			"{{macros.tab_classes(\"/$1\", classe_css)}}"
+		],
+		"description": "Macro para inserir a tabela de classes dessa página"
 	},
 	"Link MDN": {
 		"prefix": "mdn",
@@ -95,7 +103,7 @@
 			"    'uso': ['$3'],",
 			"    'container': ${4|None,''|},",
 			"    'pagina': ${5|None,'/'|},",
-			"    'atualizada': '0.3.0',",
+			"    'atualizada': '0.4.0',",
 			"},",
 			"$7"
 		]
