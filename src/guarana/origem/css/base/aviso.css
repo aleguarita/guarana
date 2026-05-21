@@ -1,0 +1,21 @@
+/* 
+================================================================================
+AVISO
+Formatação básica de avisos
+================================================================================
+*/
+@layer base {
+    .aviso {
+        padding: var(--pd);
+        color: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .5)),
+            hsl(from var(--cor-base) h s calc(l * 1.5))
+        );
+        background-color: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.5) / .25),
+            hsl(from var(--cor-base) h s calc(l * 0.5) / .25)
+        );
+        border: 1px solid;
+        border-radius: var(--rd);
+    }
+}

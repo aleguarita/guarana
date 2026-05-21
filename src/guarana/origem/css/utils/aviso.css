@@ -1,0 +1,22 @@
+/* 
+AVISO
+--------------------------------------------------------------------------------
+Bloco básico de aviso. As classes modificadoras trabalham com as cores padrão
+de alerta, erro e sucesso.
+*/
+@layer utils {
+    .aviso {
+        --cor-base: var(--cor-1);
+        --pd: .5em;
+    }
+
+    .aviso--erro {
+        --cor-base: var(--cor-erro);
+    }
+    .aviso--ok {
+        --cor-base: var(--cor-ok);
+    }
+    .aviso--alerta {
+        --cor-base: var(--cor-alerta);
+    }
+}

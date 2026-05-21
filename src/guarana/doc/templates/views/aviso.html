@@ -1,0 +1,25 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Aviso{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='aviso' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Aviso</h1>
+        <p>Arquivo <code>aviso.css</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        {{macros.tab_classes("/aviso", classe_css)}}
+        <p>
+            Bloco básico de aviso. As classes modificadoras trabalham com as
+            cores padrão de alerta, erro e sucesso.
+        </p>
+
+        <p class="aviso">Teste de aviso, esse é o básico (altere o tema de cores para ver diferença)</p>
+        <p class="aviso aviso--erro">Teste de aviso, esse é de erro</p>
+        <p class="aviso aviso--alerta">Teste de aviso, esse é de alerta</p>
+        <p class="aviso aviso--ok">Teste de aviso, esse é de ok</p>
+    </section>
+</article>
+{% endblock conteudo %}
