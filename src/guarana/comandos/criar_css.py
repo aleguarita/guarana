@@ -44,7 +44,8 @@ def criar_base_css():
     pasta_base = PASTA_ORIGEM/PASTA_CSS/'base'
     pasta_destino = caminho_pasta_existente(PASTA_CSS)
     arquivo_destino = pasta_destino/ARQUIVO_BASE
-    arquivos = list(pasta_base.glob('*'))
+    arquivos = sorted(pasta_base.glob(
+        '*'), key=lambda f: (0 if f.name.startswith('_') else 1, f.name))
 
     texto = texto_base_header
 
