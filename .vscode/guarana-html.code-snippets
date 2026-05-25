@@ -94,6 +94,15 @@
 			"<button class=\"bt\">$1</button>"
 		],
 		"description": "Insere um campo de select"
+	},
+	
+	"Aviso": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_aviso",
+		"body": [
+			"<p class=\"aviso\">$1</p>"
+		],
+		"description": "Insere um bloco de aviso"
 	}
 }
 

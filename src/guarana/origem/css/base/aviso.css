@@ -17,5 +17,6 @@ Formatação básica de avisos
         );
         border: 1px solid;
         border-radius: var(--rd);
+        box-shadow: var(--sombra);
     }
 }

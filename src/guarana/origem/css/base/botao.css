@@ -23,6 +23,7 @@ Formatação básica dos botões
         padding: var(--pd, .3em);
         background-color: var(--cor-bg);
         transition: initial;
+        box-shadow: var(--sombra);
         
         &:disabled, &[disabled] {
             opacity: .5;

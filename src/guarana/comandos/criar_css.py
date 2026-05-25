@@ -13,7 +13,7 @@ f"""/*
 {separador()}
 ARQUIVO BASE DE {NOME}
 NÃO ALTERE! ELE É GERADO AUTOMATICAMENTE E TUDO SE PERDE AO ATUALIZAR
-FAÇA ALTERAÇÕES NO estilo.css
+FAÇA ALTERAÇÕES NO ARQUIVO estilo.css
 {separador('-')}
 Versão: {VERSAO}
 Última alteração nesse sistema em: {hoje}
@@ -27,6 +27,7 @@ f"""/*
 Arquivo principal do sistema utilizando {NOME}
 Se for o usar o estilo-min.css, altere tudo aqui e execute o comando:
 python -m {NOME.lower()} min
+Se estiver trabalhando com Flask o arquivo rodar.py já inclui o comando acima
 {separador('-')}
 Criado nesse sistema em: {hoje}
 Versão do {NOME} neste arquivo: {VERSAO}
@@ -38,7 +39,7 @@ Versão do {NOME} neste arquivo: {VERSAO}
 
 def criar_base_css():
     """
-    Cria o arquivo SCSS base, que vai incluir todos os elementos e será importado
+    Cria o arquivo CSS base, que vai incluir todos os elementos e será importado
     para o arquivo principal
     """
     pasta_base = PASTA_ORIGEM/PASTA_CSS/'base'

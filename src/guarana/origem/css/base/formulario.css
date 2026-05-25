@@ -51,6 +51,7 @@ Formatação básica dos formulários
     }
 
     /* com autocomplete */
+    /* TODO: anchor-position: mudar para isso quando todos os navegadores aceitarem */
     .campo:has(.autocomplete) {
         position: relative;
 

@@ -309,6 +309,7 @@ Formatação básica de avisos
         );
         border: 1px solid;
         border-radius: var(--rd);
+        box-shadow: var(--sombra);
     }
 }
 
@@ -338,6 +339,7 @@ Formatação básica dos botões
         padding: var(--pd, .3em);
         background-color: var(--cor-bg);
         transition: initial;
+        box-shadow: var(--sombra);
         
         &:disabled, &[disabled] {
             opacity: .5;

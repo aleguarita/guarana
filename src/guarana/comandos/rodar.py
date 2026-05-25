@@ -15,7 +15,7 @@ def rodar_doc():
     app.static_folder = '../doc/static'
     app.template_folder = '../doc/templates'
 
-    print('Rodando o Front_End em segundo plano.')
+    print(f'Rodando o {APP} em segundo plano.')
     print(f'Endereço para acessar: {COR_VERMELHO}http://localhost:{PORTA_LOCAL}{COR_FIM}')
 
     # --------------------------------------------------------------------------

@@ -36,6 +36,9 @@ def criar_requirements():
 
 def retornar_pasta_static(criou_flask:bool=False):
     pasta_atual = Path.cwd()
+    print('pasta atual', pasta_atual)
+    print('pasta static', PASTA_STATIC)
+    print('caminho existente', caminho_pasta_existente(PASTA_STATIC))
 
     if caminho_pasta_existente(PASTA_STATIC):
         return caminho_pasta_existente(PASTA_STATIC)

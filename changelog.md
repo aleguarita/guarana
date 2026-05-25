@@ -3,6 +3,17 @@
 ## 0.4.0
 - Aviso
 - Arquivo `botoes.css` renomeado para `botao.css`
+- `.bt--secundario` em sua versão básica  modifica demais variantes de botões
+- Inclusão da sombra padrão no botão e no aviso
+- Inclusão dos comandos do guarana em `rodar.py` permitindo visualizar a
+documentação e atualizar o css minificado quando trabalha no flask no ambiente
+de desenvolvimento
+- Corrigido um erro que fazia com que o arquivo `_guarana_base.css` estava
+ignorando a ordem de arquivos, que deveria incluir propriedades e reset em
+primeiro lugar.
+- Corrigido um bug que impedia a própria instalação da pasta `\static` ao escolher
+a opção `--flask` quando havia a possibilidade de existir uma pasta `\static` em
+`\.venv`
 
 ## 0.3.0
 - Formulários

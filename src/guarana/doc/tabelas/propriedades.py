@@ -289,5 +289,13 @@ propriedades_css = [
         'categoria': 'variável',
         'atualizada': '0.3.0',
     },
+    {
+        'nome': '--line-height',
+        'tipo': 'medida',
+        'heranca': 'não',
+        'uso': ['Determina o `line-height` dos elementos, seguindo. Essa medida foi criada com base no reset de <a href="https://www.joshwcomeau.com/css/custom-css-reset/#four-increase-line-height-5" target="_blank">Josh Comeau</a>.'],
+        'categoria': 'fechada',
+        'atualizada': '0.4.0',
+    },
     
 ]

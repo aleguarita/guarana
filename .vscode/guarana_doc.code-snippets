@@ -87,7 +87,7 @@
 			"    'heranca': '${3|sim,não|}',",
 			"    'uso': ['$4'],",
 			"    'categoria': '${5|fechada,aberta,variável|}',",
-			"    'atualizada': '0.3.0',",
+			"    'atualizada': '0.4.0',",
 			"},",
 			"$7"
 		],

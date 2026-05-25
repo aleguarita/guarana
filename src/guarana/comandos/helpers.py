@@ -41,8 +41,10 @@ def separador(char:str='='):
 
 
 def caminho_pasta_existente(pasta:str):
+    PASTAS_A_EXCLUIR = {".venv", "__pycache__", ".git", "node_modules"}
     pasta_atual = Path.cwd()
 
     for root, pastas, _ in pasta_atual.walk():
+        pastas[:] = [p for p in pastas if p not in PASTAS_A_EXCLUIR]
         if pasta in pastas:
             return root/pasta

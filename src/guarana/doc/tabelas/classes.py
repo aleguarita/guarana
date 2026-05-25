@@ -167,7 +167,7 @@ classes_css = [
         'uso': ['Modificador de botão para botões de menor importância. Pode ser utilizado em conjunto com outros variantes'],
         'container': None,
         'pagina': '/botao',
-        'atualizada': '0.3.0',
+        'atualizada': '0.4.0',
     },
     {
         'nome': '.bt--destaque',

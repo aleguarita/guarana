@@ -51,7 +51,7 @@ def main():
     rodar = subparsers.add_parser(
         'rodar',
         help=f'Roda a documentação e exemplos para o caso de não estar usando o Flask.\n'
-             f'Endereço é http://localhost:{PORTA_LOCAL}'
+             f'Endereço é http://localhost:{PORTA_LOCAL}\n'
     )
 
     args = parser.parse_args()

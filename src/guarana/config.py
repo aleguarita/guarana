@@ -38,3 +38,8 @@ COR_BRANCO = colorama.Fore.WHITE
 
 COR_FUNDO_VERMELHO = colorama.Back.RED
 COR_FIM = colorama.Style.RESET_ALL
+
+# quais ícones são usados
+ICONES = {
+
+}
