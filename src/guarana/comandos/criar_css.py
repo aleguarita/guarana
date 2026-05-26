@@ -44,6 +44,11 @@ def criar_base_css():
     """
     pasta_base = PASTA_ORIGEM/PASTA_CSS/'base'
     pasta_destino = caminho_pasta_existente(PASTA_CSS)
+
+    if not pasta_destino:
+        print(f'{COR_VERMELHO}Guaraná não foi detectado{COR_FIM}. Execute o comando {COR_AMARELO}instalar{COR_FIM}')
+        return
+
     arquivo_destino = pasta_destino/ARQUIVO_BASE
     arquivos = sorted(pasta_base.glob(
         '*'), key=lambda f: (0 if f.name.startswith('_') else 1, f.name))
@@ -65,19 +70,18 @@ def criar_base_css():
 def preencher_pasta_utils(resetar:bool=False):
     origem = PASTA_ORIGEM/'css/utils'
     destino = caminho_pasta_existente('guarana')
-    arquivos = list(origem.glob('*'))
 
+    if not destino:
+        print(f'{COR_VERMELHO}Guaraná não foi detectado{COR_FIM}. Execute o comando {COR_AMARELO}instalar{COR_FIM}')
+        return
+
+    arquivos = list(origem.glob('*'))
     for arquivo in arquivos:
         arquivo_destino = destino/arquivo.name
         
         if arquivo_destino.exists() and not resetar:
             print(f'O {COR_VERMELHO}{arquivo}{COR_FIM} já existe e não foi reescrito')
             continue
-
-        if arquivo_destino.exists():
-            print(f'Arquivo {COR_VERMELHO}{arquivo}{COR_FIM} reescrito')
-        else:
-            print(f'Arquivo {COR_AMARELO}{arquivo}{COR_FIM} criado')
 
         texto_data = f'\n{separador('-')}\n'
         texto_data += f'Versão: {VERSAO}.\nArquivo criado em: {hoje}\n'
@@ -88,6 +92,11 @@ def preencher_pasta_utils(resetar:bool=False):
         texto = texto.replace('\n*/', f'{texto_data}\n*/', 1)
 
         arquivo_destino.write_text(texto, encoding='utf-8')
+
+        if arquivo_destino.exists():
+            print(f'Arquivo {COR_VERMELHO}{arquivo}{COR_FIM} reescrito')
+        else:
+            print(f'Arquivo {COR_AMARELO}{arquivo}{COR_FIM} criado')
 
 
 def criar_import_utils_css():

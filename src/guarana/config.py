@@ -41,5 +41,9 @@ COR_FIM = colorama.Style.RESET_ALL
 
 # quais ícones são usados
 ICONES = {
-
+    "menu",
+    "search",
+    "home",
+    "close",
+    "settings"
 }

@@ -1,9 +1,10 @@
 from ..config import *
-from .helpers import criar_pasta, copiar_arquivo, copiar_pasta_inteira, separador, caminho_pasta_existente
+from .helpers import caminho_pasta_existente
 from .js import gerar_js
 from .snippets import gerar_snippets
 from .macros_django import gerar_macros
 from .criar_css import criar_base_css, criar_estilo_css, preencher_pasta_utils
+from .inserir_fontes import inserir_fontes
 
 
 def atualizar(resetar:bool=False):
@@ -15,6 +16,7 @@ def atualizar(resetar:bool=False):
     criar_base_css()
     criar_estilo_css(resetar)
     preencher_pasta_utils(resetar)
+    inserir_fontes()
     gerar_js(resetar)
     gerar_snippets()
     gerar_macros()
