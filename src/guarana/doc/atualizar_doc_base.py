@@ -36,11 +36,13 @@ texto = texto.replace('/* IMPORTS */\n@import url(ARQUIVO_BASE);\n', '')
 
 arquivo_destino.write_text(texto, 'utf-8')
 
+
 # COPIA JS
 arquivo_js_destino = pasta_atual/'static/js/guarana.js'
 arquivo_js_origem = pasta_atual.parent/'origem/js/guarana.js'
 
 arquivo_js_destino.write_text(arquivo_js_origem.read_text('utf-8'), 'utf-8')
+
 
 # GERA ARQUIVO FINAL DE MACROS
 # mescla _macros_base.html com as macros de usuário do guaraná
@@ -55,3 +57,15 @@ texto_macros += arquivo_macro_base.read_text('utf-8')
 texto_macros += arquivo_macro_guarana.read_text('utf-8')
 
 arquivo_macro_destino.write_text(texto_macros, 'utf-8')
+
+
+# COPIA ARQUIVOS DE FONTES
+pasta_fonte_destino = pasta_destino/'fontes'
+pasta_fonte_base = pasta_atual.parent/'origem/fontes/convertido'
+
+for arquivo in list(pasta_fonte_base.rglob("*")):
+    arquivo_destino = pasta_fonte_destino / arquivo.relative_to(pasta_fonte_base)
+
+    if arquivo.is_file():
+        arquivo_destino.write_bytes(arquivo.read_bytes())
+    

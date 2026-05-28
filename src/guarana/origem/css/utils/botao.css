@@ -19,6 +19,10 @@ BOTÕES
                 hsl(from var(--cor-base) h s calc(l * .75))
             );
         }
+
+        &:focus:not(:disabled, [disabled]) {
+            --sombra: none;
+        }
     }
 
     /* variações de botões */

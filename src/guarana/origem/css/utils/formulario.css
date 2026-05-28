@@ -1,6 +1,16 @@
 /* 
 FORMULÁRIO
 --------------------------------------------------------------------------------
+HTML básico:
+<div class="campo">
+    <label for="id">Label</label>
+    <input type="text" id="id" placeholder="campo" />
+    <span class="campo__erro">Erro, se for o caso</span>
+</div>
+
+Snippets:
+- gua_campo (para campos comuns como os de cima)
+- gua_select (para select)
 */
 @layer utils {
     /* CONTAINER DO FORMULÁRIO */

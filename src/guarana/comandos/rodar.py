@@ -83,7 +83,6 @@ def rodar_doc():
                 })
                 valid_view_ids.add(view_id)
 
-
     # Dicionário com todo o contexto a ser passado para o template
     template_context = {
         'app': NOME.capitalize().replace('na', 'ná'),
@@ -92,10 +91,11 @@ def rodar_doc():
         'pasta_views': PASTA_VIEWS,
         'md': md,
         'snippets': snippets,
-        'views': views,
+        'views': sorted(views, key=lambda x: x['titulo']),
         'prop_css': propriedades_css,
         'classe_css': classes_css,
-        'hoje': date.today().day
+        'hoje': date.today().day,
+        'icones': sorted(ICONES)
     }
 
     # --------------------------------------------------------------------------

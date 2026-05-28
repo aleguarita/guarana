@@ -52,6 +52,7 @@ Com alterações pontuais
         text-wrap: balance;
         margin-block: calc(1em + 0.5rem) 1em;
         color: var(--cor-titulo, initial);
+        font-weight: var(--weight, initial);
     }
 
     h1 {

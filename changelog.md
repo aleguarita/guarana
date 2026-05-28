@@ -2,7 +2,9 @@
 
 ## 0.4.0
 - Aviso
+- Fonte de ícones Material do Google
 - Arquivo `botoes.css` renomeado para `botao.css`
+- Formatação para o botão ativo
 - `.bt--secundario` em sua versão básica  modifica demais variantes de botões
 - Inclusão da sombra padrão no botão e no aviso
 - Inclusão dos comandos do guarana em `rodar.py` permitindo visualizar a
@@ -14,6 +16,8 @@ primeiro lugar.
 - Corrigido um bug que impedia a própria instalação da pasta `\static` ao escolher
 a opção `--flask` quando havia a possibilidade de existir uma pasta `\static` em
 `\.venv`
+- Corrigido um erro que importava as macros de forma errada
+- Corrigida as propriedades de margem, que estavam sendo ignoradas
 
 ## 0.3.0
 - Formulários

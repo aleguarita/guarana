@@ -7,6 +7,26 @@
 
 /* CORREÇÃO TAGS E TEMAS */
 @layer doc_gua {
+    @font-face {
+        font-family: 'Icones';
+        font-style: normal;
+        font-weight: 400;
+        src: url("fontes/material_symbols_rounded_[FILL,GRAD,opsz,wght].woff2") format('woff2');
+    }
+    @font-face {
+        font-family: 'Rounded';
+        font-style: normal;
+        font-weight: 400;
+        src: url("fontes/material_symbols_rounded_[FILL,GRAD,opsz,wght].woff2") format('woff2');
+    }
+    @font-face {
+        font-family: 'Sharped';
+        font-style: normal;
+        font-weight: 400;
+        src: url("fontes/material_symbols_sharp_[FILL,GRAD,opsz,wght].woff2") format('woff2');
+    }
+
+
     :root {
         --fonte: "Source Sans 3", var(--sans);
         --cor-txt: light-dark(
@@ -217,6 +237,114 @@
         flex-flow: wrap;
         gap: .5rem;
     }
+
+    .ico--rounded {
+        font-family: 'Rounded';
+    }
+
+    .ico--sharp {
+        font-family: 'Sharped';
+    }
+
+    .lista_icones {
+        --cor: hsl(from var(--cor-1) h s calc(l * 1.65));
+
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 1rem;
+
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: var(--cor-bg);
+            border-radius: var(--rd);
+            border: 1px solid var(--cor);
+            overflow: hidden;
+            
+            .ico {
+                font-size: 3em;
+                
+                & + span {
+                    font-size: .8em;
+                    background-color: var(--cor);
+                    align-self: stretch;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .gua_controladores {
+        --cor: hsl(from var(--cor-1) h s calc(l * 1.65));
+        
+        margin: var(--mg);
+        border: 1px solid var(--cor);
+        border-radius: var(--rd);
+        background-color: var(--cor-bg);
+        overflow: hidden;
+        
+        .campo {
+            --pd: .25em .75em;
+            
+            display: flex;
+            margin: 0;
+        }
+
+        legend {
+            align-self: center;
+            padding: var(--pd);
+        }
+
+        .opcoes {
+            --gap: 1em;
+            padding: var(--pd);
+        }
+
+        .opcao {
+            display: flex;
+
+            input {
+                display: none;
+            }
+
+            label {
+                padding-inline: .5em;
+                border-radius: var(--rd);
+            }
+        }
+
+        .opcao:has([type="radio"]:checked) label {
+            background: var(--cor-1);
+            box-shadow: var(--sombra);
+            color: var(--cor-secundaria);
+        }
+
+        .opcao:has(#fino) label {
+            font-weight: 100;
+        }
+
+        .opcao:has(#normal) label {
+            font-weight: 400;
+        }
+
+        .opcao:has(#grosso) label {
+            font-weight: 700;
+        }
+
+        .opcao:has([type="checkbox"]) label {
+            border: 2px solid var(--cor);
+        }
+
+        .opcao:has([type="checkbox"]:checked) label {
+            background-color: var(--cor);
+            color: var(--cor-1);
+        }
+
+
+    }
 }
 
 /* CLASSES ORIGINAIS */
@@ -310,6 +438,24 @@
         }
     }
 
+}
+
+/* VIEWS */
+@layer doc_gua {
+    #icones_lista {
+        &:has(#fino:checked) .ico {
+            --weight: 100;
+        }
+        &:has(#normal:checked) .ico {
+            --weight: 400;
+        }
+        &:has(#grosso:checked) .ico {
+            --weight: 700;
+        }
+        &:has(#preenchido:checked) .ico {
+            --ico-fill: 1;
+        }
+    }
 }
 
 /* CORREÇÃO DO PRISM */

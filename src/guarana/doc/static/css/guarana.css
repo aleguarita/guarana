@@ -1,4 +1,4 @@
-/*21/05/2026*/
+/*28/05/2026*/
 
 /* 
 PROPRIEDADES PERSONALIZADAS BASE
@@ -96,6 +96,7 @@ Com alterações pontuais
         text-wrap: balance;
         margin-block: calc(1em + 0.5rem) 1em;
         color: var(--cor-titulo, initial);
+        font-weight: var(--weight, initial);
     }
 
     h1 {
@@ -403,6 +404,7 @@ Formatação básica dos formulários
     }
 
     /* com autocomplete */
+    /* TODO: anchor-position: mudar para isso quando todos os navegadores aceitarem */
     .campo:has(.autocomplete) {
         position: relative;
 
@@ -439,6 +441,37 @@ Formatação básica dos formulários
     }
 
 
+}
+
+/* 
+================================================================================
+ÍCONE
+Formatação básica dos ícones
+================================================================================
+*/
+
+@layer base {
+    .ico {
+        font-family: 'Icones';
+        font-weight: normal;
+        font-style: normal;
+        font-size: var(--tamanho, max(24px, 1em));
+        line-height: var(--line-height);
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-flex;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        vertical-align: var(--v-align, bottom);
+        -webkit-font-smoothing: antialiased;
+    
+        font-variation-settings:
+        'FILL' var(--ico-fill, 0),
+        'wght' var(--weight, 400),
+        'GRAD' var(--ico-grad, 0),
+        'opsz' var(--ico-opsz, 24);
+    }
 }
 
 /* 
@@ -640,6 +673,10 @@ BOTÕES
                 hsl(from var(--cor-base) h s calc(l * .75))
             );
         }
+
+        &:focus:not(:disabled, [disabled]) {
+            --sombra: none;
+        }
     }
 
     /* variações de botões */
@@ -689,6 +726,16 @@ BOTÕES
 /* 
 FORMULÁRIO
 --------------------------------------------------------------------------------
+HTML básico:
+<div class="campo">
+    <label for="id">Label</label>
+    <input type="text" id="id" placeholder="campo" />
+    <span class="campo__erro">Erro, se for o caso</span>
+</div>
+
+Snippets:
+- gua_campo (para campos comuns como os de cima)
+- gua_select (para select)
 */
 @layer utils {
     /* CONTAINER DO FORMULÁRIO */
@@ -825,6 +872,43 @@ FORMULÁRIO
         }
     }
 }
+
+/*
+ÍCONE
+--------------------------------------------------------------------------------
+HTML base para a criação
+<span class="ico">home</span>
+--------------------------------------------------------------------------------
+Para saber quais ícones estão disponíveis use rode o sistema e veja na
+documentação
+*/
+
+
+@layer utils {
+    .ico {
+        --ico-fill: 0;
+        --ico-opsz: 24;
+        --weight: 400;
+    
+        --tamanho: max(calc(var(--ico-opsz) * 1px), 1em);
+        --v-align: bottom;
+    }
+
+    .ico--preenchido {
+        --ico-fill: 1;
+    }
+    
+    strong.ico, b.ico, .ico--grosso {
+        --weight: 700;
+    }
+
+    em.ico, i.ico, .ico--fino {
+        --weight: 100;
+    }
+
+}
+
+
 
 /*
 CLASSES GLOBAIS
@@ -990,6 +1074,9 @@ padrão. Rode a documentação e veja em /tabela
 /* LAYERS */
 @layer reset, base, utils, layout, views, doc_gua, view, prism;
 
+/* IMPORTS */
+@import url(ARQUIVO_FONTE); /* estilo do ícone, troque pelo estilo desejado */
+@import url(ARQUIVO_BASE);
 
 /* PROPRIEDADES PERSONALIZADAS */
 /* Paleta */
@@ -1011,18 +1098,23 @@ padrão. Rode a documentação e veja em /tabela
 
 /* Elementos genéricos para formatação */
 @property --mg-i { /* margem horizontal, inline */
-    syntax: "<length-percentage>+";
+    syntax: "*";
     inherits: true;
     initial-value: auto;
 }
 @property --mg-b { /* margin vertical, bloco */
-    syntax: "<length-percentage>+";
+    syntax: "*";
     inherits: true;
     initial-value: 0;
 }
+@property --mg { /* margem total */
+    syntax: "*";
+    inherits: true;
+    initial-value: 1em auto;
+}
 
 @property --rd { /* para uso em border-radius */
-    syntax: "<length-percentage>+";
+    syntax: "*";
     inherits: true;
     initial-value: 0;
 }

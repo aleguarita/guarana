@@ -21,14 +21,16 @@ AUTOR = _autores[0].get('name', 'Alessandro Guarita') if _autores else 'Alessand
 PORTA_LOCAL = 5000
 
 PASTA_ORIGEM = Path(__file__).parent/'origem'
+PASTA_PROJETO = NOME.lower().replace('á', 'a')
 PASTA_APP = 'app'
 PASTA_STATIC = 'static'
 PASTA_CSS = 'css'
 PASTA_JS = 'js'
 PASTA_MACRO = 'macros'
-PASTA_UTILS = f'utils_{NOME.lower()}'
+PASTA_UTILS = f'utils_{PASTA_PROJETO}'
 PASTA_VIEWS = 'views'
 ARQUIVO_BASE = '_guarana_base.css'
+ARQUIVO_BASE_FONTE = '_ico_rounded.css'
 
 COR_AMARELO = colorama.Fore.YELLOW
 COR_VERMELHO = colorama.Fore.RED
@@ -41,9 +43,11 @@ COR_FIM = colorama.Style.RESET_ALL
 
 # quais ícones são usados
 ICONES = {
-    "menu",
     "search",
     "home",
+    "menu",
     "close",
-    "settings"
+    "settings",
+
+    "link"
 }

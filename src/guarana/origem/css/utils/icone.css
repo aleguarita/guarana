@@ -1,0 +1,35 @@
+/*
+ÍCONE
+--------------------------------------------------------------------------------
+HTML base para a criação
+<span class="ico">home</span>
+--------------------------------------------------------------------------------
+Para saber quais ícones estão disponíveis use rode o sistema e veja na
+documentação
+*/
+
+
+@layer utils {
+    .ico {
+        --ico-fill: 0;
+        --ico-opsz: 24;
+        --weight: 400;
+    
+        --tamanho: max(calc(var(--ico-opsz) * 1px), 1em);
+        --v-align: bottom;
+    }
+
+    .ico--preenchido {
+        --ico-fill: 1;
+    }
+    
+    strong.ico, b.ico, .ico--grosso {
+        --weight: 700;
+    }
+
+    em.ico, i.ico, .ico--fino {
+        --weight: 100;
+    }
+
+}
+

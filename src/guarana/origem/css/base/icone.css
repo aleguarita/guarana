@@ -1,0 +1,30 @@
+/* 
+================================================================================
+ÍCONE
+Formatação básica dos ícones
+================================================================================
+*/
+
+@layer base {
+    .ico {
+        font-family: 'Icones';
+        font-weight: normal;
+        font-style: normal;
+        font-size: var(--tamanho, max(24px, 1em));
+        line-height: var(--line-height);
+        letter-spacing: normal;
+        text-transform: none;
+        display: inline-flex;
+        white-space: nowrap;
+        word-wrap: normal;
+        direction: ltr;
+        vertical-align: var(--v-align, bottom);
+        -webkit-font-smoothing: antialiased;
+    
+        font-variation-settings:
+        'FILL' var(--ico-fill, 0),
+        'wght' var(--weight, 400),
+        'GRAD' var(--ico-grad, 0),
+        'opsz' var(--ico-opsz, 24);
+    }
+}

@@ -257,8 +257,36 @@ classes_css = [
         'pagina': '/aviso',
         'atualizada': '0.4.0',
     },
-    
-    
-    
-    
+    {
+        'nome': '.ico',
+        'tipo': 'generica',
+        'uso': ['Para incluir ícone Material, deve escrever o código/nome do ícone dentro da tag'],
+        'container': None,
+        'pagina': '/icones',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '.ico--preenchido',
+        'tipo': 'modificador',
+        'uso': ['Variação do ícone para que ele seja preenchido'],
+        'container': None,
+        'pagina': '/icones',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '.ico--grosso',
+        'tipo': 'modificador',
+        'uso': ['Variação do ícone para que ele seja mais grosso. Não precisa da classe se utilizar dentro de um <code>&lt;strong&gt;</code> ou <code>&lt;b&gt;</code>'],
+        'container': None,
+        'pagina': '/icones',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '.ico--fino',
+        'tipo': 'modificador',
+        'uso': ['Variação do ícone para que ele seja mais fino. Não precisa da classe se utilizar dentro de um <code>&lt;em&gt;</code> ou <code>&lt;i&gt;</code>'],
+        'container': None,
+        'pagina': '/icones',
+        'atualizada': '0.4.0',
+    },
 ]

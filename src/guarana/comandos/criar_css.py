@@ -34,6 +34,22 @@ Versão do {NOME} neste arquivo: {VERSAO}
 {separador()}
 */
 """
+
+texto_arquivo_fonte =\
+f"""/*
+{separador()}
+Arquivo de ícones Material com base em https://fonts.google.com/icons.
+Estilo -ESTILO-
+Caso deseje esse estilo, altere o arquivo estilo.css, no import indicado.
+{separador('-')}
+Veja esses arquivos com o comando:
+python -m {PASTA_PROJETO} rodar
+{separador('-')}
+Criado nesse sistema em: {hoje}
+Versão do {NOME} neste arquivo: {VERSAO}
+{separador()}
+*/
+"""
 # endregion
 
 
@@ -67,9 +83,37 @@ def criar_base_css():
     arquivo_destino.write_text(texto)
 
 
+def criar_arquivos_fontes():
+    """
+    CRIA OS TRÊS ARQUIVOS DE SÍMBOLO
+    """
+    pasta_destino = caminho_pasta_existente(PASTA_CSS)
+    estilos = {'rounded', 'sharp'}
+
+    texto_css = """@layer reset {
+    @font-face {
+        font-family: 'Icones';
+        font-style: normal;
+        font-weight: 100 400 700;
+        src: url(LOCALIZACAO) format('woff2');
+    }
+}
+"""
+
+
+    for estilo in estilos:
+        arquivo_destino = pasta_destino/f'_ico_{estilo}.css'
+        arquivo_fonte = f"{PASTA_PROJETO}/fontes/material_symbols_{estilo}_[FILL,GRAD,opsz,wght].woff2"
+
+        texto = texto_arquivo_fonte.replace('-ESTILO-', estilo)
+        texto += texto_css.replace('LOCALIZACAO', f'"{arquivo_fonte}"')
+
+        arquivo_destino.write_text(texto, encoding='utf-8')
+
+
 def preencher_pasta_utils(resetar:bool=False):
     origem = PASTA_ORIGEM/'css/utils'
-    destino = caminho_pasta_existente('guarana')
+    destino = caminho_pasta_existente(PASTA_PROJETO)
 
     if not destino:
         print(f'{COR_VERMELHO}Guaraná não foi detectado{COR_FIM}. Execute o comando {COR_AMARELO}instalar{COR_FIM}')
@@ -106,9 +150,9 @@ def criar_import_utils_css():
     texto += separador()
     texto += '\n*/\n'
 
-    arquivos = list(caminho_pasta_existente('guarana').glob('*.css'))
+    arquivos = list(caminho_pasta_existente(PASTA_PROJETO).glob('*.css'))
     for arquivo in arquivos:
-        texto += f'@import url(guarana/{arquivo.name});\n'
+        texto += f'@import url({PASTA_PROJETO}/{arquivo.name});\n'
 
     return texto
 
@@ -124,6 +168,7 @@ def criar_estilo_css(resetar:bool=False):
     texto = texto_estilo_header
     texto += arquivo_original.read_text()
     texto = texto.replace('ARQUIVO_BASE', ARQUIVO_BASE)
+    texto = texto.replace('ARQUIVO_FONTE', ARQUIVO_BASE_FONTE)
 
     if not arquivo_destino.exists():
         print(

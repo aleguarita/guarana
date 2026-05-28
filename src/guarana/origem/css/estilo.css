@@ -2,6 +2,7 @@
 @layer reset, base, utils, layout, views;
 
 /* IMPORTS */
+@import url(ARQUIVO_FONTE); /* estilo do ícone, troque pelo estilo desejado */
 @import url(ARQUIVO_BASE);
 
 /* PROPRIEDADES PERSONALIZADAS */
@@ -24,18 +25,23 @@
 
 /* Elementos genéricos para formatação */
 @property --mg-i { /* margem horizontal, inline */
-    syntax: "<length-percentage>+";
+    syntax: "*";
     inherits: true;
     initial-value: auto;
 }
 @property --mg-b { /* margin vertical, bloco */
-    syntax: "<length-percentage>+";
+    syntax: "*";
     inherits: true;
     initial-value: 0;
 }
+@property --mg { /* margem total */
+    syntax: "*";
+    inherits: true;
+    initial-value: 1rem auto;
+}
 
 @property --rd { /* para uso em border-radius */
-    syntax: "<length-percentage>+";
+    syntax: "*";
     inherits: true;
     initial-value: 0;
 }

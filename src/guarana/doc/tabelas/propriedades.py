@@ -42,6 +42,22 @@ propriedades_css = [
         'atualizada': '0.1.0'
     },
     {
+        "nome": "--tema",
+        "tipo": "texto",
+        "heranca": "sim",
+        "uso": ["Variável usada no `:root` para indicar qual o tema de cores utilizado. Valor inicial: \"padrão\".", '`--tema: \"alto contraste\"`'],
+        'categoria': 'variável',
+        'atualizada': '0.1.0'
+    },
+    {
+        'nome': '--line-height',
+        'tipo': 'medida',
+        'heranca': 'não',
+        'uso': ['Determina o `line-height` dos elementos, seguindo. Essa medida foi criada com base no reset de <a href="https://www.joshwcomeau.com/css/custom-css-reset/#four-increase-line-height-5" target="_blank">Josh Comeau</a>.'],
+        'categoria': 'fechada',
+        'atualizada': '0.4.0',
+    },
+    {
         "nome": "--cor-1",
         "tipo": "cor",
         "heranca": "não",
@@ -66,6 +82,46 @@ propriedades_css = [
         'atualizada': '0.1.0'
     },
     {
+        'nome': '--mg-i',
+        'tipo': 'porcentagem / medida separada por espaços',
+        'heranca': 'sim',
+        'uso': ['Define a margem inline (vertical)'],
+        'categoria': 'aberta',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '--mg-b',
+        'tipo': 'porcentagem / medida separada por espaços',
+        'heranca': 'sim',
+        'uso': ['Define a margem block (horizontal)'],
+        'categoria': 'aberta',
+        'atualizada': '0.4.0',
+    },
+    {
+        "nome": "--mg",
+        "tipo": "porcentagem / medida separados por espaço",
+        "heranca": "sim",
+        "uso": ["Variável utilizada para a margem de um utilitário.", '`--mg: 1em auto;`', '`margin: var(--mg);`'],
+        'categoria': 'aberta',
+        'atualizada': '0.4.0'
+    },
+    {
+        "nome": "--rd",
+        "tipo": "porcentagem / medida",
+        "heranca": "sim",
+        "uso": [f"variável para arredondar a borda. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`border-radius: var(--rd)`'],
+        'categoria': 'aberta',
+        'atualizada': '0.1.0'
+    },
+    {
+        "nome": "--sombra",
+        "tipo": "valores separados por espaço",
+        "heranca": "sim",
+        "uso": [f"variável para a sombra padrão. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`box-shadow: var(--sombra)`'],
+        'categoria': 'aberta',
+        'atualizada': '0.1.0'
+    },
+    {
         "nome": "--transicao",
         "tipo": "valores separados por espaço",
         "heranca": "sim",
@@ -73,6 +129,15 @@ propriedades_css = [
         'categoria': 'aberta',
         'atualizada': '0.1.0'
     },
+    {
+        "nome": "--modo",
+        "tipo": "color-scheme",
+        "heranca": 'sim',
+        "uso": ["Variável usada no :root e em eventual tema para determinar qual o modo de cor usado. O root já faz uso de", '`color-scheme`', "bastando alterar o modo quando indicado. Veja mais em <a href='cores'>cores</a>", '`--modo: dark`'],
+        'categoria': 'aberta',
+        'atualizada': '0.1.0'
+    },
+
     {
         "nome": "--cor-bg",
         "tipo": "cor",
@@ -122,14 +187,6 @@ propriedades_css = [
         'atualizada': '0.3.0',
     },
     {
-        "nome": "--tema",
-        "tipo": "texto",
-        "heranca": "sim",
-        "uso": ["Variável usada no `:root` para indicar qual o tema de cores utilizado. Valor inicial: \"padrão\".", '`--tema: \"alto contraste\"`'],
-        'categoria': 'variável',
-        'atualizada': '0.1.0'
-    },
-    {
         "nome": "--gap",
         "tipo": "porcentagem / medida",
         "heranca": "sim",
@@ -144,14 +201,6 @@ propriedades_css = [
         'uso': ['Formata a borda do elemento', 'borda: 1px solid var(--cor-base)'],
         'categoria': 'variável',
         'atualizada': '0.3.0',
-    },
-    {
-        "nome": "--rd",
-        "tipo": "porcentagem / medida",
-        "heranca": "sim",
-        "uso": [f"variável para arredondar a borda. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`border-radius: var(--rd)`'],
-        'categoria': 'aberta',
-        'atualizada': '0.1.0'
     },
     {
         "nome": "--cor-base",
@@ -169,14 +218,7 @@ propriedades_css = [
         'categoria': 'variável',
         'atualizada': '0.1.0'
     },
-    {
-        "nome": "--sombra",
-        "tipo": "valores separados por espaço",
-        "heranca": "sim",
-        "uso": [f"variável para a sombra padrão. Diversos elementos em utilitários fazem uso dessa variável por padrão, de forma que ao alterar o valor inicial, vai alterar diversos elementos do {NOME}", '`box-shadow: var(--sombra)`'],
-        'categoria': 'aberta',
-        'atualizada': '0.1.0'
-    },
+
     {
         "nome": "--pd",
         "tipo": "porcentagem / medida separados por espaço",
@@ -184,22 +226,6 @@ propriedades_css = [
         "uso": ["Variável utilizada para o padding de um utilitário.", '`--pd: .5em 1em;`', '`padding: var(--pd-i);`'],
         'categoria': 'variável',
         'atualizada': '0.3.0'
-    },
-    {
-        "nome": "--mg",
-        "tipo": "porcentagem / medida separados por espaço",
-        "heranca": "sim",
-        "uso": ["Variável utilizada para a margem de um utilitário.", '`--mg: 1em auto;`', '`margin: var(--mg);`'],
-        'categoria': 'aberta',
-        'atualizada': '0.3.0'
-    },
-    {
-        "nome": "--modo",
-        "tipo": "color-scheme",
-        "heranca": 'sim',
-        "uso": ["Variável usada no :root e em eventual tema para determinar qual o modo de cor usado. O root já faz uso de", '`color-scheme`', "bastando alterar o modo quando indicado. Veja mais em <a href='cores'>cores</a>", '`--modo: dark`'],
-        'categoria': 'aberto',
-        'atualizada': '0.1.0'
     },
     {
         "nome": "--fonte",
@@ -290,12 +316,45 @@ propriedades_css = [
         'atualizada': '0.3.0',
     },
     {
-        'nome': '--line-height',
+        'nome': '--tamanho',
         'tipo': 'medida',
-        'heranca': 'não',
-        'uso': ['Determina o `line-height` dos elementos, seguindo. Essa medida foi criada com base no reset de <a href="https://www.joshwcomeau.com/css/custom-css-reset/#four-increase-line-height-5" target="_blank">Josh Comeau</a>.'],
-        'categoria': 'fechada',
+        'heranca': 'sim',
+        'uso': ['Variável local para indicar uma medida específica'],
+        'categoria': 'variável',
         'atualizada': '0.4.0',
     },
+    {
+        'nome': '--v-align',
+        'tipo': 'texto',
+        'heranca': 'sim',
+        'uso': ['Variável para usar o vertical align'],
+        'categoria': 'variável',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '--ico-fill',
+        'tipo': '0 / 1',
+        'heranca': 'sim',
+        'uso': ['Define se o ícone é preenchido ou não'],
+        'categoria': 'variável',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '--ico-grad',
+        'tipo': 'número',
+        'heranca': 'sim',
+        'uso': ['Define a espessura do ícone, conforme as configurações do Google. Recomendação deixar como 0 e usar <code>--weight</code>'],
+        'categoria': 'variável',
+        'atualizada': '0.4.0',
+    },
+    {
+        'nome': '--weight',
+        'tipo': 'número',
+        'heranca': 'sim',
+        'uso': ['Define o valor do negrito. Note que nem toda tag tem isso'],
+        'categoria': 'variável',
+        'atualizada': '0.4.0',
+    },
+    
     
 ]

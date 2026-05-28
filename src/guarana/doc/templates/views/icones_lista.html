@@ -1,0 +1,47 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Ícones Disponíveis{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='icones_lista' data-categoria='listas'>
+    <header class='conteudo__header'>
+        <h1>Ícones Disponíveis</h1>
+        <p>Os códigos de ícones. Veja mais detalhes em <a href="/icones">/icones</a></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <header class="gua_controladores">
+            <div class="campo">
+                <legend>Variações:</legend>
+                <div class="opcoes">
+                    <div class="opcao">
+                        <input type="radio" id="fino" name="ico_opcao" />
+                        <label for="fino">fino</label>
+                    </div>
+                    <div class="opcao">
+                        <input type="radio" id="normal" name="ico_opcao" checked />
+                        <label for="normal">normal (padrão)</label>
+                    </div>
+                    <div class="opcao">
+                        <input type="radio" id="grosso" name="ico_opcao" />
+                        <label for="grosso">grosso</label>
+                    </div>
+                    <div class="opcao">
+                        <input type="checkbox" id="preenchido" />
+                        <label for="preenchido">preenchido</label>
+                    </div>
+                    
+                </div>
+            </div>
+        </header>
+        <ul class="lista_icones">
+            {% for icone in icones %}
+            <li>
+                <span class="ico">{{icone}}</span>
+                <span class="lista_icones__legenda">{{icone}}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+</article>
+{% endblock conteudo %}

@@ -1,0 +1,119 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Ícones{% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='icones' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Ícones</h1>
+        <p>Arquivo <code>icone.scss</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            {{macros.tab_classes("/icones", classe_css)}}
+        </p>
+
+        <!-- TODO: explicar as variáveis -->
+        <p>
+            Os ícones são gerados através de fontes do
+            <a href="https://fonts.google.com/icons" target="_blank">Google</a>
+            e auto-hospedada para manter o carregamento mais enxuto.
+        </p>
+        <p>
+            Para utilizar um ícone é necessários saber o
+            <a href="/icones_lista">código</a> dela e escrever
+            esse código dentro de uma tag com a classe ícone. Sugiro
+            <code>&lt;span&gt;</code> mas pode ser qualquer tag, uma vez que a
+            classe transforma o elemento em <code>inline-flex</code>.
+        </p>
+
+        {{macros.codigo('html', [
+            '<span class="ico">nome_icone</span>'
+        ])}}
+
+        <h2>Variações de fonte</h2>
+        <p>
+            Quando se instala/atualiza o {{app}} são instalada duas variações
+            de fontes, uma com as pontas arredondadas (rounded) e outra aguda
+            (sharped). Além das duas fontes, podem ser encontrados dois arquivos
+            na raíz do css: <code>_ico_rounded.css</code> e
+            <code>_ico_sharp.css</code>.
+        </p>
+        <p>
+            A recomendação é usar apenas um desses arquivos, importando em
+            <code>estilo.css</code>, que usa o <code>_ico_rounded.css</code> por
+            padrão. Usar as duas variações cria uma requisição http extra e gera
+            inconsistência visual.
+        </p>
+
+        <details class="demo" open>
+            <summary>Comparação:</summary>
+            <ul class="lista_icones">
+                <li>
+                    <span class="ico ico--rounded">home</span>
+                    <span class="lista_icones__legenda">Rounded</span>
+                </li>
+                <li>
+                    <span class="ico ico--sharp">home</span>
+                    <span class="lista_icones__legenda">Sharp</span>
+                </li>
+            </ul>
+        </details>
+
+        <h2>Variações de estilo</h2>
+        <p>
+            Cada ícone possui 3 variações de espessura e a variação de contornado
+            ou preenchido.
+        </p>
+        <p>
+            Para atingir essas variações basta usar as classes de variações.
+            Mas é possível conseguir isso sem o uso de classes, mas com tag.
+        </p>
+        <ul>
+            <li>
+                Ícone fino: faz uso da variação <code>.ico--fino</code>
+                ou pode usar sem essa classe em
+                <code>&lt;em class="ico"&gt;</code> ou
+                <code>&lt;i class="ico"&gt;</code>
+            </li>
+            <li>
+                Ícone grosso: faz uso da variação <code>.ico--grosso</code>
+                ou pode usar sem essa classe em
+                <code>&lt;strong class="ico"&gt;</code> ou
+                <code>&lt;b class="ico"&gt;</code>
+            </li>
+            <li>
+                Ícone preenchido: faz uso da variação
+                <code>.ico--preenchido</code>
+            </li>
+        </ul>
+        <p>
+            Caso deseje trabalhar com apenas uma variação, altere as variáveis
+            diretamente dentro de <code>.ico</code>
+        </p>
+        <details class="demo" open>
+            <summary>Comparação:</summary>
+            <ul class="lista_icones">
+                <li>
+                    <i class="ico">home</i>
+                    <span class="lista_icones__legenda">Fino</span>
+                </li>
+                <li>
+                    <span class="ico">home</span>
+                    <span class="lista_icones__legenda">Padrão</span>
+                </li>
+                <li>
+                    <b class="ico">home</b>
+                    <span class="lista_icones__legenda">Grosso</span>
+                </li>
+                <li>
+                    <span class="ico ico--preenchido">home</span>
+                    <span class="lista_icones__legenda">Preenchido</span>
+                </li>
+            </ul>
+        </details>
+
+    </section>
+</article>
+{% endblock conteudo %}
