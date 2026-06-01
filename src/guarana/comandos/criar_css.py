@@ -94,7 +94,7 @@ def criar_arquivos_fontes():
     @font-face {
         font-family: 'Icones';
         font-style: normal;
-        font-weight: 100 400 700;
+        font-weight: 100 200 300 400 500 600 700 800 900;
         src: url(LOCALIZACAO) format('woff2');
     }
 }

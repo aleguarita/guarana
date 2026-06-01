@@ -23,12 +23,11 @@ documentação
         --ico-fill: 1;
     }
     
-    strong.ico, b.ico, .ico--grosso {
-        --weight: 700;
-    }
-
-    em.ico, i.ico, .ico--fino {
+    em.ico, i.ico, .ico--fino, .ico--100 {
         --weight: 100;
+    }
+    strong.ico, b.ico, .ico--grosso, .ico--700 {
+        --weight: 700;
     }
 
 }

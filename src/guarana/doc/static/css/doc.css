@@ -198,9 +198,15 @@
     }
 
     .conteudo__artigo {
-        width: clamp(10rem, 80%, 80ch);
+        container-type: inline-size;
+        container-name: conteudo;
+        width: clamp(10rem, 80cqi, 80ch);
         margin-inline: auto;
         margin-block: 5rem;
+
+        &[data-categoria="listas"] {
+            width: max(70cqi, 10rem);
+        }
     }
 
     .conteudo__header {
@@ -248,12 +254,17 @@
 
     .lista_icones {
         --cor: hsl(from var(--cor-1) h s calc(l * 1.65));
+        --col: 6;
 
         list-style: none;
         padding: 0;
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(var(--col), 1fr);
         gap: 1rem;
+
+        @container (width > 80ch) {
+            --col: 9;
+        }
 
         li {
             display: flex;
@@ -336,11 +347,19 @@
 
         .opcao:has([type="checkbox"]) label {
             border: 2px solid var(--cor);
+
+            &::before {
+                content: "contorno";
+            }
         }
 
         .opcao:has([type="checkbox"]:checked) label {
             background-color: var(--cor);
             color: var(--cor-1);
+
+            &::before {
+                content: "preenchido";
+            }
         }
 
 
@@ -454,6 +473,9 @@
         }
         &:has(#preenchido:checked) .ico {
             --ico-fill: 1;
+        }
+        .lista_icones__legenda {
+            font-size: .65em;
         }
     }
 }

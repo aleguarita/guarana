@@ -7,6 +7,7 @@
     <header class='conteudo__header'>
         <h1>Ícones</h1>
         <p>Arquivo <code>icone.scss</code></p>
+        <p><a href="/icones_lista">Lista de ícones e seus códigos para uso</a></p>
     </header>
 
     <section class='conteudo__corpo'>
@@ -92,20 +93,50 @@
             Caso deseje trabalhar com apenas uma variação, altere as variáveis
             diretamente dentro de <code>.ico</code>
         </p>
+        <p>
+            Além dessas variações, a fonte de ícones aceita 9 espessuras, indo
+            de 100 a 900. O css disponível não tem classe para isso, mas basta
+            alterar a propriedade <code>--weigh</code> para o valor desejado.
+        </p>
+
         <details class="demo" open>
             <summary>Comparação:</summary>
             <ul class="lista_icones">
                 <li>
                     <i class="ico">home</i>
-                    <span class="lista_icones__legenda">Fino</span>
+                    <span class="lista_icones__legenda">Fino (100)</span>
+                </li>
+                <li>
+                    <span class="ico" style="--weight: 200;">home</span>
+                    <span class="lista_icones__legenda">200</span>
+                </li>
+                <li>
+                    <span class="ico" style="--weight: 300;">home</span>
+                    <span class="lista_icones__legenda">300</span>
                 </li>
                 <li>
                     <span class="ico">home</span>
-                    <span class="lista_icones__legenda">Padrão</span>
+                    <span class="lista_icones__legenda">Padrão (400)</span>
+                </li>
+                <li>
+                    <span class="ico" style="--weight: 500;">home</span>
+                    <span class="lista_icones__legenda">500</span>
+                </li>
+                <li>
+                    <span class="ico" style="--weight: 600;">home</span>
+                    <span class="lista_icones__legenda">600</span>
                 </li>
                 <li>
                     <b class="ico">home</b>
-                    <span class="lista_icones__legenda">Grosso</span>
+                    <span class="lista_icones__legenda">Grosso (700)</span>
+                </li>
+                <li>
+                    <span class="ico" style="--weight: 800;">home</span>
+                    <span class="lista_icones__legenda">800</span>
+                </li>
+                <li>
+                    <span class="ico" style="--weight: 900;">home</span>
+                    <span class="lista_icones__legenda">900</span>
                 </li>
                 <li>
                     <span class="ico ico--preenchido">home</span>
@@ -113,6 +144,35 @@
                 </li>
             </ul>
         </details>
+
+        <p>
+            As variações de espessura e preenchimento podem ser passados como 
+            parâmetros para animar um ícone.
+        </p>
+
+        <h2>Inserindo diretamente no CSS</h2>
+        <p>
+            Caso o ícone seja inserido com os pseudoelementos <code>::after</code>
+            e <code>::before</code> ou alteração dos "bullets" do <code>ul</code>
+            basta inserir o nome do símbolo no
+            <code>content</code> e escolher a fonte <code>Icones</code>:
+        </p>
+
+        {{macros.codigo('css',[
+        '.classe {',
+        '    ...',
+        '    &::after {',
+        '        content: "home";',
+        '        font-family: "Icones";',
+        '        font-weight: 400;',
+        '    }',
+        '}'
+        ])}}
+
+        <blockquote class='dica-snippet'>
+            <p>Snippet</p>
+            <p>O {{app}} vem com um snippet para inserir ícone, tanto no HTML como no CSS: <code>gua_ico</code></p>
+        </blockquote>
 
     </section>
 </article>

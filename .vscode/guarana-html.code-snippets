@@ -103,6 +103,15 @@
 			"<p class=\"aviso\">$1</p>"
 		],
 		"description": "Insere um bloco de aviso"
+	},
+
+	"Ícone": {
+		"scope": "html, django-html, erb",
+		"prefix": "gua_ico",
+		"body": [
+			"<${2|span,b,i|} class=\"ico\">$1</$2>"
+		],
+		"description": "Insere um ícone"
 	}
 }
 

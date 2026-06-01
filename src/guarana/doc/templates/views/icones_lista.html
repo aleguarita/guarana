@@ -28,15 +28,20 @@
                     </div>
                     <div class="opcao">
                         <input type="checkbox" id="preenchido" />
-                        <label for="preenchido">preenchido</label>
+                        <label for="preenchido"></label>
                     </div>
-                    
                 </div>
+            <!-- TODO: 
+                - MODO DE TABELA
+                - OPÇÃO PRA COPIAR O CÓDIGO AO CLICAR
+                - FILTRAR. PEDIR PRO CHAT CRIAR CATEGORIAS PRA FACILITAR A BUSCA
+                - MOSTRAR A QUANTIDADE DE ÍCONES
+            -->
             </div>
         </header>
         <ul class="lista_icones">
             {% for icone in icones %}
-            <li>
+            <li title="{{icone}}">
                 <span class="ico">{{icone}}</span>
                 <span class="lista_icones__legenda">{{icone}}</span>
             </li>

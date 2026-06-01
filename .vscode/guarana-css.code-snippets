@@ -106,5 +106,16 @@
 			");"
 		],
 		"description": "Insere e formata a cor suave baseado no tema do sistema"
+	},
+
+	"Ícone": {
+		"scope": "css",
+		"prefix": "gua_ico",
+		"body": [
+			"content: \"$1\";",
+			"font-family: \"Icones\";",
+			"font-weight: ${2|400,100,200,300,500,600,700,800,900|};"
+		],
+		"description": "Insere um ícone como pseudoelemento"
 	}
 }

@@ -6,6 +6,7 @@ from fontTools.ttLib import TTFont
 from fontTools import subset as ft_subset
 
 from guarana.config import ICONES, PASTA_ORIGEM
+from guarana.doc import atualizar_doc_base
 
 PASTA_FONTE_BASE = PASTA_ORIGEM / "fontes/base"
 PASTA_FONTE_CONVERTIDO = PASTA_ORIGEM / "fontes/convertido"
@@ -166,3 +167,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+    atualizar_doc_base.main()
