@@ -80,8 +80,8 @@
 			"<div class=\"campo\">",
 			"    <label for=\"$1\">$2</label>",
 			"    <select name=\"$3\" id=\"$1\">",
-			"       <option value=\"$4\">$5</option>",
-			"       $6",
+			"        <option value=\"$4\">$5</option>",
+			"        $6",
 			"    </select>",
 			"</div>"
 		],

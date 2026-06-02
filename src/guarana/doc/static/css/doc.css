@@ -3,6 +3,8 @@
 @import url('404.css') layer(view);
 @import url('prism.css') layer(prism);
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('views/lista_icones.css');
+
 
 
 /* CORREÇÃO TAGS E TEMAS */
@@ -253,17 +255,27 @@
     }
 
     .lista_icones {
-        --cor: hsl(from var(--cor-1) h s calc(l * 1.65));
-        --col: 6;
+        --cor: light-dark(
+            hsl(from var(--cor-1) h s calc(l * 1.65)),
+            hsl(from var(--cor-1) h s calc(l * .35))
+        );
 
         list-style: none;
         padding: 0;
         display: grid;
-        grid-template-columns: repeat(var(--col), 1fr);
+        grid-template-columns: repeat(var(--col, 6), 1fr);
         gap: 1rem;
 
-        @container (width > 80ch) {
+        @container conteudo (width > 1024px) {
             --col: 9;
+        }
+
+        @container conteudo (width > 1600px) {
+            --col: 12;
+        }
+
+        @container conteudo (width < 600px) {
+            --col: 3;
         }
 
         li {
@@ -272,7 +284,8 @@
             align-items: center;
             background-color: var(--cor-bg);
             border-radius: var(--rd);
-            border: 1px solid var(--cor);
+            border: 1px solid transparent;
+            box-shadow: var(--sombra);
             overflow: hidden;
             
             .ico {
@@ -286,13 +299,27 @@
                 }
             }
         }
+        
+    }
+
+    .lista_icones.lista {
+        --col: 3;
+
+        @container conteudo (width > 1600px) {
+            --col: 4;
+        }
+
+        @container conteudo (width < 600px) {
+            --col: 1;
+        }
     }
 
     .gua_controladores {
         --cor: hsl(from var(--cor-1) h s calc(l * 1.65));
+        --borda-box: 1px solid var(--cor);
         
         margin: var(--mg);
-        border: 1px solid var(--cor);
+        border: var(--borda-box);
         border-radius: var(--rd);
         background-color: var(--cor-bg);
         overflow: hidden;
@@ -317,51 +344,12 @@
         .opcao {
             display: flex;
 
-            input {
-                display: none;
-            }
-
             label {
                 padding-inline: .5em;
                 border-radius: var(--rd);
             }
         }
-
-        .opcao:has([type="radio"]:checked) label {
-            background: var(--cor-1);
-            box-shadow: var(--sombra);
-            color: var(--cor-secundaria);
-        }
-
-        .opcao:has(#fino) label {
-            font-weight: 100;
-        }
-
-        .opcao:has(#normal) label {
-            font-weight: 400;
-        }
-
-        .opcao:has(#grosso) label {
-            font-weight: 700;
-        }
-
-        .opcao:has([type="checkbox"]) label {
-            border: 2px solid var(--cor);
-
-            &::before {
-                content: "contorno";
-            }
-        }
-
-        .opcao:has([type="checkbox"]:checked) label {
-            background-color: var(--cor);
-            color: var(--cor-1);
-
-            &::before {
-                content: "preenchido";
-            }
-        }
-
+        
 
     }
 }
@@ -460,25 +448,7 @@
 }
 
 /* VIEWS */
-@layer doc_gua {
-    #icones_lista {
-        &:has(#fino:checked) .ico {
-            --weight: 100;
-        }
-        &:has(#normal:checked) .ico {
-            --weight: 400;
-        }
-        &:has(#grosso:checked) .ico {
-            --weight: 700;
-        }
-        &:has(#preenchido:checked) .ico {
-            --ico-fill: 1;
-        }
-        .lista_icones__legenda {
-            font-size: .65em;
-        }
-    }
-}
+
 
 /* CORREÇÃO DO PRISM */
 @layer prism {

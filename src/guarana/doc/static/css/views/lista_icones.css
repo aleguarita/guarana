@@ -1,0 +1,138 @@
+@layer doc_gua {
+    #icones_lista {
+        &:has(#w100:checked) .lista_icones .ico { --weight: 100; }
+        &:has(#w200:checked) .lista_icones .ico { --weight: 200; }
+        &:has(#w300:checked) .lista_icones .ico { --weight: 300; }
+        &:has(#w400:checked) .lista_icones .ico { --weight: 400; }
+        &:has(#w500:checked) .lista_icones .ico { --weight: 500; }
+        &:has(#w600:checked) .lista_icones .ico { --weight: 600; }
+        &:has(#w700:checked) .lista_icones .ico { --weight: 700; }
+        &:has(#w800:checked) .lista_icones .ico { --weight: 800; }
+        &:has(#w900:checked) .lista_icones .ico { --weight: 900; }
+
+        &:has(#preenchido:checked) .lista_icones .ico { --ico-fill: 1; }
+        &:has(#sharp:checked) .lista_icones .ico { font-family: "Sharped"; }
+
+        .filtros {
+            margin: var(--mg);
+            display: flex;
+            justify-content: stretch;
+            
+            .campo {
+                width: 100%;
+                grid-template-columns: auto 1fr auto;
+
+                &:focus-within {
+                    --outline: 1px solid var(--cor-base);
+                }
+
+                label {
+                    background-color: var(--cor-txt);
+                    color: var(--cor-bg);
+                    padding: .25em;
+                    border-radius: var(--rd) 0 0 var(--rd);
+                    outline: var(--outline);
+                }
+                input {
+                    --rd: 0;
+                    border-width: 0;
+                }
+                #contador {
+                    border-radius: 0 var(--rd) var(--rd) 0;
+                    background-color: var(--cor-txt);
+                    color: var(--cor-bg);
+                    padding: .25em .75em;
+                    display: flex;
+                    align-items: center;
+                    outline: var(--outline);
+                }
+            }
+
+            
+        }
+
+        .gua_controladores {
+            .campo:focus-within {
+                --cor-txt: var(--cor-destaque);
+            }
+            
+            & > * {
+                padding: .5em;
+                border-bottom: var(--borda-box);
+
+                &:last-child {
+                    border-bottom: 0;
+                }
+            }
+
+            label .ico {
+                margin-right: .25em;
+            }
+
+            .opcao {
+                label {
+                    border-bottom: 2px solid transparent;
+                }
+    
+                [type="radio"] {
+                    position: absolute;
+                    clip-path: inset(50%);
+                    opacity: 0;
+                }
+    
+                &:has([type="radio"]:checked) label {
+                    --rd: 0;
+                    color: hsl(from var(--cor-1) h s calc(l * .74));
+                    border-bottom: 2px solid;
+                }
+            }
+        }
+
+        .lista_icones {
+            --cor-bg: light-dark(hsl(0 0% 97%), hsl(0 0% 3%));
+            li {
+                cursor: pointer;
+                &:active {
+                    box-shadow: none;
+                    border-color: var(--cor-1);
+                }
+            }
+        }
+
+        .lista_icones__legenda {
+            font-size: .65em;
+        }
+
+        &:has(#lista:checked) .lista_icones {
+            --col: 3;
+
+            @container conteudo (width > 1600px) {
+                --col: 4;
+            }
+
+            @container conteudo (width < 600px) {
+                --col: 1;
+            }
+
+            li {
+                flex-direction: row;
+
+                .ico {
+                    padding: .25em;
+                    font-size: 2.5em;
+                    
+                    & + span {
+                        display: flex;
+                        font-size: 1em;
+                        width: 100%;
+                        text-align: left;
+                        padding-inline: 1em;
+                        align-self: stretch;
+                        align-items: center;
+                    }
+                }
+
+            }
+        }
+    }
+}

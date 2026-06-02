@@ -17,7 +17,6 @@ FONTES = [
     "MaterialSymbolsSharp[FILL,GRAD,opsz,wght].ttf",
 ]
 
-
 def carregar_codepoints(caminho: Path) -> dict[str, str]:
     """Lê o arquivo .codepoints e retorna {nome_ícone: hex_codepoint}."""
     codepoints = {}

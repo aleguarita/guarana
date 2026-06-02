@@ -95,7 +95,9 @@ def rodar_doc():
         'prop_css': propriedades_css,
         'classe_css': classes_css,
         'hoje': date.today().day,
-        'icones': sorted(ICONES)
+        'icones': ICONES_DICT,
+        'icones_categoria': ICONES_CATEGORIA,
+        'icones_termos': ICONES_TERMOS
     }
 
     # --------------------------------------------------------------------------

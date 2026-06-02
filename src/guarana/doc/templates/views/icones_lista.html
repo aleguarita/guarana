@@ -9,39 +9,82 @@
         <p>Os códigos de ícones. Veja mais detalhes em <a href="/icones">/icones</a></p>
     </header>
 
+    <!-- TODO: 
+        - OPÇÃO PRA COPIAR O CÓDIGO AO CLICAR
+        - TOASTER INDICANDO QUE COPIOU
+    -->
+
     <section class='conteudo__corpo'>
-        <header class="gua_controladores">
+
+        <section class="filtros">
             <div class="campo">
-                <legend>Variações:</legend>
-                <div class="opcoes">
-                    <div class="opcao">
-                        <input type="radio" id="fino" name="ico_opcao" />
-                        <label for="fino">fino</label>
-                    </div>
-                    <div class="opcao">
-                        <input type="radio" id="normal" name="ico_opcao" checked />
-                        <label for="normal">normal (padrão)</label>
-                    </div>
-                    <div class="opcao">
-                        <input type="radio" id="grosso" name="ico_opcao" />
-                        <label for="grosso">grosso</label>
-                    </div>
-                    <div class="opcao">
-                        <input type="checkbox" id="preenchido" />
-                        <label for="preenchido"></label>
-                    </div>
-                </div>
-            <!-- TODO: 
-                - MODO DE TABELA
-                - OPÇÃO PRA COPIAR O CÓDIGO AO CLICAR
-                - FILTRAR. PEDIR PRO CHAT CRIAR CATEGORIAS PRA FACILITAR A BUSCA
-                - MOSTRAR A QUANTIDADE DE ÍCONES
-            -->
+                <label for="busca"><span class="ico">search</span></label>
+                <input type="search" name="busca" id="busca" placeholder="Busque por ícone, aceita termo em português">
+                <span id="contador">{{icones|length}} ícones</span>
             </div>
+        </section>
+
+        <header class="gua_controladores">
+            <section class="campo">
+                <legend>Espessuras:</legend>
+                <div class="opcoes">
+                    {% set espessuras = {
+                        'w100': '100 / fino',
+                        'w200': '200',
+                        'w300': '300',
+                        'w400': '400 / normal (padrão)',
+                        'w500': '500',
+                        'w600': '600',
+                        'w700': '700 / grosso',
+                        'w800': '800',
+                        'w900': '900'
+                    } %}
+                    {% for espessura in espessuras %}
+                    {% set selected = "checked" if espessura == 'w400' else '' %}
+                    <span class="opcao">
+                        <input type="radio" id="{{espessura}}" name="ico_opcao" {{selected}} />
+                        <label for="{{espessura}}">{{espessuras[espessura]}}</label>
+                    </span>
+                    {% endfor %}
+                </div>
+            </section>
+            <section class="campo">
+                <legend>Variações de ícones: </legend>
+                <span class="opcao">
+                    <input type="checkbox" id="preenchido" />
+                    <label for="preenchido">Contorno ativado</label>
+                </span>
+                <span class="opcao">
+                    <input type="radio" id="sharp" name="ico_variacao" />
+                    <label for="sharp">Ícone pontudo (sharp)</label>
+                </span>
+                <span class="opcao">
+                    <input type="radio" id="rounded" name="ico_variacao" checked />
+                    <label for="rounded">Ícone arredondado (rounded)</label>
+                </span>
+            </section>
+            <section class="campo visualização">
+                <legend>Visualizar lista em:</legend>
+                <span class="opcao">
+                    <input type="radio" name="view_list" id="cards" checked>
+                    <label for="cards">
+                        <span class="ico">cards</span>
+                        cards
+                    </label>
+                </span>
+                <span class="opcao">
+                    <input type="radio" name="view_list" id="lista">
+                    <label for="lista">
+                        <span class="ico">lists</span>
+                        lista
+                    </label>
+                </span>
+            </section>
         </header>
+
         <ul class="lista_icones">
-            {% for icone in icones %}
-            <li title="{{icone}}">
+            {% for icone in icones.keys()|sort %}
+            <li title="{{icone}}" data-categoria="{{icones[icone]['categoria']}}">
                 <span class="ico">{{icone}}</span>
                 <span class="lista_icones__legenda">{{icone}}</span>
             </li>
@@ -50,3 +93,41 @@
     </section>
 </article>
 {% endblock conteudo %}
+
+{% block js %}
+    <script>
+        const icones = {{icones|tojson}}
+        const inputBusca = document.getElementById('busca')
+        const listaIcones = document.querySelectorAll('.lista_icones li')
+        const contador = document.getElementById('contador')
+
+        function aplicarFiltros() {
+            const termo = inputBusca.value.toLowerCase()
+            let visiveis = 0
+
+            if (termo.length === 0) {
+                listaIcones.forEach(item => {
+                    item.style.display = ''
+                })
+                contador.textContent = `${listaIcones.length} ícones`
+                return
+            }
+
+            listaIcones.forEach(item => {
+                const listaTermos = icones[item.getAttribute('title')]['tipo']
+                const correspondeciaBusca = listaTermos.some(i => i.includes(termo))
+
+                if (correspondeciaBusca) {
+                    item.style.display = ''
+                    visiveis++
+                } else {
+                    item.style.display = 'none'
+                }
+            })
+
+            contador.textContent = `${visiveis} ícones`
+        }
+
+        inputBusca.addEventListener('input', aplicarFiltros)
+    </script>
+{% endblock js %}

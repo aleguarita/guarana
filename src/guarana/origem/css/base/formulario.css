@@ -36,6 +36,11 @@ Formatação básica dos formulários
             }
         }
 
+        label {
+            display: inline-flex;
+            align-items: center;
+        }
+
         /* esconde o .campo__erro no estado padrão */
         &:not(:is(.campo--invalido)) {
             .campo__erro {
