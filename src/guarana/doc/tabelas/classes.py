@@ -228,7 +228,10 @@ classes_css = [
     {
         'nome': '.aviso',
         'tipo': 'elemento',
-        'uso': ['Classe base para aviso.'],
+        'uso': [
+            'Classe base para aviso. Classe de bloco, pode ser usado em <code>'
+            '&lt;div&gt;</code>, <code>&lt;p&gt;</code>, etc.'
+        ],
         'container': None,
         'pagina': '/aviso',
         'atualizada': '0.4.0',
@@ -257,6 +260,15 @@ classes_css = [
         'pagina': '/aviso',
         'atualizada': '0.4.0',
     },
+    {
+        'nome': '.aviso__titulo',
+        'tipo': 'elemento',
+        'uso': ['Elemento filho de um aviso, o título do aviso'],
+        'container': None,
+        'pagina': '/aviso',
+        'atualizada': '0.4.0',
+    },
+    
     {
         'nome': '.ico',
         'tipo': 'generica',

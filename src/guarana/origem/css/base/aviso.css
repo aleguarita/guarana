@@ -6,7 +6,9 @@ Formatação básica de avisos
 */
 @layer base {
     .aviso {
+        margin-block: var(--line-height);
         padding: var(--pd);
+
         color: light-dark(
             hsl(from var(--cor-base) h s calc(l * .5)),
             hsl(from var(--cor-base) h s calc(l * 1.5))
@@ -18,5 +20,30 @@ Formatação básica de avisos
         border: 1px solid;
         border-radius: var(--rd);
         box-shadow: var(--sombra);
+
+        
+        &:has(.aviso__titulo) {
+            overflow: hidden;
+        }
+    }
+    .aviso__titulo {
+        margin: calc(var(--pd) * -1);
+        margin-bottom: var(--pd);
+        padding: var(--pd);
+        display: flex;
+        align-items: center;
+
+        background-color: light-dark(
+            hsl(from var(--cor-base) h s calc(l * .5)),
+            hsl(from var(--cor-base) h s calc(l * 1.5))
+        );
+        color: light-dark(
+            hsl(from var(--cor-base) h s calc(l * 1.75)),
+            hsl(from var(--cor-base) h s calc(l * 0.25))
+        );
+
+        .ico {
+            margin-right: 1em;
+        }
     }
 }

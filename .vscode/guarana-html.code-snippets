@@ -100,7 +100,7 @@
 		"scope": "html, django-html, erb",
 		"prefix": "gua_aviso",
 		"body": [
-			"<p class=\"aviso\">$1</p>"
+			"<div class=\"aviso\">$1</div>"
 		],
 		"description": "Insere um bloco de aviso"
 	},

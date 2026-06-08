@@ -116,10 +116,9 @@
             automáticas de até a variável <code>--col-max</code> como largura.
         </p>
 
-        <blockquote class="aviso">
-            <!-- TODO: formatar esse blockquote -->
-             <p>⚠️ Importante</p>
-             <p>
+        <div class="aviso">
+            <header class="aviso__titulo">⚠️ Importante</header>
+            <p>
                 Ao criar media query com o container, não utilize variáveis ou 
                 <code>calc()</code> pois alguns navegadores não aceitam e pode
                 haver problema de herança. Ao invés disso use valores absolutos
@@ -136,7 +135,7 @@
                 '   ...',
                 '}',
             ])}}
-        </blockquote>
+        </div>
 
         <p>
             Para regular qual coluna cada campo ocupe, use <code>grid-column</code>

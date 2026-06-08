@@ -13,17 +13,46 @@
         {{macros.tab_classes("/aviso", classe_css)}}
         <p>
             Bloco básico de aviso. As classes modificadoras trabalham com as
-            cores padrão de alerta, erro e sucesso.
+            cores padrão de alerta, erro e sucesso. Por padrão o bloco não tem
+            margem
         </p>
 
-        <p class="aviso">Teste de aviso, esse é o básico (altere o tema de cores para ver diferença)</p>
-        <p class="aviso aviso--erro">Teste de aviso, esse é de erro</p>
-        <p class="aviso aviso--alerta">Teste de aviso, esse é de alerta</p>
-        <p class="aviso aviso--ok">Teste de aviso, esse é de ok</p>
+        {{macros.codigo('html', [
+            '<div class="aviso">Aviso básico</div>'
+        ])}}
+
+        <details class="demo" open>
+            <summary>Exemplos de avisos básicos:</summary>
+            <div class="aviso">Teste de aviso, esse é o básico (altere o tema de cores para ver diferença)</div>
+            <div class="aviso aviso--erro">Teste de aviso, esse é de erro</div>
+            <div class="aviso aviso--alerta">Teste de aviso, esse é de alerta</div>
+            <div class="aviso aviso--ok">Teste de aviso, esse é de ok</div>
+        </details>
+
+        <details class="demo" open>
+            <summary>Exemplos de avisos com título:</summary>
+            <div class="aviso">
+                <header class="aviso__titulo"><span class="ico">comic_bubble</span> Título do aviso</header>
+                Teste de aviso, esse é o básico (altere o tema de cores para ver diferença)
+            </div>
+            <div class="aviso aviso--erro">
+                <header class="aviso__titulo"><span class="ico">comic_bubble</span> Título do aviso</header>
+                Teste de aviso, esse é de erro
+            </div>
+            <div class="aviso aviso--alerta">
+                <header class="aviso__titulo"><span class="ico">comic_bubble</span> Título do aviso</header>
+                Teste de aviso, esse é de alerta
+            </div>
+            <div class="aviso aviso--ok">
+                <header class="aviso__titulo"><span class="ico">comic_bubble</span> Título do aviso</header>
+                Teste de aviso, esse é de ok
+            </div>
+        </details>
+
 
         <blockquote class='dica-snippet'>
             <p>Snippet</p>
-            <p>O {{app}} vem com um snippet para inserir o aviso: <code>gua_aviso</code></p>
+            <p>O {{app}} vem com snippets para inserir aviso: <code>gua_aviso</code></p>
         </blockquote>
 
         <!-- TODO: listar variáveis, estou tentando automatizar isso -->
