@@ -1,0 +1,33 @@
+/* 
+ACORDEÃO
+--------------------------------------------------------------------------------
+Arcordeão básico.
+details.acordeao > summary + corpo
+*/
+@layer utils {
+    .acordeao {
+        --cor-basica: var(--cor-2);
+        --cor-secundaria: light-dark(
+
+        );
+        --borda: 1px solid;
+        --simbolo: 'chevron_right';
+
+        summary {
+
+            &::before {
+                transform: rotate(90deg);
+            }
+        }
+
+        &[open] {
+            /* --simbolo:  */
+
+            summary {
+                &::before {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,32 @@
+{% extends '_modelo.html' %}
+
+{% block titulo %} | Acordeão (accordion){% endblock %}
+
+{% block conteudo %}
+<article class='conteudo__artigo' id='acordeao' data-categoria='util'>
+    <header class='conteudo__header'>
+        <h1>Acordeão</h1>
+        <p>Aquivo <code>acordeao.css</code></p>
+    </header>
+
+    <section class='conteudo__corpo'>
+        <p>
+            O acordeão utiliza a tag <code>&lt;details&gt;</code> para criar a
+            a formatação, incluindo a animação.
+        </p>
+
+        <details class="acordeao" open>
+            <summary>Título do acordeão</summary>
+            Esse é o conteúdo sem tag
+        </details>
+
+        <details class="acordeao" open>
+            <summary>Título do acordeão com uma linha imensa e quebra de linha
+                para ver como fica e eu tinha conseguido deixar numa só linha</summary>
+            <p>Um conteúdo mais profundo.</p>
+            <p>Com mais de um parágrafo</p>
+        </details>
+
+    </section>
+</article>
+{% endblock conteudo %}

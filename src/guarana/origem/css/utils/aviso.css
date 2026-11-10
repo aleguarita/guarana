@@ -8,6 +8,7 @@ de alerta, erro e sucesso.
     .aviso {
         --cor-base: var(--cor-1);
         --pd: .5em;
+        --borda: 1px solid;
     }
 
     .aviso--erro {

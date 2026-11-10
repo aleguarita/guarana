@@ -8,6 +8,10 @@ Com alterações pontuais
 */
 
 @layer reset {
+    :root {
+        interpolate-size: allow-keywords; /* permite animações nativas */
+    }
+
     * {
         --line-height: calc(1em + 0.5rem);
         margin: 0;

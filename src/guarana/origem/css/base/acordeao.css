@@ -1,0 +1,34 @@
+/* 
+================================================================================
+ACORDEÃO (accordion)
+Formatação básica de acordeão
+================================================================================
+*/
+@layer base {
+    .acordeao {
+        container-type: inline-size;
+        container-name: acordeao;
+
+        overflow: hidden;
+        margin-block: var(--mg, 1rem);
+        border: var(--borda, 1px solid);
+        border-radius: var(--rd, 0);
+        box-shadow: var(--sombra, none);
+
+        summary {
+            user-select: none;
+            list-style: none;
+            cursor: pointer;
+
+            &::-webkit-details-marker { display: none; }
+            &::before {
+                content: var(--simbolo, 'visibility');
+                font-family: 'Icones';
+                display: flex;
+                align-items: center;
+            }
+
+        }
+
+    }
+}

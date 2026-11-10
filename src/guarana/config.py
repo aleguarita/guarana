@@ -427,6 +427,10 @@ ICONES_DICT = {
     "zoom_out": {"categoria": "ui_actions", "tipo": ["zoom", "reduzir", "-", "diminuir", "zoom out"]},
 }
 
+for ico in ICONES_DICT:
+    ICONES_DICT[ico]['tipo'].append(ico)
+
+
 ICONES = set(ICONES_DICT.keys())
 ICONES_CATEGORIA = set(ICONES_DICT[i]['categoria'] for i in ICONES_DICT)
 ICONES_TERMOS = {tipo for ico in ICONES_DICT.values() for tipo in ico['tipo']}

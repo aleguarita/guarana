@@ -17,7 +17,7 @@ Formatação básica de avisos
             hsl(from var(--cor-base) h s calc(l * 1.5) / .25),
             hsl(from var(--cor-base) h s calc(l * 0.5) / .25)
         );
-        border: 1px solid;
+        border: var(--borda);
         border-radius: var(--rd);
         box-shadow: var(--sombra);
 

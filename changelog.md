@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.0
+- Acordeão
+- Ajuste em `avisos.css` que agora tem a variável `--borda`
+
 ## 0.4.0
 - Aviso
 - Fonte de ícones Material do Google

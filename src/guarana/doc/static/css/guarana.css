@@ -52,6 +52,10 @@ Com alterações pontuais
 */
 
 @layer reset {
+    :root {
+        interpolate-size: allow-keywords; /* permite animações nativas */
+    }
+
     * {
         --line-height: calc(1em + 0.5rem);
         margin: 0;
@@ -293,6 +297,41 @@ Formatação básica de abas
 
 /* 
 ================================================================================
+ACORDEÃO (accordion)
+Formatação básica de acordeão
+================================================================================
+*/
+@layer base {
+    .acordeao {
+        container-type: inline-size;
+        container-name: acordeao;
+
+        overflow: hidden;
+        margin-block: var(--mg, 1rem);
+        border: var(--borda, 1px solid);
+        border-radius: var(--rd, 0);
+        box-shadow: var(--sombra, none);
+
+        summary {
+            user-select: none;
+            list-style: none;
+            cursor: pointer;
+
+            &::-webkit-details-marker { display: none; }
+            &::before {
+                content: var(--simbolo, 'visibility');
+                font-family: 'Icones';
+                display: flex;
+                align-items: center;
+            }
+
+        }
+
+    }
+}
+
+/* 
+================================================================================
 AVISO
 Formatação básica de avisos
 ================================================================================
@@ -310,7 +349,7 @@ Formatação básica de avisos
             hsl(from var(--cor-base) h s calc(l * 1.5) / .25),
             hsl(from var(--cor-base) h s calc(l * 0.5) / .25)
         );
-        border: 1px solid;
+        border: var(--borda);
         border-radius: var(--rd);
         box-shadow: var(--sombra);
 
@@ -336,7 +375,7 @@ Formatação básica de avisos
         );
 
         .ico {
-            margin-right: var(--pd);
+            margin-right: 1em;
         }
     }
 }
@@ -630,6 +669,7 @@ de alerta, erro e sucesso.
     .aviso {
         --cor-base: var(--cor-1);
         --pd: .5em;
+        --borda: 1px solid;
     }
 
     .aviso--erro {
@@ -643,6 +683,40 @@ de alerta, erro e sucesso.
     }
 }
 
+
+/* 
+ACORDEÃO
+--------------------------------------------------------------------------------
+Arcordeão básico.
+details.acordeao > summary + corpo
+*/
+@layer utils {
+    .acordeao {
+        --cor-basica: var(--cor-2);
+        --cor-secundaria: light-dark(
+
+        );
+        --borda: 1px solid;
+        --simbolo: 'chevron_right';
+
+        summary {
+
+            &::before {
+                transform: rotate(90deg);
+            }
+        }
+
+        &[open] {
+            /* --simbolo:  */
+
+            summary {
+                &::before {
+                    transform: rotate(0deg);
+                }
+            }
+        }
+    }
+}
 
 /* 
 ABAS
